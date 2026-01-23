@@ -3,350 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fotógrafo Profesional - Portafolio y Tienda</title>
+    <title>Reinier | Fotografía de Autor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- SDK de PayPal con tu ID real proporcionado -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AbC_Y_PpmDzqC4JgrvFPRAfq1E47EZKquXmM6OP_Bzs7S-2aRf-gG2RuDraHkKPitOrFbmoHqDhTeFYL&currency=EUR"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
         
+        :root {
+            --bg-dark: #0a0a0a;
+            --accent: #ffffff;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
+            background-color: var(--bg-dark);
+            color: var(--accent);
+            scroll-behavior: smooth;
         }
         
-        h1, h2, h3 {
+        h1, h2, h3, .brand-font {
             font-family: 'Playfair Display', serif;
         }
 
-        .photo-card:hover .overlay {
-            opacity: 1;
-        }
-
-        .modal, .cart-sidebar {
+        /* Estilos de Modales */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            backdrop-filter: blur(5px);
         }
 
         .cart-sidebar {
-            justify-content: flex-end;
-            padding: 0;
-            background: rgba(0,0,0,0.5);
-        }
-
-        .cart-content {
+            position: fixed;
+            right: -100%;
+            top: 0;
             width: 100%;
             max-width: 400px;
             height: 100%;
             background: #111;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.3s ease-out;
+            z-index: 1100;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
         }
 
         .cart-sidebar.active {
-            display: flex;
+            right: 0;
         }
 
-        .cart-sidebar.active .cart-content {
-            transform: translateX(0);
+        .photo-card img {
+            transition: transform 0.6s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.03);
+        }
+
+        #paypal-button-container {
+            margin-top: 20px;
+            min-height: 150px;
         }
     </style>
 </head>
 <body>
 
     <!-- Navegación -->
-    <nav class="sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-md z-50 flex justify-between items-center p-6 lg:px-12 border-b border-white/10">
-        <div class="text-2xl font-bold tracking-tighter uppercase italic">Luz & Sombra</div>
-        <ul class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
-            <li><a href="#inicio" class="hover:text-gray-400 transition">Inicio</a></li>
-            <li><a href="#galeria" class="hover:text-gray-400 transition">Galería</a></li>
-            <li><a href="#contacto" class="hover:text-gray-400 transition">Contacto</a></li>
-        </ul>
+    <nav class="fixed w-full top-0 bg-[#0a0a0a]/80 backdrop-blur-lg z-50 border-b border-white/5 py-5 px-8 flex justify-between items-center">
+        <div class="text-2xl font-bold tracking-tighter italic brand-font">Reinier</div>
+        <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-light">
+            <a href="#inicio" class="hover:text-gray-400 transition">Perfil</a>
+            <a href="#galeria" class="hover:text-gray-400 transition">Galería</a>
+            <a href="#contacto" class="hover:text-gray-400 transition">Contacto</a>
+        </div>
         <div class="flex items-center space-x-6">
-            <button onclick="toggleCart()" class="relative text-xl hover:text-gray-400 transition">
-                <i class="fas fa-shopping-cart"></i>
-                <span id="cartCount" class="absolute -top-2 -right-3 bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+            <button onclick="toggleCart()" class="relative">
+                <i class="fas fa-shopping-bag text-lg"></i>
+                <span id="cartCount" class="absolute -top-2 -right-3 bg-white text-black text-[9px] font-bold px-1.5 py-0.5 rounded-full">0</span>
             </button>
-            <button class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
-    <!-- Sección Sobre Mí -->
-    <section id="inicio" class="max-w-6xl mx-auto py-16 px-6 grid md:grid-cols-2 gap-12 items-center">
-        <div class="relative">
+    <!-- Hero / Perfil -->
+    <section id="inicio" class="pt-32 pb-20 px-8 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div class="overflow-hidden rounded-sm bg-neutral-900 aspect-[4/5]">
             <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070&auto=format&fit=crop" 
-                 alt="Retrato del fotógrafo" 
-                 class="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition duration-700 w-full h-[500px] object-cover"
-                 onerror="this.src='https://via.placeholder.com/600x800?text=Fotógrafo'">
-            <div class="absolute -bottom-6 -right-6 bg-white text-black p-6 hidden lg:block">
-                <p class="text-sm font-bold uppercase tracking-widest">Est. 2015</p>
-            </div>
+                 alt="Fotógrafo Reinier" 
+                 class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
         </div>
-        <div>
-            <h1 class="text-5xl mb-6">Capturando la esencia de lo efímero.</h1>
-            <p class="text-gray-400 leading-relaxed mb-8">
-                Hola, soy Marcos Rivera. Me dedico a la fotografía de autor y documental. Mi objetivo es encontrar la belleza en los detalles más simples y contar historias que las palabras no pueden alcanzar. Cada impresión disponible en esta web es una pieza de mi visión del mundo, lista para decorar tu espacio.
+        <div class="space-y-8">
+            <h1 class="text-7xl md:text-8xl leading-none italic">Reinier Studio.</h1>
+            <p class="text-gray-400 text-lg leading-relaxed font-light">
+                Bienvenido a mi espacio visual. Soy Reinier, fotógrafo especializado en capturar la esencia minimalista del entorno. Cada pieza disponible aquí es el resultado de una búsqueda constante por la luz perfecta y el silencio visual.
             </p>
-            <div class="flex space-x-4">
-                <a href="#galeria" class="bg-white text-black px-8 py-3 font-semibold hover:bg-gray-200 transition">Ver Colección</a>
-                <a href="#" class="border border-white/30 px-8 py-3 hover:bg-white/10 transition">Instagram</a>
+            <div class="pt-4">
+                <a href="#galeria" class="border border-white/20 px-12 py-5 text-[10px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition duration-500">Explorar Obra</a>
             </div>
         </div>
     </section>
 
-    <!-- Galería y Tienda -->
-    <section id="galeria" class="bg-[#111] py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl text-center mb-12">Impresiones de Colección</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Foto 1 -->
-                <div class="photo-card group relative bg-black p-4 rounded-sm">
-                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1874&auto=format&fit=crop" 
-                         alt="Montañas en la niebla" 
-                         class="w-full h-80 object-cover mb-4">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl italic">Niebla en los Alpes</h3>
-                            <p class="text-gray-500 text-sm">Edición Limitada</p>
-                        </div>
-                        <button onclick="openShop('Niebla en los Alpes', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1874&auto=format&fit=crop')" 
-                                class="bg-white text-black text-xs px-4 py-2 uppercase font-bold hover:bg-gray-300">
-                            Comprar
-                        </button>
+    <!-- Galería de Impresiones -->
+    <section id="galeria" class="bg-[#0f0f0f] py-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <header class="text-center mb-24 space-y-4">
+                <h2 class="text-4xl italic brand-font">Colección Fine Art</h2>
+                <p class="text-gray-500 text-[10px] uppercase tracking-[0.5em]">Ediciones Limitadas</p>
+            </header>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <!-- Obra 1 -->
+                <div class="photo-card group cursor-pointer" onclick="openShop('Niebla en los Alpes', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800')">
+                    <div class="overflow-hidden aspect-square mb-6">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-xl italic">Niebla en los Alpes</h3>
+                        <span class="text-xs text-gray-500">Desde 45€</span>
                     </div>
                 </div>
 
-                <!-- Foto 2 -->
-                <div class="photo-card group relative bg-black p-4 rounded-sm">
-                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop" 
-                         alt="Bosque Profundo" 
-                         class="w-full h-80 object-cover mb-4">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl italic">Silencio Verde</h3>
-                            <p class="text-gray-500 text-sm">Naturaleza</p>
-                        </div>
-                        <button onclick="openShop('Silencio Verde', 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop')" 
-                                class="bg-white text-black text-xs px-4 py-2 uppercase font-bold hover:bg-gray-300">
-                            Comprar
-                        </button>
+                <!-- Obra 2 -->
+                <div class="photo-card group cursor-pointer" onclick="openShop('Silencio Verde', 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800')">
+                    <div class="overflow-hidden aspect-square mb-6">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-xl italic">Silencio Verde</h3>
+                        <span class="text-xs text-gray-500">Desde 45€</span>
                     </div>
                 </div>
 
-                <!-- Foto 3 -->
-                <div class="photo-card group relative bg-black p-4 rounded-sm">
-                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop" 
-                         alt="Lago al atardecer" 
-                         class="w-full h-80 object-cover mb-4">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl italic">Espejo de Agua</h3>
-                            <p class="text-gray-500 text-sm">Paisaje</p>
-                        </div>
-                        <button onclick="openShop('Espejo de Agua', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop')" 
-                                class="bg-white text-black text-xs px-4 py-2 uppercase font-bold hover:bg-gray-300">
-                            Comprar
-                        </button>
+                <!-- Obra 3 -->
+                <div class="photo-card group cursor-pointer" onclick="openShop('Espejo de Agua', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800')">
+                    <div class="overflow-hidden aspect-square mb-6">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="text-xl italic">Espejo de Agua</h3>
+                        <span class="text-xs text-gray-500">Desde 45€</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal de Compra -->
-    <div id="shopModal" class="modal flex">
-        <div class="bg-white text-black max-w-4xl w-full rounded-lg overflow-hidden flex flex-col md:flex-row">
-            <div class="md:w-1/2 bg-gray-200">
-                <img id="modalImg" src="" alt="Imagen Seleccionada" class="w-full h-full object-cover">
+    <!-- Modal de Selección -->
+    <div id="shopModal" class="modal-overlay flex items-center justify-center p-6" onclick="if(event.target === this) closeShop()">
+        <div class="bg-white text-black max-w-5xl w-full grid md:grid-cols-2 rounded-sm overflow-hidden shadow-2xl scale-up-animation">
+            <div class="h-[400px] md:h-auto">
+                <img id="modalImg" src="" class="w-full h-full object-cover">
             </div>
-            <div class="md:w-1/2 p-8 flex flex-col justify-center">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 id="modalTitle" class="text-3xl">Título</h2>
-                    <button onclick="closeShop()" class="text-gray-400 hover:text-black text-2xl"><i class="fas fa-times"></i></button>
-                </div>
-                <p class="text-gray-600 mb-6 italic">Seleccione el tamaño de impresión. Todas las piezas incluyen certificado de autenticidad.</p>
-                
-                <div class="space-y-4 mb-8">
-                    <label class="block">
-                        <span class="text-sm font-bold uppercase tracking-widest">Tamaño</span>
-                        <select id="sizeSelector" onchange="updatePrice()" class="mt-1 block w-full p-3 border border-gray-300 rounded focus:ring-black focus:border-black">
-                            <option value="45" data-size="30x40 cm">Pequeño (30x40 cm) - 45€</option>
-                            <option value="85" data-size="50x70 cm">Medio (50x70 cm) - 85€</option>
-                            <option value="150" data-size="70x100 cm">Grande (70x100 cm) - 150€</option>
-                            <option value="250" data-size="100x140 cm">Galería (100x140 cm) - 250€</option>
+            <div class="p-12 flex flex-col justify-center">
+                <h2 id="modalTitle" class="text-4xl italic mb-6">Título Obra</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400">Tamaño de Impresión</label>
+                        <select id="sizeSelector" onchange="updatePrice()" class="w-full border-b border-gray-200 py-4 outline-none focus:border-black transition">
+                            <option value="45" data-size="30x40 cm">Pequeño (30x40 cm) — 45€</option>
+                            <option value="85" data-size="50x70 cm">Medio (50x70 cm) — 85€</option>
+                            <option value="150" data-size="70x100 cm">Grande (70x100 cm) — 150€</option>
                         </select>
-                    </label>
+                    </div>
+                    <div class="flex justify-between items-center pt-6 border-t">
+                        <span class="text-[10px] uppercase tracking-widest text-gray-400">Precio de adquisición</span>
+                        <span id="finalPrice" class="text-4xl font-light">45€</span>
+                    </div>
+                    <button onclick="addToCart()" class="w-full bg-black text-white py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-neutral-800 transition">Añadir al carrito</button>
+                    <button onclick="closeShop()" class="w-full text-[9px] uppercase tracking-widest text-gray-400 hover:text-black transition">Regresar</button>
                 </div>
-
-                <div class="flex justify-between items-center mb-8">
-                    <span class="text-gray-500">Precio Final:</span>
-                    <span id="finalPrice" class="text-4xl font-light">45€</span>
-                </div>
-
-                <button onclick="addToCart()" class="w-full bg-black text-white py-4 font-bold uppercase tracking-widest hover:bg-gray-800 transition">
-                    Añadir al Carrito
-                </button>
             </div>
         </div>
     </div>
 
-    <!-- Carrito Sidebar -->
-    <div id="cartSidebar" class="cart-sidebar" onclick="if(event.target === this) toggleCart()">
-        <div class="cart-content shadow-2xl">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-2xl font-bold uppercase italic">Tu Carrito</h2>
-                <button onclick="toggleCart()" class="text-2xl hover:text-gray-400"><i class="fas fa-times"></i></button>
+    <!-- Sidebar de Carrito -->
+    <div id="cartSidebar" class="cart-sidebar flex flex-col p-10">
+        <div class="flex justify-between items-center mb-12">
+            <h2 class="text-2xl italic brand-font">Tu Carrito</h2>
+            <button onclick="toggleCart()" class="text-gray-500 hover:text-white"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow space-y-8 overflow-y-auto">
+            <!-- Items dinámicos -->
+        </div>
+
+        <div class="pt-8 border-t border-white/10 mt-8 space-y-6">
+            <div class="flex justify-between items-baseline">
+                <span class="text-[10px] uppercase tracking-widest text-gray-500">Total del pedido</span>
+                <span id="cartTotal" class="text-3xl font-bold">0€</span>
             </div>
+            <button onclick="openCheckout()" class="w-full bg-white text-black py-5 text-[10px] uppercase tracking-[0.3em] font-bold">Proceder al pago</button>
+        </div>
+    </div>
+
+    <!-- Modal de Checkout / PayPal -->
+    <div id="checkoutModal" class="modal-overlay flex items-center justify-center p-6" onclick="if(event.target === this) closeCheckout()">
+        <div class="bg-white text-black max-w-md w-full p-10 rounded-sm shadow-2xl relative">
+            <button onclick="closeCheckout()" class="absolute top-6 right-6 text-gray-300 hover:text-black"><i class="fas fa-times"></i></button>
+            <h2 class="text-3xl italic mb-4">Checkout Seguro</h2>
+            <p class="text-gray-400 text-xs mb-8">Estás adquiriendo obras originales firmadas por Reinier.</p>
             
-            <div id="cartItems" class="flex-grow overflow-y-auto space-y-6">
-                <!-- Los items del carrito aparecerán aquí -->
-                <p class="text-gray-500 italic text-center py-10">Tu carrito está vacío.</p>
+            <div class="bg-neutral-50 p-6 mb-8 text-center">
+                <span id="checkoutTotalValue" class="text-5xl font-bold">0€</span>
+                <p class="text-[9px] uppercase tracking-widest text-green-600 font-bold mt-4 italic">Envío Fine Art Certificado</p>
             </div>
 
-            <div class="border-t border-white/10 pt-6 mt-6">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="uppercase tracking-widest text-sm text-gray-400">Total</span>
-                    <span id="cartTotal" class="text-2xl font-bold">0€</span>
-                </div>
-                <button class="w-full bg-white text-black py-4 font-bold uppercase tracking-widest hover:bg-gray-200 transition">
-                    Finalizar Pedido
-                </button>
-            </div>
+            <div id="paypal-button-container"></div>
+            
+            <p class="text-center text-[8px] text-gray-300 uppercase tracking-[0.5em] mt-8">Reinier Art Gallery</p>
         </div>
     </div>
 
-    <!-- Pie de Página -->
-    <footer id="contacto" class="py-12 border-t border-white/10 text-center">
-        <p class="text-gray-500 text-sm mb-4">© 2024 Marcos Rivera Photography. Todos los derechos reservados.</p>
-        <div class="flex justify-center space-x-6">
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-behance"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fas fa-envelope"></i></a>
+    <!-- Footer -->
+    <footer id="contacto" class="py-32 px-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="space-y-6">
+                <h3 class="text-2xl italic brand-font">Reinier</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Fotografía de autor enfocada en la preservación de lo efímero a través de la impresión física de alta calidad.</p>
+            </div>
+            <div class="space-y-6">
+                <h4 class="text-[10px] uppercase tracking-[0.3em] font-bold">Contacto</h4>
+                <div class="space-y-2 text-sm text-gray-400">
+                    <p>hello@reinier.studio</p>
+                    <p>Instagram: @reinier_fineart</p>
+                </div>
+            </div>
+            <div class="space-y-6 text-right">
+                <p class="text-[9px] uppercase tracking-[0.4em] text-gray-600">© 2024 Reinier Studio<br>Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Mensaje de Notificación -->
-    <div id="notification" class="fixed bottom-10 right-10 bg-green-600 text-white px-6 py-3 rounded shadow-xl transform translate-y-20 opacity-0 transition duration-500 pointer-events-none z-[2000]">
-        ¡Añadido al carrito con éxito!
-    </div>
-
     <script>
-        // Estado del Carrito
         let cart = [];
 
-        const modal = document.getElementById('shopModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalImg = document.getElementById('modalImg');
-        const sizeSelector = document.getElementById('sizeSelector');
-        const finalPrice = document.getElementById('finalPrice');
-        const notification = document.getElementById('notification');
-        const cartSidebar = document.getElementById('cartSidebar');
-        const cartItemsContainer = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cartCount');
-        const cartTotal = document.getElementById('cartTotal');
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
 
         function openShop(title, img) {
-            modalTitle.innerText = title;
-            modalImg.src = img;
-            modal.style.display = 'flex';
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalImg').src = img;
+            document.getElementById('shopModal').style.display = 'flex';
             updatePrice();
         }
 
         function closeShop() {
-            modal.style.display = 'none';
-        }
-
-        function toggleCart() {
-            cartSidebar.classList.toggle('active');
+            document.getElementById('shopModal').style.display = 'none';
         }
 
         function updatePrice() {
-            finalPrice.innerText = sizeSelector.value + '€';
+            const price = document.getElementById('sizeSelector').value;
+            document.getElementById('finalPrice').innerText = price + '€';
         }
 
         function addToCart() {
-            const selectedOption = sizeSelector.options[sizeSelector.selectedIndex];
-            const newItem = {
+            const selector = document.getElementById('sizeSelector');
+            const item = {
                 id: Date.now(),
-                title: modalTitle.innerText,
-                img: modalImg.src,
-                size: selectedOption.getAttribute('data-size'),
-                price: parseInt(sizeSelector.value)
+                title: document.getElementById('modalTitle').innerText,
+                img: document.getElementById('modalImg').src,
+                price: parseInt(selector.value),
+                size: selector.options[selector.selectedIndex].getAttribute('data-size')
             };
-
-            cart.push(newItem);
+            cart.push(item);
             updateCartUI();
             closeShop();
-            showNotification(`Añadido: ${newItem.title}`);
+            toggleCart();
         }
 
         function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
+            cart = cart.filter(i => i.id !== id);
             updateCartUI();
         }
 
         function updateCartUI() {
-            // Actualizar contador
-            cartCount.innerText = cart.length;
-
-            // Limpiar contenedor
-            cartItemsContainer.innerHTML = '';
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p class="text-gray-500 italic text-center py-10">Tu carrito está vacío.</p>';
-                cartTotal.innerText = '0€';
-                return;
-            }
-
-            let total = 0;
+            const container = document.getElementById('cartItems');
+            const count = document.getElementById('cartCount');
+            const total = document.getElementById('cartTotal');
+            
+            count.innerText = cart.length;
+            container.innerHTML = '';
+            
+            let sum = 0;
             cart.forEach(item => {
-                total += item.price;
-                const itemEl = document.createElement('div');
-                itemEl.className = 'flex gap-4 items-center bg-white/5 p-3 rounded';
-                itemEl.innerHTML = `
-                    <img src="${item.img}" class="w-16 h-16 object-cover rounded">
-                    <div class="flex-grow">
-                        <h4 class="text-sm font-bold">${item.title}</h4>
-                        <p class="text-xs text-gray-400">${item.size}</p>
-                        <p class="text-sm font-semibold mt-1">${item.price}€</p>
+                sum += item.price;
+                container.innerHTML += `
+                    <div class="flex gap-4 items-center">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-sm">
+                        <div class="flex-grow">
+                            <p class="text-[10px] uppercase tracking-widest font-bold">${item.title}</p>
+                            <p class="text-gray-500 text-[10px] mt-1">${item.size} — ${item.price}€</p>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-gray-600 hover:text-white transition"><i class="fas fa-times"></i></button>
                     </div>
-                    <button onclick="removeFromCart(${item.id})" class="text-gray-500 hover:text-red-500 transition px-2">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
                 `;
-                cartItemsContainer.appendChild(itemEl);
             });
-
-            cartTotal.innerText = total + '€';
-        }
-
-        function showNotification(text) {
-            notification.innerText = text;
-            notification.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                notification.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        // Cerrar modal al hacer clic fuera del contenido
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeShop();
+            
+            if(cart.length === 0) {
+                container.innerHTML = '<p class="text-gray-600 text-center py-12 italic text-sm">Tu selección está vacía.</p>';
             }
+            
+            total.innerText = sum + '€';
+        }
+
+        function openCheckout() {
+            if(cart.length === 0) return;
+            const total = document.getElementById('cartTotal').innerText;
+            document.getElementById('checkoutTotalValue').innerText = total;
+            document.getElementById('checkoutModal').style.display = 'flex';
+            renderPayPal(parseInt(total));
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        function renderPayPal(amount) {
+            document.getElementById('paypal-button-container').innerHTML = '';
+            paypal.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color:  'black',
+                    shape:  'rect',
+                    label:  'pay'
+                },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: { value: amount.toString(), currency_code: 'EUR' },
+                            description: 'Obras Fine Art - Reinier Studio'
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('¡Muchas gracias, ' + details.payer.name.given_name + '! Reinier ha recibido tu pedido. Se enviará una confirmación a tu correo.');
+                        cart = [];
+                        updateCartUI();
+                        closeCheckout();
+                        toggleCart();
+                    });
+                }
+            }).render('#paypal-button-container');
         }
     </script>
 </body>
