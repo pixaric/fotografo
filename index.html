@@ -32,7 +32,6 @@
             font-weight: 300;
         }
 
-        /* Revelado con transición de color automática */
         .artwork-container {
             opacity: 0;
             transform: translateY(30px);
@@ -53,7 +52,6 @@
             filter: grayscale(0%);
         }
 
-        /* Botón Detalle Central */
         .detail-overlay {
             opacity: 0;
             background: rgba(10, 10, 10, 0.4);
@@ -124,6 +122,12 @@
             right: -100%;
         }
 
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
         html { scroll-behavior: smooth; }
     </style>
 </head>
@@ -138,6 +142,7 @@
         
         <div class="hidden md:flex space-x-10">
             <a href="#inicio" class="nav-link uppercase">Inicio</a>
+            <a href="#servicios" class="nav-link uppercase">Servicios</a>
             <a href="#galeria" class="nav-link uppercase">Colección</a>
             <a href="#contacto" class="nav-link uppercase">Contacto</a>
         </div>
@@ -161,13 +166,51 @@
                     Fotografía de autor centrada en la pureza de la luz y la arquitectura del momento.
                 </p>
                 <div class="flex gap-8 items-center">
-                    <a href="#galeria" class="btn-luxury text-[10px] uppercase tracking-[0.4em] font-medium">Explorar Obra</a>
+                    <a href="#servicios" class="btn-luxury text-[10px] uppercase tracking-[0.4em] font-medium">Ver Servicios</a>
                 </div>
             </div>
             <div class="lg:col-span-7 relative">
                 <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070" 
                      class="w-full h-[60vh] lg:h-[85vh] object-cover opacity-80" alt="Arquitectura Minimalista">
                 <div class="absolute inset-0 border-[20px] lg:border-[40px] border-[#0a0a0a]/50 pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Sección: Servicios de Fotografía -->
+    <section id="servicios" class="py-32 px-6 lg:px-20 bg-[#0d0d0d]">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+                <span class="text-[10px] uppercase tracking-[0.5em] text-gray-500 block mb-4">Encargos Especiales</span>
+                <h2 class="text-5xl lg:text-7xl serif-font italic mb-8">Servicio de Sesión Privada</h2>
+                <p class="text-gray-400 font-light mb-12 leading-relaxed">
+                    Capture su espacio o proyecto con nuestra visión artística. Ofrecemos sesiones personalizadas con entrega de obra física en alta calidad.
+                </p>
+            </div>
+            <div class="bg-[#151515] p-10 lg:p-16 border border-white/5 rounded-sm">
+                <div class="space-y-8">
+                    <div>
+                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Tipo de Servicio / Tamaño Entrega</label>
+                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none appearance-none cursor-pointer">
+                            <option value="250" data-name="Sesión Básica + Print 30x40">Sesión Básica + Print 30x40 — 250€</option>
+                            <option value="450" data-name="Sesión Premium + Print 50x70">Sesión Premium + Print 50x70 — 450€</option>
+                            <option value="800" data-name="Sesión Master + Print 70x100">Sesión Master + Print 70x100 — 800€</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Cantidad</label>
+                        <div class="flex items-center border-b border-white/10 py-2">
+                            <button onclick="changeQty('serviceQty', -1, 'serviceTotalDisplay')" class="text-gray-400 hover:text-white px-4 text-xl">-</button>
+                            <input type="number" id="serviceQty" value="1" min="1" class="bg-transparent w-full text-center outline-none" readonly>
+                            <button onclick="changeQty('serviceQty', 1, 'serviceTotalDisplay')" class="text-gray-400 hover:text-white px-4 text-xl">+</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end pt-4">
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Subtotal Servicio</span>
+                        <span id="serviceTotalDisplay" class="text-3xl serif-font italic">250€</span>
+                    </div>
+                    <button onclick="addServiceToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.4em] font-bold">Contratar Servicio</button>
+                </div>
             </div>
         </div>
     </section>
@@ -199,13 +242,23 @@
                 </p>
 
                 <div class="space-y-6">
-                    <div>
-                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Dimensión</label>
-                        <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none appearance-none cursor-pointer">
-                            <option value="45" data-size="30x40">30x40 cm — 45€</option>
-                            <option value="90" data-size="50x70">50x70 cm — 90€</option>
-                            <option value="160" data-size="70x100">70x100 cm — 160€</option>
-                        </select>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Dimensión</label>
+                            <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none appearance-none cursor-pointer">
+                                <option value="45" data-size="30x40">30x40 cm — 45€</option>
+                                <option value="90" data-size="50x70">50x70 cm — 90€</option>
+                                <option value="160" data-size="70x100">70x100 cm — 160€</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Cantidad</label>
+                            <div class="flex items-center border-b border-white/10 py-2">
+                                <button onclick="changeQty('modalQty', -1, 'finalPrice')" class="text-gray-400 hover:text-white px-2">-</button>
+                                <input type="number" id="modalQty" value="1" min="1" class="bg-transparent w-full text-center outline-none text-sm" readonly>
+                                <button onclick="changeQty('modalQty', 1, 'finalPrice')" class="text-gray-400 hover:text-white px-2">+</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex justify-between items-end pt-4">
                         <span class="text-[10px] uppercase tracking-widest text-gray-500">Inversión</span>
@@ -234,18 +287,15 @@
         </div>
     </div>
 
-    <!-- Modal Pago Seguro (Actualizado para múltiples métodos) -->
+    <!-- Modal Pago Seguro -->
     <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[120] items-center justify-center p-4" onclick="if(event.target === this) closeCheckout()">
         <div class="bg-white text-black w-full max-w-md p-10 text-center shadow-2xl relative rounded-sm">
             <h2 class="text-3xl serif-font italic mb-4">Finalizar Compra</h2>
             <p class="text-[9px] uppercase tracking-widest text-gray-400 mb-8">Pago procesado de forma segura</p>
             <div class="text-4xl serif-font mb-10" id="checkoutTotalValue">0€</div>
-            
-            <!-- Contenedor del Botón de PayPal (incluye Google Pay automáticamente) -->
             <div id="paypal-button-container" class="w-full"></div>
-            
             <p class="text-[8px] text-gray-400 mt-8 leading-relaxed">
-                Al completar la compra, aceptas nuestros términos de servicio y política de privacidad. 
+                Al completar la compra, aceptas nuestros términos de servicio. 
                 Recibirás un certificado de autenticidad por correo electrónico.
             </p>
         </div>
@@ -258,66 +308,16 @@
 
     <script>
         const photos = [
-            { 
-                title: "Niebla Alpinista", 
-                url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", 
-                price: 45,
-                desc: "Una captura de la cordillera alpina donde las nubes bailan con las cumbres en un eterno abrazo gélido."
-            },
-            { 
-                title: "Reflejo Urbano", 
-                url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1200", 
-                price: 50,
-                desc: "La simetría del acero y el cristal se funde con el asfalto mojado tras la lluvia otoñal en la ciudad."
-            },
-            { 
-                title: "Silencio Ártico", 
-                url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1200", 
-                price: 45,
-                desc: "La quietud absoluta de las tierras del norte, donde el tiempo parece detenerse bajo el manto blanco."
-            },
-            { 
-                title: "Geometría I", 
-                url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200", 
-                price: 60,
-                desc: "Un estudio sobre la forma y la función. La arquitectura moderna reducida a sus líneas más puras."
-            },
-            { 
-                title: "Ocaso Dorado", 
-                url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200", 
-                price: 45,
-                desc: "El último suspiro del sol incendiando el horizonte en una paleta de ocres y sombras profundas."
-            },
-            { 
-                title: "Bosque Etéreo", 
-                url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200", 
-                price: 55,
-                desc: "Rayos de luz filtrándose entre hayas centenarias, creando una atmósfera mística y regeneradora."
-            },
-            { 
-                title: "Abismo Azul", 
-                url: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1200", 
-                price: 45,
-                desc: "La inmensidad del océano desde una perspectiva minimalista, donde el cielo y el mar se vuelven uno."
-            },
-            { 
-                title: "Estructura IV", 
-                url: "https://images.unsplash.com/photo-1493397212122-2b85def8d0b0?q=80&w=1200", 
-                price: 65,
-                desc: "Intersecciones de concreto que desafían la gravedad, capturadas en el cenit de la luz solar."
-            },
-            { 
-                title: "Viento del Sur", 
-                url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200", 
-                price: 45,
-                desc: "La suavidad de las dunas moldeadas por la brisa, una coreografía efímera de arena y sombra."
-            },
-            { 
-                title: "Noche de Paz", 
-                url: "https://images.unsplash.com/photo-1478334846241-10aa344148f4?q=80&w=1200", 
-                price: 70,
-                desc: "Una visión nocturna donde la luz artificial se convierte en pinceladas de color sobre la penumbra."
-            }
+            { title: "Niebla Alpinista", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", price: 45, desc: "Captura de la cordillera alpina donde las nubes bailan con las cumbres." },
+            { title: "Reflejo Urbano", url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1200", price: 50, desc: "La simetría del acero y el cristal se funde con el asfalto mojado." },
+            { title: "Silencio Ártico", url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1200", price: 45, desc: "La quietud absoluta de las tierras del norte bajo el manto blanco." },
+            { title: "Geometría I", url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200", price: 60, desc: "Estudio sobre la forma y la función en arquitectura moderna." },
+            { title: "Ocaso Dorado", url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200", price: 45, desc: "El último suspiro del sol incendiando el horizonte." },
+            { title: "Bosque Etéreo", url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200", price: 55, desc: "Rayos de luz filtrándose entre hayas centenarias." },
+            { title: "Abismo Azul", url: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1200", price: 45, desc: "Inmensidad del océano desde una perspectiva minimalista." },
+            { title: "Estructura IV", url: "https://images.unsplash.com/photo-1493397212122-2b85def8d0b0?q=80&w=1200", price: 65, desc: "Intersecciones de concreto que desafían la gravedad." },
+            { title: "Viento del Sur", url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200", price: 45, desc: "Suavidad de las dunas moldeadas por la brisa." },
+            { title: "Noche de Paz", url: "https://images.unsplash.com/photo-1478334846241-10aa344148f4?q=80&w=1200", price: 70, desc: "Visión nocturna donde la luz artificial se convierte en arte." }
         ];
 
         let cart = [];
@@ -350,9 +350,7 @@
             const reveals = document.querySelectorAll(".artwork-container");
             reveals.forEach(el => {
                 const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < window.innerHeight - 50) {
-                    el.classList.add("active");
-                }
+                if (elementTop < window.innerHeight - 50) el.classList.add("active");
             });
         }
 
@@ -363,11 +361,49 @@
             sidebar.style.right = (sidebar.style.right === '0px') ? '-100%' : '0px';
         }
 
+        function changeQty(inputId, delta, displayId) {
+            const input = document.getElementById(inputId);
+            let val = parseInt(input.value) + delta;
+            if (val < 1) val = 1;
+            input.value = val;
+            
+            // Si estamos en servicios, actualizamos display de servicio
+            if (inputId === 'serviceQty') updateServicePrice();
+            // Si estamos en modal de galería, actualizamos display de modal
+            if (inputId === 'modalQty') updatePrice();
+        }
+
+        // --- Lógica de Servicios ---
+        function updateServicePrice() {
+            const basePrice = parseInt(document.getElementById('serviceSelector').value);
+            const qty = parseInt(document.getElementById('serviceQty').value);
+            document.getElementById('serviceTotalDisplay').innerText = (basePrice * qty) + '€';
+        }
+
+        function addServiceToCart() {
+            const selector = document.getElementById('serviceSelector');
+            const qty = parseInt(document.getElementById('serviceQty').value);
+            const basePrice = parseInt(selector.value);
+            const item = {
+                id: 'service-' + Date.now(),
+                title: selector.options[selector.selectedIndex].getAttribute('data-name'),
+                img: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=400',
+                price: basePrice,
+                qty: qty,
+                size: 'Servicio Personalizado'
+            };
+            cart.push(item);
+            updateCartUI();
+            toggleCart();
+        }
+
+        // --- Lógica de Galería ---
         function openShop(index) {
             const photo = photos[index];
             document.getElementById('modalTitle').innerText = photo.title;
             document.getElementById('modalImg').src = photo.url;
             document.getElementById('modalDesc').innerText = photo.desc;
+            document.getElementById('modalQty').value = 1;
             document.getElementById('shopModal').style.display = 'flex';
             updatePrice();
         }
@@ -375,17 +411,20 @@
         function closeShop() { document.getElementById('shopModal').style.display = 'none'; }
 
         function updatePrice() {
-            const price = document.getElementById('sizeSelector').value;
-            document.getElementById('finalPrice').innerText = price + '€';
+            const price = parseInt(document.getElementById('sizeSelector').value);
+            const qty = parseInt(document.getElementById('modalQty').value);
+            document.getElementById('finalPrice').innerText = (price * qty) + '€';
         }
 
         function addToCart() {
             const selector = document.getElementById('sizeSelector');
+            const qty = parseInt(document.getElementById('modalQty').value);
             const item = {
                 id: Date.now(),
                 title: document.getElementById('modalTitle').innerText,
                 img: document.getElementById('modalImg').src,
                 price: parseInt(selector.value),
+                qty: qty,
                 size: selector.options[selector.selectedIndex].getAttribute('data-size')
             };
             cart.push(item);
@@ -401,26 +440,33 @@
 
         function updateCartUI() {
             const container = document.getElementById('cartItems');
-            const count = document.getElementById('cartCount');
-            const total = document.getElementById('cartTotal');
-            count.innerText = cart.length.toString().padStart(2, '0');
+            const countDisplay = document.getElementById('cartCount');
+            const totalDisplay = document.getElementById('cartTotal');
+            
+            let totalItems = 0;
+            let sumTotal = 0;
             container.innerHTML = '';
-            let sum = 0;
+
             cart.forEach(item => {
-                sum += item.price;
+                totalItems += item.qty;
+                sumTotal += (item.price * item.qty);
                 container.innerHTML += `
                     <div class="flex gap-4 items-center animate__animated animate__fadeIn">
                         <img src="${item.img}" class="w-12 h-16 object-cover grayscale">
                         <div class="flex-grow">
                             <h4 class="text-[9px] uppercase tracking-widest font-medium">${item.title}</h4>
-                            <p class="text-[8px] text-gray-500 uppercase">${item.size} cm — ${item.price}€</p>
+                            <p class="text-[8px] text-gray-500 uppercase">${item.size} • Cant: ${item.qty}</p>
+                            <p class="text-[9px] text-white mt-1">${item.price * item.qty}€</p>
                         </div>
-                        <button onclick="removeFromCart(${item.id})" class="text-xs text-gray-600 hover:text-white transition">×</button>
+                        <button onclick="removeFromCart('${item.id}')" class="text-xs text-gray-600 hover:text-white transition">×</button>
                     </div>
                 `;
             });
+
+            countDisplay.innerText = totalItems.toString().padStart(2, '0');
+            totalDisplay.innerText = sumTotal + '€';
+            
             if(cart.length === 0) container.innerHTML = '<p class="text-center py-10 text-[9px] uppercase tracking-widest text-gray-600">Nada en tu selección</p>';
-            total.innerText = sum + '€';
         }
 
         function openCheckout() {
@@ -436,31 +482,18 @@
         function renderPayPal(amount) {
             const container = document.getElementById('paypal-button-container');
             container.innerHTML = '';
-            
-            // Renderizar botones de PayPal - Note: Google Pay aparecerá automáticamente
-            // si el cliente tiene una cuenta/tarjeta configurada en su navegador/dispositivo.
             paypal.Buttons({
-                style: { 
-                    layout: 'vertical', 
-                    color: 'black', 
-                    shape: 'rect',
-                    label: 'pay' 
-                },
+                style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'pay' },
                 createOrder: (data, actions) => actions.order.create({
                     purchase_units: [{ amount: { value: amount.toString(), currency_code: 'EUR' } }],
-                    application_context: {
-                        shipping_preference: 'NO_SHIPPING' // Esto evita que PayPal pida o muestre la dirección
-                    }
+                    application_context: { shipping_preference: 'NO_SHIPPING' }
                 }),
                 onApprove: (data, actions) => actions.order.capture().then(() => {
                     cart = [];
                     updateCartUI();
                     closeCheckout();
-                    // Aquí podrías redirigir a una página de éxito
                 }),
-                onError: (err) => {
-                    console.error('PayPal Error:', err);
-                }
+                onError: (err) => console.error('PayPal Error:', err)
             }).render('#paypal-button-container');
         }
 
