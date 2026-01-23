@@ -129,6 +129,12 @@
         }
 
         html { scroll-behavior: smooth; }
+        
+        /* Estilo para que el select no corte el texto */
+        select option {
+            background: #151515;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -188,26 +194,29 @@
                 </p>
             </div>
             <div class="bg-[#151515] p-10 lg:p-16 border border-white/5 rounded-sm">
-                <div class="space-y-8">
+                <div class="space-y-10">
+                    <!-- Ajuste para que el texto largo del servicio quepa mejor -->
                     <div>
-                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Tipo de Servicio / Tamaño Entrega</label>
-                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none appearance-none cursor-pointer">
+                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-4">Tipo de Servicio y Entrega</label>
+                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-3 outline-none appearance-none cursor-pointer text-sm leading-relaxed">
                             <option value="250" data-name="Sesión Básica + Print 30x40">Sesión Básica + Print 30x40 — 250€</option>
                             <option value="450" data-name="Sesión Premium + Print 50x70">Sesión Premium + Print 50x70 — 450€</option>
                             <option value="800" data-name="Sesión Master + Print 70x100">Sesión Master + Print 70x100 — 800€</option>
                         </select>
                     </div>
-                    <div>
-                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Cantidad</label>
+                    
+                    <div class="w-32">
+                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-4">Cantidad</label>
                         <div class="flex items-center border-b border-white/10 py-2">
                             <button onclick="changeQty('serviceQty', -1, 'serviceTotalDisplay')" class="text-gray-400 hover:text-white px-4 text-xl">-</button>
                             <input type="number" id="serviceQty" value="1" min="1" class="bg-transparent w-full text-center outline-none" readonly>
                             <button onclick="changeQty('serviceQty', 1, 'serviceTotalDisplay')" class="text-gray-400 hover:text-white px-4 text-xl">+</button>
                         </div>
                     </div>
-                    <div class="flex justify-between items-end pt-4">
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Subtotal Servicio</span>
-                        <span id="serviceTotalDisplay" class="text-3xl serif-font italic">250€</span>
+
+                    <div class="flex justify-between items-end pt-4 border-t border-white/5">
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Inversión Estimada</span>
+                        <span id="serviceTotalDisplay" class="text-4xl serif-font italic">250€</span>
                     </div>
                     <button onclick="addServiceToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.4em] font-bold">Contratar Servicio</button>
                 </div>
@@ -242,7 +251,6 @@
                 </p>
 
                 <div class="space-y-6">
-                    <!-- Ajuste de columnas para dar más espacio a la dimensión -->
                     <div class="flex gap-6 items-start">
                         <div class="flex-grow">
                             <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Dimensión y Precio</label>
