@@ -447,7 +447,10 @@
                     label: 'pay' 
                 },
                 createOrder: (data, actions) => actions.order.create({
-                    purchase_units: [{ amount: { value: amount.toString(), currency_code: 'EUR' } }]
+                    purchase_units: [{ amount: { value: amount.toString(), currency_code: 'EUR' } }],
+                    application_context: {
+                        shipping_preference: 'NO_SHIPPING' // Esto evita que PayPal pida o muestre la dirección
+                    }
                 }),
                 onApprove: (data, actions) => actions.order.capture().then(() => {
                     cart = [];
