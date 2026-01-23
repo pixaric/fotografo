@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reinier | Fine Art Photography</title>
+    <title>Reinier | Fine Art Photography Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    <!-- PayPal SDK con soporte para Google Pay y métodos de pago locales -->
+    <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=AbC_Y_PpmDzqC4JgrvFPRAfq1E47EZKquXmM6OP_Bzs7S-2aRf-gG2RuDraHkKPitOrFbmoHqDhTeFYL&currency=EUR&components=buttons,funding-eligibility"></script>
 
     <style>
@@ -17,6 +17,11 @@
         :root {
             --bg-deep: #0a0a0a;
             --ivory: #fcfcfc;
+            --accent: #d4af37; /* Toque dorado muy sutil para detalles */
+        }
+
+        * {
+            cursor: none; /* Desactivamos el cursor por defecto para el personalizado */
         }
 
         body {
@@ -32,10 +37,33 @@
             font-weight: 300;
         }
 
+        /* Cursor Personalizado */
+        #custom-cursor {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        #cursor-follower {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
         .artwork-container {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.2s ease, transform 1.2s ease;
+            transform: translateY(40px);
+            transition: opacity 1.5s cubic-bezier(0.2, 1, 0.3, 1), transform 1.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
         .artwork-container.active {
@@ -45,43 +73,37 @@
 
         .artwork-image {
             filter: grayscale(100%);
-            transition: filter 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: filter 3s cubic-bezier(0.4, 0, 0.2, 1), transform 6s cubic-bezier(0.1, 1, 0.2, 1);
         }
 
-        .artwork-container.active .artwork-image {
+        .artwork-card:hover .artwork-image {
             filter: grayscale(0%);
+            transform: scale(1.05);
         }
 
         .detail-overlay {
             opacity: 0;
-            background: rgba(10, 10, 10, 0.4);
+            background: rgba(10, 10, 10, 0.5);
             backdrop-filter: blur(0px);
-            transition: all 0.5s ease;
+            transition: all 0.6s ease;
         }
 
         .artwork-card:hover .detail-overlay {
             opacity: 1;
-            backdrop-filter: blur(4px);
-        }
-
-        .btn-detail {
-            transform: scale(0.9);
-            transition: all 0.4s ease;
-        }
-
-        .artwork-card:hover .btn-detail {
-            transform: scale(1);
+            backdrop-filter: blur(8px);
         }
 
         nav {
-            backdrop-filter: blur(15px);
-            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
         }
 
         .nav-link {
             position: relative;
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            font-weight: 300;
         }
 
         .nav-link::after {
@@ -89,10 +111,10 @@
             position: absolute;
             width: 0;
             height: 1px;
-            bottom: -4px;
+            bottom: -6px;
             left: 0;
             background-color: var(--ivory);
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-link:hover::after {
@@ -100,233 +122,294 @@
         }
 
         .btn-luxury {
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 1rem 2rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 1.2rem 2.5rem;
             display: inline-block;
-            transition: all 0.5s;
+            transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-luxury:hover {
             background: var(--ivory);
             color: var(--bg-deep);
+            border-color: var(--ivory);
         }
 
         .modal-overlay {
             display: none;
-            background: rgba(5, 5, 5, 0.98);
+            background: rgba(5, 5, 5, 0.99);
         }
 
         .cart-sidebar {
-            background: #0d0d0d;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            background: #080808;
+            box-shadow: -20px 0 60px rgba(0,0,0,0.8);
             right: -100%;
-        }
-
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
         }
 
         html { scroll-behavior: smooth; }
         
-        /* Estilo para que el select no corte el texto */
         select option {
-            background: #151515;
+            background: #111;
             color: white;
+        }
+
+        /* Línea Decorativa */
+        .elegant-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            width: 100%;
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
+
+    <!-- Cursores -->
+    <div id="custom-cursor"></div>
+    <div id="cursor-follower"></div>
 
     <!-- Navegación -->
-    <nav class="fixed w-full top-0 z-50 py-6 px-8 lg:px-16 flex justify-between items-center">
+    <nav class="fixed w-full top-0 z-50 py-8 px-10 lg:px-20 flex justify-between items-center transition-all duration-500" id="mainNav">
         <div class="flex flex-col">
-            <span class="text-xl lg:text-2xl tracking-[0.2em] serif-font italic font-medium">REINIER</span>
-            <span class="text-[0.5rem] tracking-[0.5em] text-gray-500 uppercase -mt-1">Fine Art Studio</span>
+            <span class="text-2xl tracking-[0.3em] serif-font italic font-light">REINIER</span>
+            <span class="text-[0.45rem] tracking-[0.6em] text-gray-600 uppercase mt-1">Estudio de Fotografía</span>
         </div>
         
-        <div class="hidden md:flex space-x-10">
+        <div class="hidden md:flex space-x-12">
             <a href="#inicio" class="nav-link uppercase">Inicio</a>
+            <a href="#manifiesto" class="nav-link uppercase">Filosofía</a>
             <a href="#servicios" class="nav-link uppercase">Servicios</a>
             <a href="#galeria" class="nav-link uppercase">Colección</a>
             <a href="#contacto" class="nav-link uppercase">Contacto</a>
         </div>
 
-        <button onclick="toggleCart()" class="relative">
-            <span id="cartCount" class="absolute -top-3 -right-3 text-[10px] font-light">00</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <button onclick="toggleCart()" class="relative group">
+            <span id="cartCount" class="absolute -top-3 -right-3 text-[9px] font-extralight text-gray-500 group-hover:text-white transition">00</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gray-400 group-hover:text-white transition">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </button>
     </nav>
 
     <!-- Hero -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 px-6">
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
         <div class="container mx-auto grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 z-10">
-                <h1 class="text-6xl lg:text-[8rem] leading-[0.9] serif-font mb-8 animate__animated animate__fadeIn">
-                    Elegancia <br><span class="italic pl-12 lg:pl-24">Silenciosa.</span>
+            <div class="lg:col-span-6 z-10">
+                <span class="text-[10px] uppercase tracking-[0.8em] text-gray-600 mb-6 block animate__animated animate__fadeInDown">Desde 1994</span>
+                <h1 class="text-7xl lg:text-[9rem] leading-[0.85] serif-font mb-10 animate__animated animate__fadeIn">
+                    La Luz <br><span class="italic pl-16 lg:pl-32 font-light">Redefinida.</span>
                 </h1>
-                <p class="text-gray-400 font-extralight text-lg max-w-md mb-10 tracking-wide leading-relaxed">
-                    Fotografía de autor centrada en la pureza de la luz y la arquitectura del momento.
+                <p class="text-gray-500 font-light text-base max-w-sm mb-12 tracking-wider leading-relaxed animate__animated animate__fadeIn animate__delay-1s">
+                    Fotografía que trasciende lo visual para convertirse en una experiencia arquitectónica.
                 </p>
-                <div class="flex gap-8 items-center">
-                    <a href="#servicios" class="btn-luxury text-[10px] uppercase tracking-[0.4em] font-medium">Ver Servicios</a>
+                <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                    <a href="#galeria" class="btn-luxury text-[10px] uppercase tracking-[0.5em] font-medium">Explorar Obra</a>
                 </div>
             </div>
-            <div class="lg:col-span-7 relative">
-                <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070" 
-                     class="w-full h-[60vh] lg:h-[85vh] object-cover opacity-80" alt="Arquitectura Minimalista">
-                <div class="absolute inset-0 border-[20px] lg:border-[40px] border-[#0a0a0a]/50 pointer-events-none"></div>
+            <div class="lg:col-span-6 relative">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070" 
+                         class="w-full h-[70vh] lg:h-[90vh] object-cover opacity-70 grayscale hover:grayscale-0 transition-all duration-1000" alt="Arquitectura">
+                </div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 border border-white/5 pointer-events-none hidden lg:block"></div>
             </div>
+        </div>
+    </section>
+
+    <!-- Sección de Manifiesto (Nueva para mayor profesionalismo) -->
+    <section id="manifiesto" class="py-40 px-6 lg:px-20 text-center">
+        <div class="max-w-3xl mx-auto reveal">
+            <span class="text-[10px] uppercase tracking-[1em] text-gray-600 block mb-12 italic">Nuestra Visión</span>
+            <h2 class="text-3xl lg:text-5xl serif-font italic leading-snug mb-10">
+                "No capturamos lo que vemos, <br>sino la emoción de lo que sentimos ante el silencio de la luz."
+            </h2>
+            <div class="w-12 h-px bg-white/20 mx-auto"></div>
         </div>
     </section>
 
     <!-- Nueva Sección: Servicios de Fotografía -->
     <section id="servicios" class="py-32 px-6 lg:px-20 bg-[#0d0d0d]">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-                <span class="text-[10px] uppercase tracking-[0.5em] text-gray-500 block mb-4">Encargos Especiales</span>
-                <h2 class="text-5xl lg:text-7xl serif-font italic mb-8">Servicio de Sesión Privada</h2>
-                <p class="text-gray-400 font-light mb-12 leading-relaxed">
-                    Capture su espacio o proyecto con nuestra visión artística. Ofrecemos sesiones personalizadas con entrega de obra física en alta calidad.
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
+            <div class="reveal">
+                <span class="text-[10px] uppercase tracking-[0.6em] text-gray-500 block mb-6">Comisiones Privadas</span>
+                <h2 class="text-5xl lg:text-7xl serif-font italic mb-10">Servicios a Medida</h2>
+                <p class="text-gray-500 font-light mb-12 leading-loose max-w-md">
+                    Desde residencias de lujo hasta retratos corporativos de alta gama. Cada encargo es tratado como una pieza única de colección.
                 </p>
+                <ul class="space-y-4 text-[11px] uppercase tracking-widest text-gray-400 font-light">
+                    <li><span class="text-white/20 mr-4">—</span> Fotografía de Interiores</li>
+                    <li><span class="text-white/20 mr-4">—</span> Arquitectura Contemporánea</li>
+                    <li><span class="text-white/20 mr-4">—</span> Retrato de Autor</li>
+                </ul>
             </div>
-            <div class="bg-[#151515] p-10 lg:p-16 border border-white/5 rounded-sm">
-                <div class="space-y-10">
-                    <!-- Ajuste para que el texto largo del servicio quepa mejor -->
+            <div class="bg-[#111] p-12 lg:p-20 border border-white/5 rounded-sm reveal shadow-2xl">
+                <div class="space-y-12">
                     <div>
-                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-4">Tipo de Servicio y Entrega</label>
-                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-3 outline-none appearance-none cursor-pointer text-sm leading-relaxed">
-                            <option value="250" data-name="Sesión Básica + Print 30x40">Sesión Básica + Print 30x40 — 250€</option>
-                            <option value="450" data-name="Sesión Premium + Print 50x70">Sesión Premium + Print 50x70 — 450€</option>
-                            <option value="800" data-name="Sesión Master + Print 70x100">Sesión Master + Print 70x100 — 800€</option>
+                        <label class="text-[9px] uppercase tracking-[0.5em] text-gray-600 block mb-6 italic">Seleccione Formato</label>
+                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-4 outline-none appearance-none cursor-pointer text-sm leading-relaxed font-light focus:border-white/40 transition">
+                            <option value="250" data-name="Sesión Básica + Print 30x40">Sesión Essential + Obra 30x40 — 250€</option>
+                            <option value="450" data-name="Sesión Premium + Print 50x70">Sesión Atelier + Obra 50x70 — 450€</option>
+                            <option value="800" data-name="Sesión Master + Print 70x100">Sesión Coleccionista + Obra 70x100 — 800€</option>
                         </select>
                     </div>
                     
                     <div class="w-32">
-                        <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-4">Cantidad</label>
-                        <div class="flex items-center border-b border-white/10 py-2">
-                            <button onclick="changeQty('serviceQty', -1, 'serviceTotalDisplay')" class="text-gray-400 hover:text-white px-4 text-xl">-</button>
-                            <input type="number" id="serviceQty" value="1" min="1" class="bg-transparent w-full text-center outline-none" readonly>
-                            <button onclick="changeQty('serviceQty', 1, 'serviceTotalDisplay')" class="text-gray-400 hover:text-white px-4 text-xl">+</button>
+                        <label class="text-[9px] uppercase tracking-[0.5em] text-gray-600 block mb-6 italic">Cantidad</label>
+                        <div class="flex items-center border-b border-white/10 py-3">
+                            <button onclick="changeQty('serviceQty', -1, 'serviceTotalDisplay')" class="text-gray-500 hover:text-white px-4 text-xl font-extralight">-</button>
+                            <input type="number" id="serviceQty" value="1" min="1" class="bg-transparent w-full text-center outline-none font-light" readonly>
+                            <button onclick="changeQty('serviceQty', 1, 'serviceTotalDisplay')" class="text-gray-500 hover:text-white px-4 text-xl font-extralight">+</button>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-end pt-4 border-t border-white/5">
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Inversión Estimada</span>
-                        <span id="serviceTotalDisplay" class="text-4xl serif-font italic">250€</span>
+                    <div class="flex justify-between items-end pt-6 border-t border-white/5">
+                        <span class="text-[10px] uppercase tracking-[0.4em] text-gray-600">Honorarios Est.</span>
+                        <span id="serviceTotalDisplay" class="text-4xl serif-font italic font-light">250€</span>
                     </div>
-                    <button onclick="addServiceToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.4em] font-bold">Contratar Servicio</button>
+                    <button onclick="addServiceToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.6em] font-bold">Solicitar Encargo</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="elegant-line"></div>
+
     <!-- Galería -->
-    <section id="galeria" class="py-32 px-6 lg:px-20">
-        <div class="mb-24 reveal">
-            <span class="text-[10px] uppercase tracking-[0.5em] text-gray-500 block mb-4">Portafolio Seleccionado</span>
-            <h2 class="text-5xl lg:text-7xl serif-font italic">Obra Disponible</h2>
+    <section id="galeria" class="py-40 px-6 lg:px-20">
+        <div class="mb-32 reveal text-center lg:text-left">
+            <span class="text-[10px] uppercase tracking-[0.8em] text-gray-600 block mb-6 italic">Colección Permanente</span>
+            <h2 class="text-6xl lg:text-[6rem] serif-font italic leading-none">Obras Disponibles</h2>
         </div>
 
-        <div id="gallery-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-20">
+        <div id="gallery-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-24">
             <!-- Las fotos se inyectan via JS -->
         </div>
     </section>
 
     <!-- Modal Detalle -->
-    <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-4 lg:p-0" onclick="if(event.target === this) closeShop()">
-        <div class="bg-[#0f0f0f] w-full max-w-5xl grid lg:grid-cols-2 overflow-hidden shadow-2xl animate__animated animate__fadeInUp">
-            <div class="h-64 lg:h-auto">
-                <img id="modalImg" src="" class="w-full h-full object-cover">
+    <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-6 lg:p-0" onclick="if(event.target === this) closeShop()">
+        <div class="bg-[#0f0f0f] w-full max-w-6xl grid lg:grid-cols-2 overflow-hidden shadow-2xl animate__animated animate__fadeInUp animate__faster">
+            <div class="h-80 lg:h-auto overflow-hidden">
+                <img id="modalImg" src="" class="w-full h-full object-cover transition-transform duration-[10s] hover:scale-110">
             </div>
-            <div class="p-10 lg:p-16 flex flex-col justify-center">
-                <span class="text-[9px] uppercase tracking-[0.5em] text-gray-500 mb-2">Edición Limitada</span>
-                <h2 id="modalTitle" class="text-4xl lg:text-5xl serif-font italic mb-4">Título Obra</h2>
+            <div class="p-12 lg:p-24 flex flex-col justify-center">
+                <span class="text-[9px] uppercase tracking-[1em] text-gray-600 mb-4">Pieza Certificada</span>
+                <h2 id="modalTitle" class="text-5xl lg:text-6xl serif-font italic mb-6">Título Obra</h2>
                 
-                <p id="modalDesc" class="text-gray-400 text-sm font-light leading-relaxed mb-10 italic">
+                <p id="modalDesc" class="text-gray-500 text-sm font-light leading-relaxed mb-12 italic border-l border-white/10 pl-6">
                     Cargando historia de la obra...
                 </p>
 
-                <div class="space-y-6">
-                    <div class="flex gap-6 items-start">
-                        <div class="flex-grow">
-                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Dimensión y Precio</label>
-                            <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none appearance-none cursor-pointer text-sm">
-                                <option value="45" data-size="30x40">30x40 cm — 45€</option>
-                                <option value="90" data-size="50x70">50x70 cm — 90€</option>
-                                <option value="160" data-size="70x100">70x100 cm — 160€</option>
+                <div class="space-y-8">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <div class="flex-grow w-full">
+                            <label class="text-[9px] uppercase tracking-[0.4em] text-gray-600 block mb-4">Formato / Dimensión</label>
+                            <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-3 outline-none appearance-none cursor-pointer text-sm font-light transition focus:border-white/30">
+                                <option value="45" data-size="30x40">Galería 30x40 cm — 45€</option>
+                                <option value="90" data-size="50x70">Museo 50x70 cm — 90€</option>
+                                <option value="160" data-size="70x100">Colección 70x100 cm — 160€</option>
                             </select>
                         </div>
-                        <div class="w-24">
-                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Cantidad</label>
-                            <div class="flex items-center border-b border-white/10 py-2">
-                                <button onclick="changeQty('modalQty', -1, 'finalPrice')" class="text-gray-400 hover:text-white px-2 text-xs">-</button>
-                                <input type="number" id="modalQty" value="1" min="1" class="bg-transparent w-full text-center outline-none text-xs" readonly>
-                                <button onclick="changeQty('modalQty', 1, 'finalPrice')" class="text-gray-400 hover:text-white px-2 text-xs">+</button>
+                        <div class="w-32">
+                            <label class="text-[9px] uppercase tracking-[0.4em] text-gray-600 block mb-4">Unidades</label>
+                            <div class="flex items-center border-b border-white/10 py-3">
+                                <button onclick="changeQty('modalQty', -1, 'finalPrice')" class="text-gray-500 hover:text-white px-2 text-sm font-light">-</button>
+                                <input type="number" id="modalQty" value="1" min="1" class="bg-transparent w-full text-center outline-none text-xs font-light" readonly>
+                                <button onclick="changeQty('modalQty', 1, 'finalPrice')" class="text-gray-500 hover:text-white px-2 text-sm font-light">+</button>
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between items-end pt-4">
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Inversión Total</span>
-                        <span id="finalPrice" class="text-3xl serif-font italic">45€</span>
+                    <div class="flex justify-between items-end pt-8 border-t border-white/5">
+                        <span class="text-[10px] uppercase tracking-[0.4em] text-gray-600">Total</span>
+                        <span id="finalPrice" class="text-4xl serif-font italic font-light">45€</span>
                     </div>
-                    <button onclick="addToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.4em] font-bold py-4">Añadir al Carrito</button>
-                    <button onclick="closeShop()" class="w-full text-[9px] uppercase tracking-widest text-gray-500 mt-2 hover:text-white transition">Regresar</button>
+                    <button onclick="addToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.6em] font-bold py-5">Adquirir Obra</button>
+                    <button onclick="closeShop()" class="w-full text-[9px] uppercase tracking-[0.8em] text-gray-600 mt-6 hover:text-white transition italic">Cerrar Detalle</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Carrito Lateral -->
-    <div id="cartSidebar" class="cart-sidebar fixed top-0 w-full max-w-sm h-full z-[110] p-10 flex flex-col transition-all duration-700">
-        <div class="flex justify-between items-center mb-12">
-            <span class="text-[10px] uppercase tracking-widest">Carrito</span>
-            <button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    <div id="cartSidebar" class="cart-sidebar fixed top-0 w-full max-w-sm h-full z-[110] p-12 flex flex-col transition-all duration-1000">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-[10px] uppercase tracking-[1em] text-gray-600">Selección</span>
+            <button onclick="toggleCart()" class="hover:rotate-90 transition-transform duration-500"><i class="fas fa-times text-sm font-light"></i></button>
         </div>
-        <div id="cartItems" class="flex-grow space-y-8 overflow-y-auto pr-2"></div>
-        <div class="pt-8 border-t border-white/10">
-            <div class="flex justify-between mb-6">
-                <span class="text-xs uppercase text-gray-500">Subtotal</span>
-                <span id="cartTotal" class="text-xl serif-font italic">0€</span>
+        <div id="cartItems" class="flex-grow space-y-10 overflow-y-auto pr-4 scrollbar-hide"></div>
+        <div class="pt-10 border-t border-white/5">
+            <div class="flex justify-between mb-8">
+                <span class="text-[9px] uppercase tracking-[0.4em] text-gray-600">Subtotal</span>
+                <span id="cartTotal" class="text-2xl serif-font italic font-light">0€</span>
             </div>
-            <button onclick="openCheckout()" class="w-full btn-luxury text-[10px] uppercase tracking-widest">Pagar Ahora</button>
+            <button onclick="openCheckout()" class="w-full btn-luxury text-[10px] uppercase tracking-[0.8em] font-bold">Checkout Seguro</button>
         </div>
     </div>
 
     <!-- Modal Pago Seguro -->
-    <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[120] items-center justify-center p-4" onclick="if(event.target === this) closeCheckout()">
-        <div class="bg-white text-black w-full max-w-md p-10 text-center shadow-2xl relative rounded-sm">
-            <h2 class="text-3xl serif-font italic mb-4">Finalizar Compra</h2>
-            <p class="text-[9px] uppercase tracking-widest text-gray-400 mb-8">Pago procesado de forma segura</p>
-            <div class="text-4xl serif-font mb-10" id="checkoutTotalValue">0€</div>
+    <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[120] items-center justify-center p-6" onclick="if(event.target === this) closeCheckout()">
+        <div class="bg-white text-black w-full max-w-lg p-16 text-center shadow-2xl relative rounded-sm animate__animated animate__zoomIn animate__faster">
+            <h2 class="text-4xl serif-font italic mb-4">Finalizar Adquisición</h2>
+            <p class="text-[9px] uppercase tracking-[0.6em] text-gray-400 mb-12">Portal de Pago Cifrado</p>
+            <div class="text-5xl serif-font mb-12 border-y border-gray-100 py-8" id="checkoutTotalValue">0€</div>
             <div id="paypal-button-container" class="w-full"></div>
-            <p class="text-[8px] text-gray-400 mt-8 leading-relaxed">
-                Al completar la compra, aceptas nuestros términos de servicio. 
-                Recibirás un certificado de autenticidad por correo electrónico.
+            <p class="text-[8px] text-gray-400 mt-12 leading-relaxed tracking-widest italic">
+                Usted está adquiriendo una pieza de edición limitada. <br>
+                Cada obra incluye certificado de autenticidad firmado por el autor.
             </p>
         </div>
     </div>
 
-    <footer id="contacto" class="py-20 px-8 border-t border-white/5 text-center">
-        <p class="text-[9px] uppercase tracking-[0.5em] text-gray-600 mb-4">Madrid — Estocolmo</p>
-        <p class="text-[9px] uppercase tracking-[0.5em] text-gray-400">© 2024 Reinier Art Studio — Fine Art Photography</p>
+    <footer id="contacto" class="py-32 px-10 border-t border-white/5 bg-[#050505]">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-12">
+            <div class="text-center lg:text-left">
+                <span class="text-2xl tracking-[0.3em] serif-font italic font-light">REINIER</span>
+                <p class="text-[9px] uppercase tracking-[0.5em] text-gray-600 mt-4">Estética. Pureza. Tiempo.</p>
+            </div>
+            <div class="flex gap-10">
+                <a href="#" class="text-[9px] uppercase tracking-[0.5em] text-gray-500 hover:text-white transition">Instagram</a>
+                <a href="#" class="text-[9px] uppercase tracking-[0.5em] text-gray-500 hover:text-white transition">Vimeo</a>
+                <a href="#" class="text-[9px] uppercase tracking-[0.5em] text-gray-500 hover:text-white transition">Behance</a>
+            </div>
+            <div class="text-[9px] uppercase tracking-[0.5em] text-gray-700">
+                Madrid / Estocolmo — © 2024
+            </div>
+        </div>
     </footer>
 
     <script>
+        // Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                follower.style.left = e.clientX - 11 + 'px';
+                follower.style.top = e.clientY - 11 + 'px';
+            }, 50);
+        });
+
+        document.querySelectorAll('a, button, select, .artwork-card').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                follower.style.transform = 'scale(2)';
+                follower.style.background = 'rgba(255,255,255,0.05)';
+            });
+            item.addEventListener('mouseleave', () => {
+                follower.style.transform = 'scale(1)';
+                follower.style.background = 'transparent';
+            });
+        });
+
         const photos = [
-            { title: "Niebla Alpinista", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", price: 45, desc: "Captura de la cordillera alpina donde las nubes bailan con las cumbres." },
-            { title: "Reflejo Urbano", url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1200", price: 50, desc: "La simetría del acero y el cristal se funde con el asfalto mojado." },
-            { title: "Silencio Ártico", url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1200", price: 45, desc: "La quietud absoluta de las tierras del norte bajo el manto blanco." },
-            { title: "Geometría I", url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200", price: 60, desc: "Estudio sobre la forma y la función en arquitectura moderna." },
-            { title: "Ocaso Dorado", url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200", price: 45, desc: "El último suspiro del sol incendiando el horizonte." },
-            { title: "Bosque Etéreo", url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200", price: 55, desc: "Rayos de luz filtrándose entre hayas centenarias." },
-            { title: "Abismo Azul", url: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1200", price: 45, desc: "Inmensidad del océano desde una perspectiva minimalista." },
-            { title: "Estructura IV", url: "https://images.unsplash.com/photo-1493397212122-2b85def8d0b0?q=80&w=1200", price: 65, desc: "Intersecciones de concreto que desafían la gravedad." },
-            { title: "Viento del Sur", url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200", price: 45, desc: "Suavidad de las dunas moldeadas por la brisa." },
-            { title: "Noche de Paz", url: "https://images.unsplash.com/photo-1478334846241-10aa344148f4?q=80&w=1200", price: 70, desc: "Visión nocturna donde la luz artificial se convierte en arte." }
+            { title: "Sombra Alpinista", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", price: 45, desc: "Una exploración sobre el contraste entre la solidez de la roca y lo efímero de la neblina alpina." },
+            { title: "Estructura Lúmina", url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1200", price: 50, desc: "La ciudad se convierte en un lienzo de líneas puras bajo la luz del atardecer." },
+            { title: "Silencio Ártico II", url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1200", price: 45, desc: "Minimalismo extremo capturado en las costas olvidadas de Islandia." },
+            { title: "Geometría Brutalista", url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200", price: 60, desc: "El hormigón como forma de arte. Intersecciones que definen el espacio moderno." },
+            { title: "Ocaso en el Abismo", url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200", price: 45, desc: "Donde el cielo y la tierra pierden sus fronteras en una explosión de color sutil." },
+            { title: "Memoria del Bosque", url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200", price: 55, desc: "La luz filtrada como símbolo de esperanza y profundidad orgánica." }
         ];
 
         let cart = [];
@@ -336,17 +419,20 @@
             photos.forEach((photo, index) => {
                 const card = `
                     <div class="artwork-card artwork-container group relative cursor-pointer" id="art-${index}">
-                        <div class="relative overflow-hidden aspect-[3/4]">
+                        <div class="relative overflow-hidden aspect-[4/5] bg-[#111]">
                             <img src="${photo.url}" class="artwork-image w-full h-full object-cover" alt="${photo.title}">
                             <div class="detail-overlay absolute inset-0 flex items-center justify-center">
-                                <button onclick="openShop(${index})" class="btn-detail bg-white text-black px-6 py-3 text-[9px] uppercase tracking-widest font-bold">
-                                    Ver Detalle
+                                <button onclick="openShop(${index})" class="btn-detail bg-white text-black px-8 py-4 text-[9px] uppercase tracking-[0.6em] font-bold">
+                                    Explorar Obra
                                 </button>
                             </div>
                         </div>
-                        <div class="mt-6 flex justify-between items-baseline">
-                            <h3 class="serif-font italic text-xl tracking-wide">${photo.title}</h3>
-                            <span class="text-[9px] text-gray-500 uppercase tracking-widest">Desde ${photo.price}€</span>
+                        <div class="mt-8 flex flex-col gap-2">
+                            <h3 class="serif-font italic text-2xl tracking-widest">${photo.title}</h3>
+                            <div class="flex justify-between items-center border-t border-white/5 pt-4">
+                                <span class="text-[8px] text-gray-600 uppercase tracking-[0.4em]">Edición Limitada</span>
+                                <span class="text-[10px] text-white/40 italic serif-font">desde ${photo.price}€</span>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -356,11 +442,21 @@
         }
 
         function handleScroll() {
-            const reveals = document.querySelectorAll(".artwork-container");
+            const reveals = document.querySelectorAll(".reveal, .artwork-container");
             reveals.forEach(el => {
                 const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < window.innerHeight - 50) el.classList.add("active");
+                if (elementTop < window.innerHeight - 100) el.classList.add("active");
             });
+
+            // Navbar scroll effect
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                nav.style.padding = '1.5rem 5rem';
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                nav.style.padding = '2rem 5rem';
+                nav.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
         }
 
         window.addEventListener("scroll", handleScroll);
@@ -375,14 +471,10 @@
             let val = parseInt(input.value) + delta;
             if (val < 1) val = 1;
             input.value = val;
-            
-            // Si estamos en servicios, actualizamos display de servicio
             if (inputId === 'serviceQty') updateServicePrice();
-            // Si estamos en modal de galería, actualizamos display de modal
             if (inputId === 'modalQty') updatePrice();
         }
 
-        // --- Lógica de Servicios ---
         function updateServicePrice() {
             const basePrice = parseInt(document.getElementById('serviceSelector').value);
             const qty = parseInt(document.getElementById('serviceQty').value);
@@ -399,14 +491,13 @@
                 img: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=400',
                 price: basePrice,
                 qty: qty,
-                size: 'Servicio Personalizado'
+                size: 'Servicio de Autor'
             };
             cart.push(item);
             updateCartUI();
             toggleCart();
         }
 
-        // --- Lógica de Galería ---
         function openShop(index) {
             const photo = photos[index];
             document.getElementById('modalTitle').innerText = photo.title;
@@ -460,14 +551,14 @@
                 totalItems += item.qty;
                 sumTotal += (item.price * item.qty);
                 container.innerHTML += `
-                    <div class="flex gap-4 items-center animate__animated animate__fadeIn">
-                        <img src="${item.img}" class="w-12 h-16 object-cover grayscale">
+                    <div class="flex gap-6 items-start animate__animated animate__fadeIn">
+                        <img src="${item.img}" class="w-16 h-20 object-cover grayscale brightness-75">
                         <div class="flex-grow">
-                            <h4 class="text-[9px] uppercase tracking-widest font-medium">${item.title}</h4>
-                            <p class="text-[8px] text-gray-500 uppercase">${item.size} • Cant: ${item.qty}</p>
-                            <p class="text-[9px] text-white mt-1">${item.price * item.qty}€</p>
+                            <h4 class="text-[9px] uppercase tracking-[0.4em] font-medium mb-1">${item.title}</h4>
+                            <p class="text-[8px] text-gray-600 uppercase tracking-widest">${item.size} • x${item.qty}</p>
+                            <p class="text-[10px] text-white mt-2 serif-font italic">${item.price * item.qty}€</p>
                         </div>
-                        <button onclick="removeFromCart('${item.id}')" class="text-xs text-gray-600 hover:text-white transition">×</button>
+                        <button onclick="removeFromCart('${item.id}')" class="text-xs text-gray-700 hover:text-white transition duration-500">×</button>
                     </div>
                 `;
             });
@@ -475,7 +566,7 @@
             countDisplay.innerText = totalItems.toString().padStart(2, '0');
             totalDisplay.innerText = sumTotal + '€';
             
-            if(cart.length === 0) container.innerHTML = '<p class="text-center py-10 text-[9px] uppercase tracking-widest text-gray-600">Nada en tu selección</p>';
+            if(cart.length === 0) container.innerHTML = '<p class="text-center py-20 text-[9px] uppercase tracking-[0.8em] text-gray-700 italic">Vaciado de Selección</p>';
         }
 
         function openCheckout() {
@@ -501,8 +592,7 @@
                     cart = [];
                     updateCartUI();
                     closeCheckout();
-                }),
-                onError: (err) => console.error('PayPal Error:', err)
+                })
             }).render('#paypal-button-container');
         }
 
