@@ -242,27 +242,28 @@
                 </p>
 
                 <div class="space-y-6">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Dimensión</label>
-                            <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none appearance-none cursor-pointer">
+                    <!-- Ajuste de columnas para dar más espacio a la dimensión -->
+                    <div class="flex gap-6 items-start">
+                        <div class="flex-grow">
+                            <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Dimensión y Precio</label>
+                            <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none appearance-none cursor-pointer text-sm">
                                 <option value="45" data-size="30x40">30x40 cm — 45€</option>
                                 <option value="90" data-size="50x70">50x70 cm — 90€</option>
                                 <option value="160" data-size="70x100">70x100 cm — 160€</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="w-24">
                             <label class="text-[9px] uppercase tracking-widest text-gray-500 block mb-3">Cantidad</label>
                             <div class="flex items-center border-b border-white/10 py-2">
-                                <button onclick="changeQty('modalQty', -1, 'finalPrice')" class="text-gray-400 hover:text-white px-2">-</button>
-                                <input type="number" id="modalQty" value="1" min="1" class="bg-transparent w-full text-center outline-none text-sm" readonly>
-                                <button onclick="changeQty('modalQty', 1, 'finalPrice')" class="text-gray-400 hover:text-white px-2">+</button>
+                                <button onclick="changeQty('modalQty', -1, 'finalPrice')" class="text-gray-400 hover:text-white px-2 text-xs">-</button>
+                                <input type="number" id="modalQty" value="1" min="1" class="bg-transparent w-full text-center outline-none text-xs" readonly>
+                                <button onclick="changeQty('modalQty', 1, 'finalPrice')" class="text-gray-400 hover:text-white px-2 text-xs">+</button>
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-between items-end pt-4">
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Inversión</span>
-                        <span id="finalPrice" class="text-3xl serif-font">45€</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Inversión Total</span>
+                        <span id="finalPrice" class="text-3xl serif-font italic">45€</span>
                     </div>
                     <button onclick="addToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.4em] font-bold py-4">Añadir al Carrito</button>
                     <button onclick="closeShop()" class="w-full text-[9px] uppercase tracking-widest text-gray-500 mt-2 hover:text-white transition">Regresar</button>
