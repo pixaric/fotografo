@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reinier | Fotografía de Autor</title>
+    <title>Reinier | Fine Art Photography</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    <!-- SDK de PayPal -->
+    <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=AbC_Y_PpmDzqC4JgrvFPRAfq1E47EZKquXmM6OP_Bzs7S-2aRf-gG2RuDraHkKPitOrFbmoHqDhTeFYL&currency=EUR"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@100;200;300;400&display=swap');
         
         :root {
-            --bg-dark: #070707;
-            --accent: #ffffff;
+            --bg-deep: #0a0a0a;
+            --ivory: #fcfcfc;
+            --gold-muted: #c5a059;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--accent);
-            scroll-behavior: smooth;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--ivory);
+            line-height: 1.6;
             overflow-x: hidden;
         }
         
-        h1, h2, h3, .brand-font {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
         }
 
-        /* Animaciones de aparición gradual */
+        /* Revelado de secciones con scroll */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal.active {
@@ -43,329 +45,302 @@
             transform: translateY(0);
         }
 
-        /* Estilos de Modales (Ocultos por defecto) */
-        .modal-overlay {
-            display: none; /* Asegura que no se vea al cargar */
-            position: fixed;
-            top: 0;
+        /* Estilo de navegación ultra-minimal */
+        nav {
+            backdrop-filter: blur(15px);
+            background: rgba(10, 10, 10, 0.7);
+        }
+
+        .nav-link {
+            position: relative;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
             left: 0;
+            background-color: var(--ivory);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
             width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+        }
+
+        /* Hero Image con efecto parallax suave */
+        .hero-img-container {
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* Galería Estilo Museo */
+        .artwork-image {
+            transition: filter 0.8s ease, transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            filter: grayscale(100%) brightness(0.8);
+        }
+
+        .artwork-card:hover .artwork-image {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.03);
+        }
+
+        /* Botones Estilo Boutique */
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 1.25rem 2.5rem;
+            display: inline-block;
+            transition: all 0.5s;
+        }
+
+        .btn-luxury:hover {
+            background: var(--ivory);
+            color: var(--bg-deep);
+            border-color: var(--ivory);
+        }
+
+        /* Modales Refinados */
+        .modal-overlay {
+            display: none;
+            background: rgba(5, 5, 5, 0.98);
         }
 
         .cart-sidebar {
-            position: fixed;
-            right: -100%;
-            top: 0;
-            width: 100%;
-            max-width: 450px;
-            height: 100%;
-            background: #0a0a0a;
-            z-index: 1100;
-            transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-            border-left: 1px solid rgba(255,255,255,0.05);
+            background: #0d0d0d;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
         }
 
-        .cart-sidebar.active {
-            right: 0;
-        }
-
-        /* Efectos de la Galería */
-        .photo-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .photo-card img {
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .photo-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .photo-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media (hover: hover) {
-            .photo-card:hover .photo-overlay {
-                opacity: 1;
-            }
-        }
-
-        @media (hover: none) {
-            .photo-overlay {
-                opacity: 1;
-                background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-                align-items: flex-end;
-                padding-bottom: 20px;
-            }
-        }
-
-        /* Barra de desplazamiento */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-        }
-
-        .decor-line {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            width: 100%;
+        /* Ajustes de scroll suave */
+        html {
+            scroll-behavior: smooth;
         }
 
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3.5rem !important;
-                line-height: 1.1;
-            }
+            .hero-title { font-size: 4rem !important; }
+            .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
         }
     </style>
 </head>
 <body>
 
     <!-- Navegación -->
-    <nav class="fixed w-full top-0 z-50 border-b border-white/5 bg-[#070707]/60 backdrop-blur-xl py-4 lg:py-6 px-6 lg:px-10 flex justify-between items-center transition-all duration-300" id="mainNav">
-        <div class="text-2xl lg:text-3xl font-bold tracking-tighter italic brand-font">Reinier</div>
-        <div class="hidden lg:flex space-x-12 text-[9px] uppercase tracking-[0.4em] font-light">
-            <a href="#inicio" class="hover:text-gray-400 transition-colors">Perfil</a>
-            <a href="#filosofia" class="hover:text-gray-400 transition-colors">Filosofía</a>
-            <a href="#galeria" class="hover:text-gray-400 transition-colors">Colecciones</a>
-            <a href="#servicios" class="hover:text-gray-400 transition-colors">Servicios</a>
+    <nav class="fixed w-full top-0 z-50 py-6 px-8 lg:px-16 flex justify-between items-center" id="mainNav">
+        <div class="flex flex-col">
+            <span class="text-xl lg:text-2xl tracking-[0.2em] serif-font italic font-medium">REINIER</span>
+            <span class="text-[0.5rem] tracking-[0.5em] text-gray-500 uppercase -mt-1">Fine Art Studio</span>
         </div>
-        <div class="flex items-center space-x-6">
-            <button onclick="toggleCart()" class="relative group">
-                <i class="fas fa-shopping-bag text-lg transition-transform group-hover:scale-110"></i>
-                <span id="cartCount" class="absolute -top-2 -right-3 bg-white text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">0</span>
+        
+        <div class="hidden md:flex space-x-10">
+            <a href="#inicio" class="nav-link uppercase">Inicio</a>
+            <a href="#galeria" class="nav-link uppercase">Colección</a>
+            <a href="#servicios" class="nav-link uppercase">Servicios</a>
+            <a href="#contacto" class="nav-link uppercase">Contacto</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <button onclick="toggleCart()" class="relative">
+                <span id="cartCount" class="absolute -top-3 -right-3 text-[10px] font-light">00</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </button>
         </div>
     </nav>
 
-    <!-- Sección Principal (Hero) -->
-    <section id="inicio" class="min-h-screen flex items-center px-6 lg:px-20 pt-24 lg:pt-20">
-        <div class="max-w-[1600px] mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div class="lg:col-span-5 order-2 lg:order-1 space-y-8 lg:space-y-10 animate__animated animate__fadeInLeft">
-                <span class="text-[8px] lg:text-[10px] uppercase tracking-[0.6em] text-gray-500 block">Basado en España — Disponible globalmente</span>
-                <h1 class="hero-title text-6xl lg:text-[10rem] leading-[0.85] italic font-light tracking-tighter brand-font">Reinier<br><span class="pl-8 lg:pl-32">Studio.</span></h1>
-                <p class="text-gray-400 text-lg lg:text-2xl leading-relaxed font-extralight max-w-xl">
-                    Narrativas visuales a través de la quietud. Especializado en fotografía de bellas artes, arquitectura y retratos editoriales.
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="container mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 z-10">
+                <h1 class="hero-title text-7xl lg:text-[9rem] leading-[0.9] serif-font mb-8 animate__animated animate__fadeIn">
+                    Elegancia <br><span class="italic pl-12 lg:pl-24">Silenciosa.</span>
+                </h1>
+                <p class="text-gray-400 font-extralight text-lg max-w-md mb-10 tracking-wide leading-relaxed">
+                    Fotografía de autor centrada en la pureza de la luz y la arquitectura del momento.
                 </p>
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
-                    <a href="#galeria" class="w-full sm:w-auto text-center bg-white text-black px-10 lg:px-12 py-4 lg:py-5 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gray-200 transition-all duration-500">Adquirir Obra</a>
-                    <a href="#contacto" class="text-[10px] uppercase tracking-[0.4em] border-b border-white/20 pb-2 hover:border-white transition-all">Colaborar</a>
+                <div class="flex gap-8 items-center">
+                    <a href="#galeria" class="btn-luxury text-[10px] uppercase tracking-[0.4em] font-medium">Explorar Obra</a>
                 </div>
             </div>
-            <div class="lg:col-span-7 order-1 lg:order-2 relative animate__animated animate__fadeInRight">
-                <div class="relative z-10 overflow-hidden rounded-sm shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070&auto=format&fit=crop" 
-                         alt="Fotógrafo Reinier" 
-                         class="w-full h-[40vh] lg:h-[85vh] object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition duration-[2s]">
-                </div>
-                <div class="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 w-32 h-32 lg:w-64 lg:h-64 border border-white/10 hidden sm:block -z-10"></div>
+            <div class="lg:col-span-7 relative hero-img-container">
+                <!-- Imagen Hero Restaurada -->
+                <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070" 
+                     class="w-full h-[60vh] lg:h-[85vh] object-cover opacity-80" alt="Arquitectura Minimalista">
+                <div class="absolute inset-0 border-[20px] lg:border-[40px] border-[#0a0a0a]/50 pointer-events-none"></div>
             </div>
         </div>
     </section>
 
-    <div class="decor-line"></div>
-
-    <!-- Sección Filosofía -->
-    <section id="filosofia" class="py-24 lg:py-40 px-6 bg-[#0a0a0a]">
-        <div class="max-w-4xl mx-auto text-center space-y-8 lg:space-y-12 reveal">
-            <i class="fas fa-quote-right text-2xl lg:text-3xl text-gray-700"></i>
-            <h2 class="text-3xl lg:text-6xl italic leading-tight brand-font">"La fotografía no se trata de lo que ves, sino de lo que haces sentir a otros a través del silencio de la imagen."</h2>
-            <p class="text-gray-500 uppercase tracking-[0.5em] text-[10px] lg:text-xs">— Reinier</p>
+    <!-- Galería (Grilla Asimétrica) -->
+    <section id="galeria" class="py-32 px-6 lg:px-20">
+        <div class="mb-24 flex flex-col md:flex-row md:items-end justify-between reveal">
+            <div>
+                <span class="text-[10px] uppercase tracking-[0.5em] text-gray-500 block mb-4">Portafolio</span>
+                <h2 class="text-5xl lg:text-7xl serif-font italic">Impresiones de Autor</h2>
+            </div>
+            <p class="text-gray-500 text-sm max-w-xs mt-6 md:mt-0 font-light">Ediciones limitadas en papel Hahnemühle de calidad museo.</p>
         </div>
-    </section>
 
-    <!-- Galería de Arte -->
-    <section id="galeria" class="py-24 lg:py-40 px-6">
-        <div class="max-w-[1600px] mx-auto">
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 lg:mb-24 gap-8">
-                <div class="reveal">
-                    <h2 class="text-4xl lg:text-6xl italic brand-font mb-4">Obras Seleccionadas</h2>
-                    <p class="text-gray-500 text-[10px] lg:text-xs uppercase tracking-[0.4em]">Ediciones exclusivas en papel Hahnemühle</p>
+        <div class="grid md:grid-cols-2 gap-16 lg:gap-32">
+            <!-- Obra 1 (Alpes) -->
+            <div class="artwork-card reveal cursor-pointer" onclick="openShop('Niebla en los Alpes', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200')">
+                <div class="overflow-hidden mb-6 aspect-[4/5]">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200" class="artwork-image w-full h-full object-cover">
                 </div>
-                <div class="reveal">
-                    <p class="text-gray-400 max-w-xs text-sm font-light leading-relaxed">Cada impresión es revisada personalmente, firmada y numerada para certificar su autenticidad.</p>
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-2xl serif-font italic">Niebla en los Alpes</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Desde 45€</span>
                 </div>
+                <div class="h-px bg-white/10 mt-4"></div>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
-                <!-- Obra 1 -->
-                <div class="reveal space-y-6 lg:space-y-8 group cursor-pointer" onclick="openShop('Niebla en los Alpes', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200')">
-                    <div class="photo-card aspect-[16/9]">
-                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200" class="w-full h-full object-cover grayscale lg:group-hover:grayscale-0">
-                        <div class="photo-overlay">
-                            <span class="text-[9px] lg:text-[10px] uppercase tracking-[0.5em] bg-white text-black px-5 lg:px-6 py-3 font-bold">Ver Detalles</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-white/5 pb-6">
-                        <div>
-                            <h3 class="text-2xl lg:text-3xl italic brand-font">Niebla en los Alpes</h3>
-                            <p class="text-gray-600 text-[10px] uppercase mt-1 tracking-widest">Serie: Nature Silence</p>
-                        </div>
-                        <span class="text-lg lg:text-xl font-light tracking-tighter">Desde 45€</span>
-                    </div>
+            <!-- Obra 2 (Bosque) -->
+            <div class="artwork-card reveal mt-12 lg:mt-40 cursor-pointer" onclick="openShop('Silencio Verde', 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200')">
+                <div class="overflow-hidden mb-6 aspect-[4/5]">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200" class="artwork-image w-full h-full object-cover">
                 </div>
-
-                <!-- Obra 2 -->
-                <div class="reveal space-y-6 lg:space-y-8 group cursor-pointer" onclick="openShop('Silencio Verde', 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200')">
-                    <div class="photo-card aspect-[16/9]">
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200" class="w-full h-full object-cover grayscale lg:group-hover:grayscale-0">
-                        <div class="photo-overlay">
-                            <span class="text-[9px] lg:text-[10px] uppercase tracking-[0.5em] bg-white text-black px-5 lg:px-6 py-3 font-bold">Ver Detalles</span>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-white/5 pb-6">
-                        <div>
-                            <h3 class="text-2xl lg:text-3xl italic brand-font">Silencio Verde</h3>
-                            <p class="text-gray-600 text-[10px] uppercase mt-1 tracking-widest">Serie: Forest Spirit</p>
-                        </div>
-                        <span class="text-lg lg:text-xl font-light tracking-tighter">Desde 45€</span>
-                    </div>
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-2xl serif-font italic">Silencio Verde</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Desde 45€</span>
                 </div>
+                <div class="h-px bg-white/10 mt-4"></div>
             </div>
             
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mt-12 lg:mt-20">
-                <div class="reveal group cursor-pointer" onclick="openShop('Espejo de Agua', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800')">
-                    <div class="photo-card aspect-square mb-4 lg:mb-6">
-                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800" class="w-full h-full object-cover grayscale lg:group-hover:grayscale-0">
-                    </div>
-                    <h3 class="text-lg lg:text-xl italic">Espejo de Agua</h3>
+            <!-- Obra 3 (Agua) -->
+            <div class="artwork-card reveal cursor-pointer" onclick="openShop('Espejo de Agua', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200')">
+                <div class="overflow-hidden mb-6 aspect-[16/9]">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200" class="artwork-image w-full h-full object-cover">
                 </div>
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-2xl serif-font italic">Espejo de Agua</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Desde 45€</span>
+                </div>
+                <div class="h-px bg-white/10 mt-4"></div>
+            </div>
+
+            <!-- Obra 4 (Arquitectura/Estructura) -->
+            <div class="artwork-card reveal mt-12 cursor-pointer" onclick="openShop('Estructura IV', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200')">
+                <div class="overflow-hidden mb-6 aspect-[1/1]">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" class="artwork-image w-full h-full object-cover">
+                </div>
+                <div class="flex justify-between items-baseline">
+                    <h3 class="text-2xl serif-font italic">Estructura IV</h3>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Desde 60€</span>
+                </div>
+                <div class="h-px bg-white/10 mt-4"></div>
             </div>
         </div>
     </section>
 
     <!-- Sección de Servicios -->
-    <section id="servicios" class="py-24 lg:py-40 px-6 bg-white text-black">
-        <div class="max-w-[1600px] mx-auto">
-            <h2 class="text-4xl lg:text-6xl italic brand-font mb-16 lg:mb-24 reveal">Servicios Profesionales</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-                <div class="reveal space-y-4 lg:space-y-6">
-                    <span class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">01.</span>
-                    <h3 class="text-2xl lg:text-3xl italic brand-font border-b border-black/10 pb-4">Retrato Editorial</h3>
-                    <p class="text-gray-600 font-light text-sm lg:text-base">Sesiones personalizadas para marcas, artistas y perfiles profesionales que buscan una estética única.</p>
+    <section id="servicios" class="py-32 px-6 lg:px-20 bg-white text-black">
+        <div class="container mx-auto">
+            <h2 class="text-5xl lg:text-7xl serif-font italic mb-20 reveal">Servicios Profesionales</h2>
+            <div class="grid md:grid-cols-3 gap-12 lg:gap-24">
+                <div class="reveal">
+                    <span class="text-[10px] font-bold text-gray-300 block mb-4 uppercase">01 /</span>
+                    <h3 class="text-2xl serif-font italic mb-4">Retrato Editorial</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Capturando la esencia humana a través de un enfoque minimalista y cinematográfico.</p>
                 </div>
-                <div class="reveal space-y-4 lg:space-y-6">
-                    <span class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">02.</span>
-                    <h3 class="text-2xl lg:text-3xl italic brand-font border-b border-black/10 pb-4">Arquitectura</h3>
-                    <p class="text-gray-600 font-light text-sm lg:text-base">Documentación de espacios con un enfoque en la geometría, las texturas y la luz natural.</p>
+                <div class="reveal">
+                    <span class="text-[10px] font-bold text-gray-300 block mb-4 uppercase">02 /</span>
+                    <h3 class="text-2xl serif-font italic mb-4">Arquitectura</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Documentación de espacios con especial atención a la luz natural y la geometría estructural.</p>
                 </div>
-                <div class="reveal space-y-4 lg:space-y-6">
-                    <span class="text-[10px] font-bold text-gray-300 uppercase tracking-widest">03.</span>
-                    <h3 class="text-2xl lg:text-3xl italic brand-font border-b border-black/10 pb-4">Proyectos Especiales</h3>
-                    <p class="text-gray-600 font-light text-sm lg:text-base">Desarrollo de series visuales exclusivas para espacios comerciales y colecciones privadas.</p>
+                <div class="reveal">
+                    <span class="text-[10px] font-bold text-gray-300 block mb-4 uppercase">03 /</span>
+                    <h3 class="text-2xl serif-font italic mb-4">Proyectos Artísticos</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Colaboraciones y encargos exclusivos para galerías, interiores y colecciones privadas.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal de Detalles de Obra (Solo se activa al hacer clic) -->
-    <div id="shopModal" class="modal-overlay flex items-center justify-center p-4 lg:p-6" onclick="if(event.target === this) closeShop()">
-        <div class="bg-white text-black max-w-[1000px] w-full grid lg:grid-cols-2 rounded-sm overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto lg:overflow-visible animate__animated animate__fadeInUp">
-            <div class="h-[300px] lg:h-auto overflow-hidden">
+    <!-- Modal Detalle Obra -->
+    <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-4 lg:p-0" onclick="if(event.target === this) closeShop()">
+        <div class="bg-[#111] w-full max-w-5xl grid lg:grid-cols-2 overflow-hidden shadow-2xl animate__animated animate__fadeInUp">
+            <div class="h-64 lg:h-auto">
                 <img id="modalImg" src="" class="w-full h-full object-cover">
             </div>
-            <div class="p-8 lg:p-16 flex flex-col justify-center bg-white">
-                <h2 id="modalTitle" class="text-3xl lg:text-5xl italic mb-6 lg:mb-8 brand-font">Título Obra</h2>
-                <div class="space-y-6 lg:space-y-8">
-                    <div>
-                        <label class="text-[8px] lg:text-[9px] uppercase tracking-[0.4em] font-bold text-gray-400 block mb-3 lg:mb-4">Tamaño de Impresión</label>
-                        <select id="sizeSelector" onchange="updatePrice()" class="w-full border-b border-gray-200 py-3 lg:py-4 outline-none focus:border-black transition appearance-none text-sm">
-                            <option value="45" data-size="30x40 cm">Estándar (30x40 cm) — 45€</option>
-                            <option value="85" data-size="50x70 cm">Premium (50x70 cm) — 85€</option>
-                            <option value="150" data-size="70x100 cm">Museo (70x100 cm) — 150€</option>
+            <div class="p-10 lg:p-20 flex flex-col justify-center">
+                <span class="text-[10px] uppercase tracking-[0.5em] text-gray-500 mb-2">Edición Limitada</span>
+                <h2 id="modalTitle" class="text-4xl lg:text-6xl serif-font italic mb-10">Título Obra</h2>
+                
+                <div class="space-y-8">
+                    <div class="border-b border-white/10 pb-4">
+                        <label class="text-[9px] uppercase tracking-[0.3em] text-gray-500 block mb-4">Dimensión de Impresión</label>
+                        <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent text-sm outline-none appearance-none cursor-pointer">
+                            <option value="45" data-size="30x40">Estándar (30x40 cm) — 45€</option>
+                            <option value="85" data-size="50x70">Premium (50x70 cm) — 85€</option>
+                            <option value="150" data-size="70x100">Museo (70x100 cm) — 150€</option>
                         </select>
                     </div>
-                    <div class="flex justify-between items-center pt-6 lg:pt-8 border-t">
-                        <span class="text-[9px] uppercase tracking-widest text-gray-400">Total</span>
-                        <span id="finalPrice" class="text-3xl lg:text-5xl font-light tracking-tighter">45€</span>
+
+                    <div class="flex justify-between items-end">
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Inversión</span>
+                        <span id="finalPrice" class="text-4xl font-light serif-font">45€</span>
                     </div>
-                    <button onclick="addToCart()" class="w-full bg-black text-white py-4 lg:py-6 text-[9px] lg:text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-neutral-800 transition transform hover:-translate-y-1">Añadir a la selección</button>
-                    <button onclick="closeShop()" class="w-full text-[8px] uppercase tracking-widest text-gray-400 hover:text-black transition mt-2">Cerrar</button>
+
+                    <button onclick="addToCart()" class="w-full btn-luxury bg-white text-black text-[10px] uppercase tracking-[0.4em] font-bold py-5 mt-4">Añadir a la Selección</button>
+                    <button onclick="closeShop()" class="w-full text-[9px] uppercase tracking-widest text-gray-500 mt-4 hover:text-white transition">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Carrito Lateral -->
-    <div id="cartSidebar" class="cart-sidebar flex flex-col p-8 lg:p-12">
-        <div class="flex justify-between items-center mb-12 lg:mb-16">
-            <h2 class="text-2xl lg:text-3xl italic brand-font">Selección</h2>
-            <button onclick="toggleCart()" class="text-gray-500 hover:text-white transition"><i class="fas fa-times text-lg"></i></button>
-        </div>
-        
-        <div id="cartItems" class="flex-grow space-y-8 lg:space-y-10 overflow-y-auto pr-2">
-            <!-- Items dinámicos -->
+    <div id="cartSidebar" class="cart-sidebar fixed right-[-100%] top-0 w-full max-w-md h-full z-[110] p-12 flex flex-col transition-all duration-700">
+        <div class="flex justify-between items-center mb-16">
+            <span class="text-[10px] uppercase tracking-[0.5em]">Tu Selección</span>
+            <button onclick="toggleCart()"><i class="fas fa-times text-xs"></i></button>
         </div>
 
-        <div class="pt-8 border-t border-white/10 mt-8 space-y-6">
-            <div class="flex justify-between items-baseline">
-                <span class="text-[9px] uppercase tracking-[0.3em] text-gray-500">Inversión Total</span>
-                <span id="cartTotal" class="text-3xl lg:text-4xl font-bold tracking-tighter">0€</span>
+        <div id="cartItems" class="flex-grow space-y-10 overflow-y-auto pr-2">
+            <!-- Items dinámicos aquí -->
+        </div>
+
+        <div class="pt-10 border-t border-white/10">
+            <div class="flex justify-between mb-8">
+                <span class="text-[10px] uppercase tracking-widest text-gray-500">Total Estimado</span>
+                <span id="cartTotal" class="text-2xl serif-font italic">0€</span>
             </div>
-            <button onclick="openCheckout()" class="w-full bg-white text-black py-5 lg:py-6 text-[9px] lg:text-[10px] uppercase tracking-[0.4em] font-black hover:bg-gray-200 transition">Finalizar pedido</button>
+            <button onclick="openCheckout()" class="w-full btn-luxury text-[10px] uppercase tracking-[0.4em]">Confirmar Pedido</button>
         </div>
     </div>
 
-    <!-- Modal de Pago (Solo se activa al finalizar compra) -->
-    <div id="checkoutModal" class="modal-overlay flex items-center justify-center p-4" onclick="if(event.target === this) closeCheckout()">
-        <div class="bg-white text-black max-w-md w-full p-8 lg:p-12 rounded-sm shadow-2xl relative animate__animated animate__zoomIn">
-            <button onclick="closeCheckout()" class="absolute top-6 right-6 text-gray-300 hover:text-black"><i class="fas fa-times"></i></button>
-            <h2 class="text-3xl lg:text-4xl italic mb-4 brand-font">Pago Seguro</h2>
-            <p class="text-gray-400 text-[10px] mb-8 leading-relaxed">Adquiriendo obra original numerada de Reinier Art Studio.</p>
+    <!-- Modal Pago -->
+    <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[120] items-center justify-center p-4" onclick="if(event.target === this) closeCheckout()">
+        <div class="bg-white text-black w-full max-w-lg p-12 text-center shadow-2xl relative animate__animated animate__zoomIn">
+            <button onclick="closeCheckout()" class="absolute top-6 right-6 text-gray-400 hover:text-black"><i class="fas fa-times"></i></button>
+            <h2 class="text-4xl serif-font italic mb-2">Finalizar Compra</h2>
+            <p class="text-[9px] uppercase tracking-widest text-gray-400 mb-8">Transacción Encriptada mediante PayPal</p>
             
-            <div class="bg-neutral-50 p-6 lg:p-8 mb-8 text-center border border-gray-100">
-                <span id="checkoutTotalValue" class="text-4xl lg:text-5xl font-bold tracking-tighter">0€</span>
-                <p class="text-[9px] uppercase tracking-[0.4em] text-green-600 font-bold mt-4 italic">Envío Global Asegurado</p>
-            </div>
-
+            <div class="text-5xl serif-font mb-10" id="checkoutTotalValue">0€</div>
+            
             <div id="paypal-button-container"></div>
         </div>
     </div>
 
     <!-- Pie de Página -->
-    <footer id="contacto" class="py-24 lg:py-40 px-6 border-t border-white/5">
-        <div class="max-w-[1600px] mx-auto">
-            <div class="grid lg:grid-cols-12 gap-16 lg:gap-20">
-                <div class="lg:col-span-5 space-y-8 lg:space-y-10">
-                    <h3 class="text-4xl lg:text-5xl italic brand-font">Reinier Studio</h3>
-                    <p class="text-gray-500 text-base lg:text-lg font-light leading-relaxed max-w-md">Preservando la belleza de lo efímero a través de la fotografía analógica y digital de alta gama.</p>
-                    <div class="flex space-x-8 text-gray-400">
-                        <a href="#" class="hover:text-white transition transform hover:scale-110"><i class="fab fa-instagram text-xl lg:text-2xl"></i></a>
-                        <a href="#" class="hover:text-white transition transform hover:scale-110"><i class="fab fa-behance text-xl lg:text-2xl"></i></a>
-                        <a href="#" class="hover:text-white transition transform hover:scale-110"><i class="far fa-envelope text-xl lg:text-2xl"></i></a>
-                    </div>
-                </div>
-                <div class="lg:col-span-3 space-y-6 lg:space-y-8">
-                    <h4 class="text-[9px] lg:text-[10px] uppercase tracking-[0.5em] font-bold text-gray-600">Navegación</h4>
-                    <ul class="space-y-3 text-sm text-gray-400 font-light">
-                        <li><a href="#inicio" class="hover:text-white transition">Perfil Artístico</a></li>
-                        <li><a href="#galeria" class="hover:text-white transition">Galería Fine Art</a></li>
-                        <li><a href="#servicios" class="hover:text-white transition">Servicios</a></li>
-                    </ul>
-                </div>
-                <div class="lg:col-span-4 space-y-6 lg:space-y-8 lg:text-right">
-                    <h4 class="text-[9px] lg:text-[10px] uppercase tracking-[0.5em] font-bold text-gray-600">Copyright</h4>
-                    <p class="text-gray-600 text-[9px] lg:text-[10px] uppercase tracking-[0.3em] leading-loose">© 2024 Reinier Studio.<br>Madrid, España.</p>
-                </div>
+    <footer id="contacto" class="py-24 px-8 lg:px-20 border-t border-white/5 mt-20">
+        <div class="grid lg:grid-cols-3 gap-16 items-start">
+            <div>
+                <span class="text-2xl serif-font italic tracking-widest block mb-4 uppercase">Reinier Studio</span>
+                <p class="text-gray-500 text-xs uppercase tracking-[0.3em]">Arte visual y curaduría de espacios.</p>
+            </div>
+            <div class="flex flex-col gap-4 text-xs tracking-widest uppercase text-gray-400 font-light">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">Behance</a>
+                <a href="#" class="hover:text-white transition">Contacto Email</a>
+            </div>
+            <div class="lg:text-right">
+                <p class="text-[9px] uppercase tracking-[0.5em] text-gray-600">© 2024 Madrid — Estocolmo<br>Derechos Reservados</p>
             </div>
         </div>
     </footer>
@@ -373,38 +348,25 @@
     <script>
         let cart = [];
 
-        // Función para mostrar elementos al hacer scroll
+        // Revelado de elementos al scroll
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add("active");
                 }
-            }
+            });
         }
 
         window.addEventListener("scroll", reveal);
 
-        // Control de barra de navegación
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-3', 'bg-[#070707]/95');
-                nav.classList.remove('py-4', 'lg:py-6');
-            } else {
-                nav.classList.add('py-4', 'lg:py-6');
-                nav.classList.remove('py-3', 'bg-[#070707]/95');
-            }
-        });
-
         function toggleCart() {
-            document.getElementById('cartSidebar').classList.toggle('active');
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.style.right = (sidebar.style.right === '0px') ? '-100%' : '0px';
         }
 
-        // Abre modal de detalles SOLO cuando el usuario hace clic
         function openShop(title, img) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalImg').src = img;
@@ -446,32 +408,31 @@
             const count = document.getElementById('cartCount');
             const total = document.getElementById('cartTotal');
             
-            count.innerText = cart.length;
+            count.innerText = cart.length < 10 ? '0' + cart.length : cart.length;
             container.innerHTML = '';
             
             let sum = 0;
             cart.forEach(item => {
                 sum += item.price;
                 container.innerHTML += `
-                    <div class="flex gap-4 items-center animate__animated animate__fadeInRight">
-                        <img src="${item.img}" class="w-16 h-16 lg:w-20 lg:h-20 object-cover rounded-sm grayscale">
+                    <div class="flex gap-6 items-center animate__animated animate__fadeIn">
+                        <img src="${item.img}" class="w-16 h-20 object-cover grayscale">
                         <div class="flex-grow">
-                            <p class="text-[9px] uppercase tracking-widest font-black text-white">${item.title}</p>
-                            <p class="text-gray-500 text-[9px] mt-1">${item.size} — ${item.price}€</p>
+                            <h4 class="text-[10px] uppercase tracking-widest font-medium mb-1">${item.title}</h4>
+                            <p class="text-[9px] text-gray-500 tracking-tighter">${item.size} cm — ${item.price}€</p>
                         </div>
-                        <button onclick="removeFromCart(${item.id})" class="text-gray-700 hover:text-white transition"><i class="fas fa-times text-sm"></i></button>
+                        <button onclick="removeFromCart(${item.id})" class="text-gray-700 hover:text-white"><i class="fas fa-times text-[10px]"></i></button>
                     </div>
                 `;
             });
             
             if(cart.length === 0) {
-                container.innerHTML = '<p class="text-gray-600 text-center py-12 italic text-sm font-light">Selección vacía.</p>';
+                container.innerHTML = '<p class="text-gray-600 text-center py-12 text-[10px] uppercase tracking-widest">Selección vacía</p>';
             }
             
             total.innerText = sum + '€';
         }
 
-        // Abre modal de pago SOLO al finalizar pedido
         function openCheckout() {
             if(cart.length === 0) return;
             const total = document.getElementById('cartTotal').innerText;
@@ -488,32 +449,24 @@
             const container = document.getElementById('paypal-button-container');
             container.innerHTML = '';
             paypal.Buttons({
-                style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'pay' },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: { value: amount.toString(), currency_code: 'EUR' }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        cart = [];
-                        updateCartUI();
-                        closeCheckout();
-                        toggleCart();
-                    });
-                }
+                style: { layout: 'vertical', color: 'black', shape: 'rect' },
+                createOrder: (data, actions) => actions.order.create({
+                    purchase_units: [{ amount: { value: amount.toString(), currency_code: 'EUR' } }]
+                }),
+                onApprove: (data, actions) => actions.order.capture().then(() => {
+                    cart = [];
+                    updateCartUI();
+                    closeCheckout();
+                })
             }).render('#paypal-button-container');
         }
 
-        // Inicializar sin ninguna ventana abierta
         window.onload = function() {
             reveal();
-            // Aseguramos que los modales estén ocultos explícitamente al inicio
+            // Asegurar que los modales no aparezcan por error al cargar
             document.getElementById('shopModal').style.display = 'none';
             document.getElementById('checkoutModal').style.display = 'none';
-        };
+        }
     </script>
 </body>
 </html>
