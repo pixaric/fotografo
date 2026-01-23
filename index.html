@@ -70,12 +70,15 @@
         .nav-link { font-size: 0.6rem; letter-spacing: 0.4em; transition: color 0.3s ease; }
         .nav-link:hover { color: var(--accent); }
 
+        /* AJUSTE: Botón más compacto para evitar que no quepa */
         .btn-luxury {
             position: relative; overflow: hidden;
             border: 0.5px solid rgba(255,255,255,0.3);
-            padding: 1.2rem 2.5rem; font-size: 9px; letter-spacing: 0.5em;
+            padding: 1rem 1.5rem; font-size: 8px; letter-spacing: 0.4em;
             text-transform: uppercase; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1;
+            display: inline-block;
+            text-align: center;
         }
 
         .btn-luxury::before {
@@ -158,6 +161,7 @@
         </div>
     </section>
 
+    <!-- MANIFIESTO -->
     <section id="manifiesto" class="py-40 px-6 lg:px-20 bg-[#0a0a0a]">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl lg:text-6xl serif-font italic mb-12 animate__animated animate__fadeIn">"La fotografía no es un registro, es una intención de silencio en un mundo ruidoso."</h2>
@@ -169,6 +173,7 @@
         </div>
     </section>
 
+    <!-- SERVICIOS: Ajustado para que el botón quepa mejor -->
     <section id="servicios" class="py-32 px-6 lg:px-20 border-y border-white/5">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
             <div class="relative artwork-container">
@@ -181,7 +186,7 @@
                 <div class="space-y-12">
                     <div>
                         <label class="text-[9px] uppercase tracking-[0.4em] text-gray-500 mb-4 block">Configuración</label>
-                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-4 outline-none text-sm font-light hover:border-accent transition-colors">
+                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-3 outline-none text-sm font-light hover:border-accent transition-colors">
                             <option value="250" data-name="Sesión Minimalist">Sesión Minimalist — 250€</option>
                             <option value="550" data-name="Sesión Architectural">Sesión Architectural — 550€</option>
                             <option value="1200" data-name="Full Portfolio Private">Full Portfolio Private — 1.200€</option>
@@ -201,6 +206,7 @@
                             <span id="serviceTotalDisplay" class="text-5xl serif-font italic text-accent">250€</span>
                         </div>
                     </div>
+                    {/* El botón ahora tiene una clase ajustada y w-full para evitar desbordamiento */}
                     <button onclick="addServiceToCart()" class="w-full btn-luxury">Solicitar Reserva</button>
                 </div>
             </div>
@@ -222,7 +228,7 @@
         </div>
     </section>
 
-    <!-- MODAL DE DETALLE CORREGIDO -->
+    <!-- MODAL DE DETALLE -->
     <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-4" onclick="if(event.target === this) closeShop()">
         <div class="bg-[#0c0c0c] w-full max-w-6xl grid lg:grid-cols-2 overflow-hidden thin-border animate__animated animate__fadeInUp">
             <div class="h-[50vh] lg:h-full overflow-hidden bg-[#111]">
@@ -266,6 +272,7 @@
         </div>
     </div>
 
+    <!-- CART SIDEBAR -->
     <div id="cartSidebar" class="cart-sidebar fixed top-0 h-full p-12 flex flex-col shadow-2xl transition-all duration-700">
         <div class="flex justify-between items-center mb-16">
             <h3 class="serif-font italic text-2xl">Selección</h3>
@@ -281,6 +288,7 @@
         </div>
     </div>
 
+    <!-- CHECKOUT -->
     <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[150] items-center justify-center p-4">
         <div class="bg-white text-black w-full max-w-md p-12 shadow-2xl relative">
             <div class="text-center mb-10">
