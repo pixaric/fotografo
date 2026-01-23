@@ -70,11 +70,11 @@
         .nav-link { font-size: 0.6rem; letter-spacing: 0.4em; transition: color 0.3s ease; }
         .nav-link:hover { color: var(--accent); }
 
-        /* AJUSTE: Botón más compacto para evitar que no quepa */
+        /* Botón de lujo optimizado */
         .btn-luxury {
             position: relative; overflow: hidden;
             border: 0.5px solid rgba(255,255,255,0.3);
-            padding: 1rem 1.5rem; font-size: 8px; letter-spacing: 0.4em;
+            padding: 1rem 1.5rem; font-size: 9px; letter-spacing: 0.4em;
             text-transform: uppercase; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1;
             display: inline-block;
@@ -109,7 +109,7 @@
 
         select option { background: #111; color: white; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .cart-sidebar { width: 100%; right: -100%; }
             #custom-cursor, #cursor-follower { display: none; }
             * { cursor: auto !important; }
@@ -161,7 +161,6 @@
         </div>
     </section>
 
-    <!-- MANIFIESTO -->
     <section id="manifiesto" class="py-40 px-6 lg:px-20 bg-[#0a0a0a]">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl lg:text-6xl serif-font italic mb-12 animate__animated animate__fadeIn">"La fotografía no es un registro, es una intención de silencio en un mundo ruidoso."</h2>
@@ -173,7 +172,6 @@
         </div>
     </section>
 
-    <!-- SERVICIOS: Ajustado para que el botón quepa mejor -->
     <section id="servicios" class="py-32 px-6 lg:px-20 border-y border-white/5">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
             <div class="relative artwork-container">
@@ -186,7 +184,7 @@
                 <div class="space-y-12">
                     <div>
                         <label class="text-[9px] uppercase tracking-[0.4em] text-gray-500 mb-4 block">Configuración</label>
-                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-3 outline-none text-sm font-light hover:border-accent transition-colors">
+                        <select id="serviceSelector" onchange="updateServicePrice()" class="w-full bg-transparent border-b border-white/10 py-4 outline-none text-sm font-light hover:border-accent transition-colors">
                             <option value="250" data-name="Sesión Minimalist">Sesión Minimalist — 250€</option>
                             <option value="550" data-name="Sesión Architectural">Sesión Architectural — 550€</option>
                             <option value="1200" data-name="Full Portfolio Private">Full Portfolio Private — 1.200€</option>
@@ -206,7 +204,6 @@
                             <span id="serviceTotalDisplay" class="text-5xl serif-font italic text-accent">250€</span>
                         </div>
                     </div>
-                    {/* El botón ahora tiene una clase ajustada y w-full para evitar desbordamiento */}
                     <button onclick="addServiceToCart()" class="w-full btn-luxury">Solicitar Reserva</button>
                 </div>
             </div>
@@ -228,45 +225,57 @@
         </div>
     </section>
 
-    <!-- MODAL DE DETALLE -->
-    <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-4" onclick="if(event.target === this) closeShop()">
-        <div class="bg-[#0c0c0c] w-full max-w-6xl grid lg:grid-cols-2 overflow-hidden thin-border animate__animated animate__fadeInUp">
-            <div class="h-[50vh] lg:h-full overflow-hidden bg-[#111]">
+    <!-- MODAL DE DETALLE CORREGIDO -->
+    <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-4 lg:p-12" onclick="if(event.target === this) closeShop()">
+        <div class="bg-[#0c0c0c] w-full max-w-6xl grid lg:grid-cols-5 overflow-y-auto lg:overflow-hidden thin-border animate__animated animate__fadeInUp max-h-[95vh]">
+            
+            <!-- Imagen (ocupa 3 de 5 columnas en desktop) -->
+            <div class="lg:col-span-3 h-[40vh] lg:h-full overflow-hidden bg-[#111]">
                 <img id="modalImg" src="" class="w-full h-full object-cover opacity-90">
             </div>
-            <div class="p-8 lg:p-16 flex flex-col justify-center relative">
-                <button onclick="closeShop()" class="absolute top-8 right-8 text-gray-500 hover:text-white transition">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M18 6L6 18M6 6l12 12"/></svg>
+
+            <!-- Contenido (ocupa 2 de 5 columnas en desktop) -->
+            <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center relative bg-[#0c0c0c]">
+                <button onclick="closeShop()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-10">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
                 
-                <span class="text-[9px] uppercase tracking-[0.8em] text-accent mb-4 block">Fine Art Print</span>
-                <h2 id="modalTitle" class="text-4xl lg:text-5xl serif-font italic mb-4">Título</h2>
-                <p id="modalDesc" class="text-gray-500 font-extralight text-sm leading-relaxed mb-10 italic">Descripción...</p>
+                <div class="mb-8">
+                    <span class="text-[9px] uppercase tracking-[0.8em] text-accent mb-4 block">Fine Art Print</span>
+                    <h2 id="modalTitle" class="text-3xl lg:text-4xl serif-font italic mb-4 leading-tight">Título de la Obra</h2>
+                    <div class="w-12 h-[1px] bg-white/10 mb-6"></div>
+                    <p id="modalDesc" class="text-gray-500 font-extralight text-xs lg:text-sm leading-relaxed italic">Descripción...</p>
+                </div>
 
                 <div class="space-y-8">
-                    <div class="grid grid-cols-2 gap-8">
-                        <div>
-                            <label class="text-[8px] uppercase tracking-widest text-gray-500 block mb-3">Dimensión</label>
-                            <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-3 outline-none text-[10px] tracking-widest uppercase">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label class="text-[8px] uppercase tracking-[0.3em] text-gray-500 block mb-3">Dimensión</label>
+                            <select id="sizeSelector" onchange="updatePrice()" class="w-full bg-transparent border-b border-white/10 py-2 outline-none text-[10px] tracking-widest uppercase cursor-pointer hover:border-accent transition-colors">
                                 <option value="85" data-size="30x45 (Hahnemühle)">30x45 cm — 85€</option>
                                 <option value="150" data-size="50x75 (Hahnemühle)">50x75 cm — 150€</option>
                                 <option value="280" data-size="70x105 (Museum Etching)">70x105 cm — 280€</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="text-[8px] uppercase tracking-widest text-gray-500 block mb-3">Ejemplares</label>
-                            <div class="flex items-center border-b border-white/10 py-2">
-                                <button onclick="changeQty('modalQty', -1)" class="px-3 text-gray-500">-</button>
-                                <input type="number" id="modalQty" value="1" class="bg-transparent w-full text-center outline-none text-xs" readonly>
-                                <button onclick="changeQty('modalQty', 1)" class="px-3 text-gray-500">+</button>
+                        <div class="flex flex-col">
+                            <label class="text-[8px] uppercase tracking-[0.3em] text-gray-500 block mb-3">Ejemplares</label>
+                            <div class="flex items-center border-b border-white/10 py-1">
+                                <button onclick="changeQty('modalQty', -1)" class="px-2 text-gray-500 hover:text-white transition-colors">-</button>
+                                <input type="number" id="modalQty" value="1" class="bg-transparent w-full text-center outline-none text-[11px]" readonly>
+                                <button onclick="changeQty('modalQty', 1)" class="px-2 text-gray-500 hover:text-white transition-colors">+</button>
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between items-end pt-4">
-                        <span class="text-[8px] uppercase tracking-widest text-gray-500">Valor de Adquisición</span>
-                        <span id="finalPrice" class="text-5xl serif-font italic text-accent">85€</span>
+                    
+                    <div class="flex justify-between items-end pt-4 border-t border-white/5">
+                        <div class="flex flex-col">
+                            <span class="text-[8px] uppercase tracking-widest text-gray-500 mb-1">Valor de Adquisición</span>
+                            <span id="finalPrice" class="text-4xl lg:text-5xl serif-font italic text-accent">85€</span>
+                        </div>
                     </div>
-                    <button onclick="addToCart()" class="w-full btn-luxury">Añadir a la Colección</button>
+
+                    <button onclick="addToCart()" class="w-full btn-luxury mt-4">Añadir a la Colección</button>
+                    <p class="text-[7px] text-gray-600 uppercase tracking-widest text-center mt-4">Iva incluido • Envío especializado certificado</p>
                 </div>
             </div>
         </div>
@@ -288,7 +297,6 @@
         </div>
     </div>
 
-    <!-- CHECKOUT -->
     <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[150] items-center justify-center p-4">
         <div class="bg-white text-black w-full max-w-md p-12 shadow-2xl relative">
             <div class="text-center mb-10">
@@ -393,7 +401,9 @@
 
         function updatePrice() {
             const sel = document.getElementById('sizeSelector');
-            const qty = parseInt(document.getElementById('modalQty').value);
+            const qtyInput = document.getElementById('modalQty');
+            if (!sel || !qtyInput) return;
+            const qty = parseInt(qtyInput.value);
             document.getElementById('finalPrice').innerText = (parseInt(sel.value) * qty) + '€';
         }
 
