@@ -70,6 +70,7 @@
         .nav-link { font-size: 0.6rem; letter-spacing: 0.4em; transition: color 0.3s ease; }
         .nav-link:hover { color: var(--accent); }
 
+        /* Botón de lujo optimizado */
         .btn-luxury {
             position: relative; overflow: hidden;
             border: 0.5px solid rgba(255,255,255,0.3);
@@ -107,10 +108,6 @@
         }
 
         select option { background: #111; color: white; }
-
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
 
         @media (max-width: 1024px) {
             .cart-sidebar { width: 100%; right: -100%; }
@@ -164,8 +161,18 @@
         </div>
     </section>
 
-    <!-- Sección de Servicios -->
-    <section id="servicios" class="py-32 px-6 lg:px-20 border-y border-white/5 bg-[#080808]">
+    <section id="manifiesto" class="py-40 px-6 lg:px-20 bg-[#0a0a0a]">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-6xl serif-font italic mb-12 animate__animated animate__fadeIn">"La fotografía no es un registro, es una intención de silencio en un mundo ruidoso."</h2>
+            <div class="w-20 h-[1px] bg-accent mx-auto mb-12"></div>
+            <p class="text-gray-500 font-extralight text-lg leading-relaxed tracking-wide">
+                Cada obra es una pieza numerada, impresa en papeles de algodón de gramaje superior, 
+                garantizando una longevidad que trasciende generaciones.
+            </p>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-32 px-6 lg:px-20 border-y border-white/5">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
             <div class="relative artwork-container">
                 <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200" 
@@ -203,7 +210,6 @@
         </div>
     </section>
 
-    <!-- Galería -->
     <section id="galeria" class="py-40 px-6 lg:px-20">
         <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div class="max-w-xl">
@@ -219,21 +225,28 @@
         </div>
     </section>
 
-    <!-- MODAL DE DETALLE -->
+    <!-- MODAL DE DETALLE CORREGIDO -->
     <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-4 lg:p-12" onclick="if(event.target === this) closeShop()">
         <div class="bg-[#0c0c0c] w-full max-w-6xl grid lg:grid-cols-5 overflow-y-auto lg:overflow-hidden thin-border animate__animated animate__fadeInUp max-h-[95vh]">
+            
+            <!-- Imagen (ocupa 3 de 5 columnas en desktop) -->
             <div class="lg:col-span-3 h-[40vh] lg:h-full overflow-hidden bg-[#111]">
                 <img id="modalImg" src="" class="w-full h-full object-cover opacity-90">
             </div>
+
+            <!-- Contenido (ocupa 2 de 5 columnas en desktop) -->
             <div class="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center relative bg-[#0c0c0c]">
                 <button onclick="closeShop()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-10">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
+                
                 <div class="mb-8">
                     <span class="text-[9px] uppercase tracking-[0.8em] text-accent mb-4 block">Fine Art Print</span>
-                    <h2 id="modalTitle" class="text-3xl lg:text-4xl serif-font italic mb-4 leading-tight">Título</h2>
+                    <h2 id="modalTitle" class="text-3xl lg:text-4xl serif-font italic mb-4 leading-tight">Título de la Obra</h2>
+                    <div class="w-12 h-[1px] bg-white/10 mb-6"></div>
                     <p id="modalDesc" class="text-gray-500 font-extralight text-xs lg:text-sm leading-relaxed italic">Descripción...</p>
                 </div>
+
                 <div class="space-y-8">
                     <div class="grid grid-cols-2 gap-6">
                         <div class="flex flex-col">
@@ -253,42 +266,37 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="flex justify-between items-end pt-4 border-t border-white/5">
                         <div class="flex flex-col">
-                            <span class="text-[8px] uppercase tracking-widest text-gray-500 mb-1">Valor</span>
+                            <span class="text-[8px] uppercase tracking-widest text-gray-500 mb-1">Valor de Adquisición</span>
                             <span id="finalPrice" class="text-4xl lg:text-5xl serif-font italic text-accent">85€</span>
                         </div>
                     </div>
+
                     <button onclick="addToCart()" class="w-full btn-luxury mt-4">Añadir a la Colección</button>
+                    <p class="text-[7px] text-gray-600 uppercase tracking-widest text-center mt-4">Iva incluido • Envío especializado certificado</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CARRITO SIDEBAR CON FUNCIONALIDAD MEJORADA -->
-    <div id="cartSidebar" class="cart-sidebar fixed top-0 h-full p-10 flex flex-col shadow-2xl transition-all duration-700">
-        <div class="flex justify-between items-center mb-12">
-            <div>
-                <h3 class="serif-font italic text-3xl">Colección</h3>
-                <p class="text-[7px] uppercase tracking-[0.4em] text-gray-600 mt-1">Artículos Seleccionados</p>
-            </div>
-            <button onclick="toggleCart()" class="text-gray-500 hover:text-white uppercase text-[8px] tracking-[0.5em]">Cerrar</button>
+    <!-- CART SIDEBAR -->
+    <div id="cartSidebar" class="cart-sidebar fixed top-0 h-full p-12 flex flex-col shadow-2xl transition-all duration-700">
+        <div class="flex justify-between items-center mb-16">
+            <h3 class="serif-font italic text-2xl">Selección</h3>
+            <button onclick="toggleCart()" class="text-gray-500 hover:text-white uppercase text-[9px] tracking-widest">Cerrar</button>
         </div>
-        
-        <div id="cartItems" class="flex-grow space-y-10 overflow-y-auto pr-4 custom-scroll">
-            <!-- Items inyectados -->
-        </div>
-
-        <div class="pt-10 border-t border-white/10">
+        <div id="cartItems" class="flex-grow space-y-8 overflow-y-auto pr-4"></div>
+        <div class="pt-10 border-t border-white/5">
             <div class="flex justify-between mb-8">
-                <span class="text-[10px] uppercase tracking-[0.4em] text-gray-500">Inversión Total</span>
-                <span id="cartTotal" class="text-4xl serif-font italic text-accent">0€</span>
+                <span class="text-[9px] uppercase tracking-widest text-gray-500">Total</span>
+                <span id="cartTotal" class="text-3xl serif-font italic text-accent">0€</span>
             </div>
-            <button onclick="openCheckout()" id="checkoutBtn" class="w-full btn-luxury">Tramitar Pedido</button>
+            <button onclick="openCheckout()" class="w-full btn-luxury">Finalizar Compra</button>
         </div>
     </div>
 
-    <!-- Checkout Modal -->
     <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[150] items-center justify-center p-4">
         <div class="bg-white text-black w-full max-w-md p-12 shadow-2xl relative">
             <div class="text-center mb-10">
@@ -302,24 +310,24 @@
 
     <footer class="py-20 px-8 border-t border-white/5 text-center">
         <span class="serif-font italic text-2xl">Reinier</span>
-        <p class="text-[8px] uppercase tracking-[0.4em] text-gray-600 mt-4">© 2024 Reinier Art Studio.</p>
+        <p class="text-[8px] uppercase tracking-[0.4em] text-gray-600 mt-4">© 2024 Reinier Art Studio. All rights reserved.</p>
     </footer>
 
     <script>
         const photos = [
-            { title: "Quietud en los Alpes", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", price: 85, desc: "Impresión en papel Hahnemühle Photo Rag 308g." },
-            { title: "Geometría de Acero", url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200", price: 95, desc: "Estudio arquitectónico sobre la repetición." },
-            { title: "El Horizonte Azul", url: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1200", price: 85, desc: "Minimalismo oceánico. Serie limitada." },
-            { title: "Bosque Etéreo II", url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200", price: 110, desc: "Luz filtrada en bosques boreales." },
-            { title: "Arquitectura III", url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070", price: 120, desc: "Intersecciones de concreto y luz." },
-            { title: "Silencio Ártico", url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1200", price: 95, desc: "Serie blanca sobre blanco." }
+            { title: "Quietud en los Alpes", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", price: 85, desc: "Impresión en papel Hahnemühle Photo Rag 308g. Una exploración de la niebla matutina." },
+            { title: "Geometría de Acero", url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200", price: 95, desc: "Estudio arquitectónico sobre la repetición y el vacío en la urbe moderna." },
+            { title: "El Horizonte Azul", url: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1200", price: 85, desc: "Minimalismo oceánico. Serie limitada de 10 unidades firmadas." },
+            { title: "Bosque Etéreo II", url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200", price: 110, desc: "Luz filtrada en bosques boreales. Captura analógica de gran formato." },
+            { title: "Arquitectura III", url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070", price: 120, desc: "Intersecciones de concreto y luz cenital." },
+            { title: "Silencio Ártico", url: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1200", price: 95, desc: "Serie blanca sobre blanco. Pureza visual y abstracción." }
         ];
 
         let cart = [];
 
-        // Cursor Logic
         const cursor = document.getElementById('custom-cursor');
         const follower = document.getElementById('cursor-follower');
+        
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
@@ -364,7 +372,6 @@
             sidebar.style.right = (sidebar.style.right === '0px') ? '-450px' : '0px';
         }
 
-        // Generic Qty Changer
         function changeQty(inputId, delta) {
             const input = document.getElementById(inputId);
             let val = parseInt(input.value) + delta;
@@ -395,32 +402,22 @@
         function updatePrice() {
             const sel = document.getElementById('sizeSelector');
             const qtyInput = document.getElementById('modalQty');
-            if (sel && qtyInput) {
-                document.getElementById('finalPrice').innerText = (parseInt(sel.value) * parseInt(qtyInput.value)) + '€';
-            }
+            if (!sel || !qtyInput) return;
+            const qty = parseInt(qtyInput.value);
+            document.getElementById('finalPrice').innerText = (parseInt(sel.value) * qty) + '€';
         }
 
-        // Cart Actions
         function addToCart() {
             const sel = document.getElementById('sizeSelector');
             const qty = parseInt(document.getElementById('modalQty').value);
-            const title = document.getElementById('modalTitle').innerText;
-            const size = sel.options[sel.selectedIndex].getAttribute('data-size');
-            
-            // Check if item exists with same size
-            const existing = cart.find(item => item.title === title && item.size === size);
-            if(existing) {
-                existing.qty += qty;
-            } else {
-                cart.push({
-                    id: Math.random().toString(36).substr(2, 9),
-                    title: title,
-                    img: document.getElementById('modalImg').src,
-                    price: parseInt(sel.value),
-                    qty: qty,
-                    size: size
-                });
-            }
+            cart.push({
+                id: Date.now(),
+                title: document.getElementById('modalTitle').innerText,
+                img: document.getElementById('modalImg').src,
+                price: parseInt(sel.value),
+                qty: qty,
+                size: sel.options[sel.selectedIndex].getAttribute('data-size')
+            });
             updateCartUI();
             closeShop();
             toggleCart();
@@ -429,35 +426,40 @@
         function addServiceToCart() {
             const sel = document.getElementById('serviceSelector');
             const qty = parseInt(document.getElementById('serviceQty').value);
-            const title = sel.options[sel.selectedIndex].getAttribute('data-name');
-            
-            const existing = cart.find(item => item.title === title);
-            if(existing) {
-                existing.qty += qty;
-            } else {
-                cart.push({
-                    id: 'srv-' + Date.now(),
-                    title: title,
-                    img: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=400',
-                    price: parseInt(sel.value),
-                    qty: qty,
-                    size: 'Servicio de Autor'
-                });
-            }
+            cart.push({
+                id: 'srv-' + Date.now(),
+                title: sel.options[sel.selectedIndex].getAttribute('data-name'),
+                img: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=400',
+                price: parseInt(sel.value),
+                qty: qty,
+                size: 'Servicio de Autor'
+            });
             updateCartUI();
             toggleCart();
         }
 
-        function changeCartItemQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if(item) {
-                item.qty += delta;
-                if(item.qty < 1) {
-                    removeFromCart(id);
-                } else {
-                    updateCartUI();
-                }
-            }
+        function updateCartUI() {
+            const container = document.getElementById('cartItems');
+            let total = 0, count = 0;
+            container.innerHTML = '';
+            cart.forEach(item => {
+                total += (item.price * item.qty);
+                count += item.qty;
+                container.innerHTML += `
+                    <div class="flex gap-6 items-center border-b border-white/5 pb-6">
+                        <img src="${item.img}" class="w-12 aspect-[3/4] object-cover grayscale">
+                        <div class="flex-grow">
+                            <h4 class="text-[9px] uppercase tracking-widest font-medium">${item.title}</h4>
+                            <p class="text-[7px] text-gray-500 uppercase mt-1">${item.size} (x${item.qty})</p>
+                        </div>
+                        <p class="text-[10px] text-accent italic">€${item.price * item.qty}</p>
+                        <button onclick="removeFromCart('${item.id}')" class="text-xs text-gray-700 hover:text-white transition">×</button>
+                    </div>
+                `;
+            });
+            document.getElementById('cartCount').innerText = count.toString().padStart(2, '0');
+            document.getElementById('cartTotal').innerText = total + '€';
+            if(!cart.length) container.innerHTML = '<p class="text-center py-20 text-[8px] uppercase tracking-[0.4em] text-gray-700">Selección vacía</p>';
         }
 
         function removeFromCart(id) {
@@ -465,52 +467,6 @@
             updateCartUI();
         }
 
-        function updateCartUI() {
-            const container = document.getElementById('cartItems');
-            const checkoutBtn = document.getElementById('checkoutBtn');
-            let total = 0, count = 0;
-            container.innerHTML = '';
-            
-            cart.forEach(item => {
-                total += (item.price * item.qty);
-                count += item.qty;
-                container.innerHTML += `
-                    <div class="group flex gap-6 items-start animate__animated animate__fadeIn">
-                        <img src="${item.img}" class="w-16 aspect-[3/4] object-cover grayscale brightness-90 border border-white/5">
-                        <div class="flex-grow">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-[10px] uppercase tracking-widest font-light leading-tight w-2/3">${item.title}</h4>
-                                <button onclick="removeFromCart('${item.id}')" class="text-[8px] text-gray-700 hover:text-accent uppercase tracking-tighter transition-colors">Eliminar</button>
-                            </div>
-                            <p class="text-[7px] text-gray-500 uppercase tracking-widest mb-4">${item.size}</p>
-                            
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center gap-4 bg-white/5 px-3 py-1 rounded-full">
-                                    <button onclick="changeCartItemQty('${item.id}', -1)" class="text-xs text-gray-500 hover:text-white transition-colors">－</button>
-                                    <span class="text-[10px] font-light min-w-[12px] text-center">${item.qty}</span>
-                                    <button onclick="changeCartItemQty('${item.id}', 1)" class="text-xs text-gray-500 hover:text-white transition-colors">＋</button>
-                                </div>
-                                <span class="text-xs text-accent serif-font italic">${item.price * item.qty}€</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            document.getElementById('cartCount').innerText = count.toString().padStart(2, '0');
-            document.getElementById('cartTotal').innerText = total + '€';
-            
-            if(!cart.length) {
-                container.innerHTML = '<div class="h-64 flex flex-col items-center justify-center opacity-30"><p class="text-[8px] uppercase tracking-[0.5em]">La selección está vacía</p></div>';
-                checkoutBtn.style.opacity = '0.3';
-                checkoutBtn.style.pointerEvents = 'none';
-            } else {
-                checkoutBtn.style.opacity = '1';
-                checkoutBtn.style.pointerEvents = 'all';
-            }
-        }
-
-        // Checkout & PayPal
         function openCheckout() {
             if(!cart.length) return;
             const t = document.getElementById('cartTotal').innerText;
@@ -532,7 +488,7 @@
                     }),
                     onApprove: (data, actions) => actions.order.capture().then(() => {
                         cart = []; updateCartUI(); closeCheckout();
-                        alert('Pedido confirmado. Pronto recibirá noticias del estudio.');
+                        alert('Gracias por su confianza.');
                     })
                 }).render('#paypal-button-container');
             }
