@@ -8,8 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
-    <!-- PayPal SDK con soporte para Google Pay y métodos de pago locales -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AbC_Y_PpmDzqC4JgrvFPRAfq1E47EZKquXmM6OP_Bzs7S-2aRf-gG2RuDraHkKPitOrFbmoHqDhTeFYL&currency=EUR&components=buttons,funding-eligibility"></script>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AbC_Y_PpmDzqC4JgrvFPRAfq1E47EZKquXmM6OP_Bzs7S-2aRf-gG2RuDraHkKPitOrFbmoHqDhTeFYL&currency=EUR"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@100;200;300;400&display=swap');
@@ -150,7 +150,7 @@
         </button>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero (Recuperada Imagen Original) -->
     <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 px-6">
         <div class="container mx-auto grid lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 z-10">
@@ -165,6 +165,7 @@
                 </div>
             </div>
             <div class="lg:col-span-7 relative">
+                <!-- Imagen de inicio recuperada -->
                 <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?q=80&w=2070" 
                      class="w-full h-[60vh] lg:h-[85vh] object-cover opacity-80" alt="Arquitectura Minimalista">
                 <div class="absolute inset-0 border-[20px] lg:border-[40px] border-[#0a0a0a]/50 pointer-events-none"></div>
@@ -194,6 +195,7 @@
                 <span class="text-[9px] uppercase tracking-[0.5em] text-gray-500 mb-2">Edición Limitada</span>
                 <h2 id="modalTitle" class="text-4xl lg:text-5xl serif-font italic mb-4">Título Obra</h2>
                 
+                <!-- Descripción de la foto -->
                 <p id="modalDesc" class="text-gray-400 text-sm font-light leading-relaxed mb-10 italic">
                     Cargando historia de la obra...
                 </p>
@@ -234,20 +236,12 @@
         </div>
     </div>
 
-    <!-- Modal Pago Seguro (Actualizado para múltiples métodos) -->
+    <!-- Modal Pago -->
     <div id="checkoutModal" class="modal-overlay fixed inset-0 z-[120] items-center justify-center p-4" onclick="if(event.target === this) closeCheckout()">
-        <div class="bg-white text-black w-full max-w-md p-10 text-center shadow-2xl relative rounded-sm">
-            <h2 class="text-3xl serif-font italic mb-4">Finalizar Compra</h2>
-            <p class="text-[9px] uppercase tracking-widest text-gray-400 mb-8">Pago procesado de forma segura</p>
+        <div class="bg-white text-black w-full max-w-md p-10 text-center shadow-2xl relative">
+            <h2 class="text-3xl serif-font italic mb-8">Pago Seguro</h2>
             <div class="text-4xl serif-font mb-10" id="checkoutTotalValue">0€</div>
-            
-            <!-- Contenedor del Botón de PayPal (incluye Google Pay automáticamente) -->
-            <div id="paypal-button-container" class="w-full"></div>
-            
-            <p class="text-[8px] text-gray-400 mt-8 leading-relaxed">
-                Al completar la compra, aceptas nuestros términos de servicio y política de privacidad. 
-                Recibirás un certificado de autenticidad por correo electrónico.
-            </p>
+            <div id="paypal-button-container"></div>
         </div>
     </div>
 
@@ -436,16 +430,8 @@
         function renderPayPal(amount) {
             const container = document.getElementById('paypal-button-container');
             container.innerHTML = '';
-            
-            // Renderizar botones de PayPal - Note: Google Pay aparecerá automáticamente
-            // si el cliente tiene una cuenta/tarjeta configurada en su navegador/dispositivo.
             paypal.Buttons({
-                style: { 
-                    layout: 'vertical', 
-                    color: 'black', 
-                    shape: 'rect',
-                    label: 'pay' 
-                },
+                style: { layout: 'vertical', color: 'black', shape: 'rect' },
                 createOrder: (data, actions) => actions.order.create({
                     purchase_units: [{ amount: { value: amount.toString(), currency_code: 'EUR' } }]
                 }),
@@ -453,11 +439,7 @@
                     cart = [];
                     updateCartUI();
                     closeCheckout();
-                    // Aquí podrías redirigir a una página de éxito
-                }),
-                onError: (err) => {
-                    console.error('PayPal Error:', err);
-                }
+                })
             }).render('#paypal-button-container');
         }
 
