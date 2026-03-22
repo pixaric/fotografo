@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@100;200;300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@100;200;300;400;600&display=swap');
         
         :root {
             --bg-deep: #080808;
@@ -61,17 +61,17 @@
 
         nav {
             backdrop-filter: blur(20px);
-            background: rgba(8, 8, 8, 0.8);
+            background: rgba(8, 8, 8, 0.9);
             border-bottom: 0.5px solid rgba(255,255,255,0.05);
         }
 
-        .nav-link { font-size: 0.6rem; letter-spacing: 0.4em; transition: color 0.3s ease; }
+        .nav-link { font-size: 0.65rem; letter-spacing: 0.4em; transition: color 0.3s ease; }
         .nav-link:hover { color: var(--accent); }
 
         .btn-luxury {
             position: relative; overflow: hidden;
             border: 0.5px solid rgba(255,255,255,0.3);
-            padding: 1rem 1.5rem; font-size: 9px; letter-spacing: 0.4em;
+            padding: 1rem 1.5rem; font-size: 10px; letter-spacing: 0.4em;
             text-transform: uppercase; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1;
             display: inline-block;
@@ -99,6 +99,19 @@
             display: none;
         }
 
+        /* Menú Móvil Overlay */
+        #mobile-menu {
+            display: none;
+            background: var(--bg-deep);
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
@@ -107,6 +120,19 @@
             #custom-cursor, #cursor-follower { display: none; }
             * { cursor: auto !important; }
         }
+
+        /* Tarjetas de servicios realzadas */
+        .service-card {
+            background: linear-gradient(145deg, #0d0d0d, #050505);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .service-title {
+            font-size: 1.85rem;
+            line-height: 1.2;
+            letter-spacing: 0.05em;
+            font-weight: 400;
+            color: var(--ivory);
+        }
     </style>
 </head>
 <body>
@@ -114,12 +140,14 @@
     <div id="custom-cursor"></div>
     <div id="cursor-follower"></div>
 
-    <nav class="fixed w-full top-0 z-50 py-5 px-8 lg:px-20 flex justify-between items-center">
+    <!-- Navegación -->
+    <nav class="fixed w-full top-0 z-50 py-6 px-8 lg:px-20 flex justify-between items-center">
         <div class="flex flex-col group">
             <span class="text-xl lg:text-2xl tracking-[0.3em] serif-font italic font-medium">REINIER</span>
             <span class="text-[0.45rem] tracking-[0.6em] text-gray-600 uppercase -mt-1 group-hover:text-accent transition-colors">PhotoLab</span>
         </div>
         
+        <!-- Menu Desktop -->
         <div class="hidden md:flex space-x-12">
             <a href="#inicio" class="nav-link uppercase">Inicio</a>
             <a href="#servicios" class="nav-link uppercase">Servicios</a>
@@ -127,13 +155,35 @@
             <a href="#contacto" class="nav-link uppercase">Contacto</a>
         </div>
 
-        <div class="flex items-center gap-4">
-            <a href="https://wa.me/34684792506" target="_blank" class="text-[10px] tracking-[0.2em] uppercase text-accent hover:text-white transition-colors">
-                <i class="fab fa-whatsapp mr-2"></i>Contacto Directo
+        <div class="flex items-center gap-6">
+            <a href="https://wa.me/34684792506" target="_blank" class="hidden sm:block text-[10px] tracking-[0.2em] uppercase text-accent hover:text-white transition-colors">
+                <i class="fab fa-whatsapp mr-2"></i>Cita Previa
             </a>
+            <!-- Botón Hamburguesa -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white focus:outline-none">
+                <svg id="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 8h16M4 16h16"/>
+                </svg>
+            </button>
         </div>
     </nav>
 
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="animate__animated">
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-white">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <a href="#inicio" onclick="toggleMobileMenu()" class="text-2xl serif-font italic tracking-widest uppercase">Inicio</a>
+        <a href="#servicios" onclick="toggleMobileMenu()" class="text-2xl serif-font italic tracking-widest uppercase">Servicios</a>
+        <a href="#galeria" onclick="toggleMobileMenu()" class="text-2xl serif-font italic tracking-widest uppercase">Colección</a>
+        <a href="#contacto" onclick="toggleMobileMenu()" class="text-2xl serif-font italic tracking-widest uppercase">Contacto</a>
+        <div class="flex gap-8 mt-10">
+            <a href="#" class="text-accent"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-accent"><i class="fab fa-facebook fa-lg"></i></a>
+        </div>
+    </div>
+
+    <!-- Hero -->
     <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070" 
@@ -141,59 +191,63 @@
         </div>
         <div class="container mx-auto px-6 z-10 text-center">
             <span class="text-[10px] uppercase tracking-[0.8em] text-accent mb-6 block animate__animated animate__fadeInDown">Estudio Fotográfico Profesional</span>
-            <h1 class="text-7xl lg:text-[10rem] leading-none serif-font mb-10">
+            <h1 class="text-7xl lg:text-[11rem] leading-none serif-font mb-10">
                 <span class="block animate__animated animate__fadeInUp">Laboratorio de</span>
                 <span class="italic block animate__animated animate__fadeInUp animate__delay-1s" style="padding-left: 10%;">Recuerdos.</span>
             </h1>
             <div class="flex justify-center animate__animated animate__fadeIn animate__delay-2s">
-                <a href="#servicios" class="btn-luxury">Explorar Servicios</a>
+                <a href="#servicios" class="btn-luxury px-12">Explorar Servicios</a>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Servicios Renovada -->
-    <section id="servicios" class="py-32 px-6 lg:px-20 border-y border-white/5 bg-[#080808]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24">
-                <span class="text-[10px] uppercase tracking-[0.5em] text-accent block mb-6">Sesiones de Autor</span>
-                <h2 class="text-5xl lg:text-7xl serif-font italic">Nuestros Servicios</h2>
+    <!-- Sección de Servicios Realzada -->
+    <section id="servicios" class="py-40 px-6 lg:px-20 border-y border-white/5 bg-[#080808]">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="text-center mb-32">
+                <span class="text-[10px] uppercase tracking-[0.5em] text-accent block mb-6">Propuestas de Autor</span>
+                <h2 class="text-6xl lg:text-8xl serif-font italic">Nuestros Servicios</h2>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Servicio 1: Niños -->
-                <div class="p-10 border border-white/5 hover:border-accent/30 transition-all duration-700 bg-[#0a0a0a] flex flex-col items-center text-center artwork-container">
-                    <span class="text-[9px] uppercase tracking-[0.4em] text-gray-500 mb-8">Estudio Infantil</span>
-                    <h3 class="serif-font italic text-2xl mb-6 h-16">Pequeños en Estudio</h3>
-                    <p class="text-[11px] text-gray-500 font-light mb-10 leading-relaxed">Sesión creativa diseñada para los más pequeños del hogar. Ambiente cómodo y divertido.</p>
-                    <div class="mb-10 text-accent uppercase tracking-widest text-[10px]">10 Fotos Impresas</div>
-                    <button onclick="contactViaWhatsApp('Sesión Infantil (10 fotos impresas)')" class="btn-luxury w-full">Reservar Cita</button>
+                <!-- Servicio 1 -->
+                <div class="service-card p-12 border border-white/10 hover:border-accent/40 transition-all duration-700 flex flex-col items-center text-center artwork-container">
+                    <div class="mb-10 w-16 h-[1px] bg-accent/30"></div>
+                    <span class="text-[9px] uppercase tracking-[0.5em] text-accent mb-6">Estudio Infantil</span>
+                    <h3 class="serif-font service-title italic mb-8 h-20 flex items-center">Pequeños en Estudio</h3>
+                    <p class="text-[12px] text-gray-500 font-light mb-12 leading-relaxed h-20 overflow-hidden">Sesión creativa diseñada para los más pequeños. Ambiente cómodo y atrezzo exclusivo.</p>
+                    <div class="mb-12 text-white font-semibold uppercase tracking-[0.3em] text-[11px] border-y border-white/5 py-3 w-full">10 Fotos Impresas</div>
+                    <button onclick="contactViaWhatsApp('Sesión Infantil (10 fotos impresas)')" class="btn-luxury w-full">Reservar</button>
                 </div>
 
-                <!-- Servicio 2: Embarazadas -->
-                <div class="p-10 border border-white/5 hover:border-accent/30 transition-all duration-700 bg-[#0a0a0a] flex flex-col items-center text-center artwork-container">
-                    <span class="text-[9px] uppercase tracking-[0.4em] text-gray-500 mb-8">Estudio Maternidad</span>
-                    <h3 class="serif-font italic text-2xl mb-6 h-16">Embarazadas</h3>
-                    <p class="text-[11px] text-gray-500 font-light mb-10 leading-relaxed">Capturando la dulce espera con elegancia y sensibilidad. Iluminación profesional.</p>
-                    <div class="mb-10 text-accent uppercase tracking-widest text-[10px]">15 Fotos en Estudio</div>
+                <!-- Servicio 2 -->
+                <div class="service-card p-12 border border-white/10 hover:border-accent/40 transition-all duration-700 flex flex-col items-center text-center artwork-container">
+                    <div class="mb-10 w-16 h-[1px] bg-accent/30"></div>
+                    <span class="text-[9px] uppercase tracking-[0.5em] text-accent mb-6">Maternidad</span>
+                    <h3 class="serif-font service-title italic mb-8 h-20 flex items-center">Embarazadas</h3>
+                    <p class="text-[12px] text-gray-500 font-light mb-12 leading-relaxed h-20 overflow-hidden">Capturando la dulce espera con elegancia. Iluminación profesional y poses artísticas.</p>
+                    <div class="mb-12 text-white font-semibold uppercase tracking-[0.3em] text-[11px] border-y border-white/5 py-3 w-full">15 Fotos en Estudio</div>
                     <button onclick="contactViaWhatsApp('Sesión Embarazadas (15 fotos)')" class="btn-luxury w-full">Más Info</button>
                 </div>
 
-                <!-- Servicio 3: Parejas/Cumpleaños -->
-                <div class="p-10 border border-white/5 hover:border-accent/30 transition-all duration-700 bg-[#0a0a0a] flex flex-col items-center text-center artwork-container">
-                    <span class="text-[9px] uppercase tracking-[0.4em] text-gray-500 mb-8">Momentos Especiales</span>
-                    <h3 class="serif-font italic text-2xl mb-6 h-16">Parejas & Cumpleaños</h3>
-                    <p class="text-[11px] text-gray-500 font-light mb-10 leading-relaxed">Celebra la vida o el amor con una sesión profesional llena de estilo y alegría.</p>
-                    <div class="mb-10 text-accent uppercase tracking-widest text-[10px]">15 Fotos en Estudio</div>
-                    <button onclick="contactViaWhatsApp('Sesión Parejas/Cumpleaños (15 fotos)')" class="btn-luxury w-full">Consultar</button>
+                <!-- Servicio 3 -->
+                <div class="service-card p-12 border border-white/10 hover:border-accent/40 transition-all duration-700 flex flex-col items-center text-center artwork-container">
+                    <div class="mb-10 w-16 h-[1px] bg-accent/30"></div>
+                    <span class="text-[9px] uppercase tracking-[0.5em] text-accent mb-6">Sociales</span>
+                    <h3 class="serif-font service-title italic mb-8 h-20 flex items-center">Parejas & Quinces</h3>
+                    <p class="text-[12px] text-gray-500 font-light mb-12 leading-relaxed h-20 overflow-hidden">Celebra tus momentos especiales. Retratos llenos de estilo para parejas y cumpleaños.</p>
+                    <div class="mb-12 text-white font-semibold uppercase tracking-[0.3em] text-[11px] border-y border-white/5 py-3 w-full">15 Fotos en Estudio</div>
+                    <button onclick="contactViaWhatsApp('Sesión Parejas/Quinces (15 fotos)')" class="btn-luxury w-full">Consultar</button>
                 </div>
 
-                <!-- Servicio 4: Exteriores -->
-                <div class="p-10 border border-white/5 hover:border-accent/30 transition-all duration-700 bg-[#0a0a0a] flex flex-col items-center text-center artwork-container">
-                    <span class="text-[9px] uppercase tracking-[0.4em] text-gray-500 mb-8">Natural Light</span>
-                    <h3 class="serif-font italic text-2xl mb-6 h-16">Exteriores</h3>
-                    <p class="text-[11px] text-gray-500 font-light mb-10 leading-relaxed">Sesión dinámica aprovechando la luz natural y locaciones únicas para un resultado vibrante.</p>
-                    <div class="mb-10 text-accent uppercase tracking-widest text-[10px]">20 Fotos en Exterior</div>
-                    <button onclick="contactViaWhatsApp('Sesión Exteriores (20 fotos)')" class="btn-luxury w-full">Ver Locaciones</button>
+                <!-- Servicio 4 -->
+                <div class="service-card p-12 border border-white/10 hover:border-accent/40 transition-all duration-700 flex flex-col items-center text-center artwork-container">
+                    <div class="mb-10 w-16 h-[1px] bg-accent/30"></div>
+                    <span class="text-[9px] uppercase tracking-[0.5em] text-accent mb-6">Lifestyle</span>
+                    <h3 class="serif-font service-title italic mb-8 h-20 flex items-center">Exteriores</h3>
+                    <p class="text-[12px] text-gray-500 font-light mb-12 leading-relaxed h-20 overflow-hidden">Sesión dinámica aprovechando locaciones exteriores y la mejor luz natural del día.</p>
+                    <div class="mb-12 text-white font-semibold uppercase tracking-[0.3em] text-[11px] border-y border-white/5 py-3 w-full">20 Fotos Digitales</div>
+                    <button onclick="contactViaWhatsApp('Sesión Exteriores (20 fotos)')" class="btn-luxury w-full">Locaciones</button>
                 </div>
             </div>
         </div>
@@ -203,17 +257,41 @@
     <section id="galeria" class="py-40 px-6 lg:px-20">
         <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div class="max-w-xl">
-                <span class="text-[10px] uppercase tracking-[0.6em] text-accent block mb-4">Portafolio Actualizado</span>
+                <span class="text-[10px] uppercase tracking-[0.6em] text-accent block mb-4">Portafolio Seleccionado</span>
                 <h2 class="text-6xl lg:text-8xl serif-font italic leading-none">Obras del <br>Lab</h2>
             </div>
             <p class="text-gray-500 text-[9px] uppercase tracking-[0.3em] max-w-xs text-right leading-loose italic">
-                La perfección técnica se une a la emoción espontánea.
+                Donde cada disparo cuenta una historia única.
             </p>
         </div>
         <div id="gallery-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
             <!-- Inyectado por JS -->
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="py-32 px-8 border-t border-white/5 text-center bg-[#050505]">
+        <span class="text-[10px] uppercase tracking-[1em] text-gray-600 block mb-10">Conectemos</span>
+        <h2 class="serif-font italic text-5xl lg:text-8xl mb-16">Reinier PhotoLab</h2>
+        
+        <div class="flex flex-col items-center gap-8 mb-20">
+            <a href="https://wa.me/34684792506" class="btn-luxury px-20 flex items-center gap-3">
+                <i class="fab fa-whatsapp"></i>
+                WhatsApp Directo
+            </a>
+            <p class="text-[9px] uppercase tracking-[0.4em] text-gray-500">Localización: Madrid, España | Tel: +34 684 79 25 06</p>
+        </div>
+
+        <div class="flex justify-center gap-10 mt-8 mb-8">
+            <a href="#" class="text-[10px] uppercase tracking-[0.4em] text-gray-400 hover:text-accent transition-all flex items-center gap-2">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="#" class="text-[10px] uppercase tracking-[0.4em] text-gray-400 hover:text-accent transition-all flex items-center gap-2">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+        </div>
+        <p class="text-[7px] uppercase tracking-[0.4em] text-gray-700 mt-20">© 2024 Reinier Art Studio. Capturando el alma de cada momento.</p>
+    </footer>
 
     <!-- MODAL DE DETALLE -->
     <div id="shopModal" class="modal-overlay fixed inset-0 z-[100] items-center justify-center p-4 lg:p-12" onclick="if(event.target === this) closeShop()">
@@ -232,34 +310,14 @@
                 </div>
                 
                 <div class="space-y-6 pt-10 border-t border-white/5">
-                    <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400">¿Deseas una sesión con esta estética?</p>
                     <button id="modalContactBtn" class="w-full btn-luxury flex items-center justify-center gap-4">
                         <i class="fab fa-whatsapp text-lg"></i>
-                        <span>Consultar ahora</span>
+                        <span>Consultar Tarifa</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <footer id="contacto" class="py-32 px-8 border-t border-white/5 text-center bg-[#050505]">
-        <span class="text-[10px] uppercase tracking-[1em] text-gray-600 block mb-10">Conectemos</span>
-        <h2 class="serif-font italic text-5xl lg:text-8xl mb-16">Reinier PhotoLab</h2>
-        
-        <div class="flex flex-col items-center gap-8 mb-20">
-            <a href="https://wa.me/34684792506" class="btn-luxury px-20 flex items-center gap-3">
-                <i class="fab fa-whatsapp"></i>
-                WhatsApp Directo
-            </a>
-            <p class="text-[9px] uppercase tracking-[0.4em] text-gray-500">Número de contacto: +34 684 79 25 06</p>
-        </div>
-
-        <div class="flex justify-center gap-10 mt-8 mb-8">
-            <a href="#" class="text-[8px] uppercase tracking-[0.4em] text-gray-400 hover:text-accent transition-colors underline underline-offset-8">Instagram</a>
-            <a href="#" class="text-[8px] uppercase tracking-[0.4em] text-gray-400 hover:text-accent transition-colors underline underline-offset-8">Email Studio</a>
-        </div>
-        <p class="text-[7px] uppercase tracking-[0.4em] text-gray-700 mt-20">© 2024 Reinier Art Studio. La excelencia en cada pixel.</p>
-    </footer>
 
     <script>
         const photos = [
@@ -270,6 +328,22 @@
             { title: "Vínculo Eterno", url: "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?q=80&w=1200", desc: "Sesión de parejas enfocada en la naturalidad de la relación." },
             { title: "Contraste Urbano", url: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200", desc: "Retrato en exteriores con enfoque arquitectónico y moderno." }
         ];
+
+        // Toggle Menú Móvil
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.style.display === 'flex') {
+                menu.classList.remove('animate__fadeIn');
+                menu.classList.add('animate__fadeOut');
+                setTimeout(() => {
+                    menu.style.display = 'none';
+                    menu.classList.remove('animate__fadeOut');
+                }, 500);
+            } else {
+                menu.style.display = 'flex';
+                menu.classList.add('animate__fadeIn');
+            }
+        }
 
         // Cursor Logic
         const cursor = document.getElementById('custom-cursor');
@@ -320,15 +394,14 @@
             document.getElementById('modalImg').src = p.url;
             document.getElementById('modalDesc').innerText = p.desc;
             document.getElementById('shopModal').style.display = 'flex';
-            
-            document.getElementById('modalContactBtn').onclick = () => contactViaWhatsApp(`Información sobre el estilo de la obra: ${p.title}`);
+            document.getElementById('modalContactBtn').onclick = () => contactViaWhatsApp(`Información sobre el estilo: ${p.title}`);
         }
 
         function closeShop() { document.getElementById('shopModal').style.display = 'none'; }
 
         function contactViaWhatsApp(topic) {
-            const phoneNumber = "34684792506"; // Tu nuevo número actualizado
-            const message = encodeURIComponent(`Hola Reinier, te contacto desde tu PhotoLab. Me gustaría recibir más información o reservar una: ${topic}.`);
+            const phoneNumber = "34684792506";
+            const message = encodeURIComponent(`Hola Reinier, te contacto desde tu PhotoLab. Me gustaría reservar una: ${topic}.`);
             window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
         }
 
