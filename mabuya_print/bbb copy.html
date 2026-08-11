@@ -64,7 +64,7 @@
         </div>
     </header>
 
-    <section id="inicio" class="relative overflow-hidden pt-16 pb-24 bg-gradient-to-b from-brand-50/50 to-stone-50">
+    <section id="inicio" class="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 bg-gradient-to-b from-brand-50/50 to-stone-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6">
@@ -72,13 +72,13 @@
                         <i class="fa-solid fa-sparkles"></i>
                         <span>Calidad Fotográfica Profesional</span>
                     </div>
-                    <h1 class="text-4xl sm:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight">
+                    <h1 class="text-3xl sm:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight">
                         Tus recuerdos impresos con <span class="text-brand-600">pasión y precisión.</span>
                     </h1>
-                    <p class="text-lg text-stone-600 font-normal">
-                        Desde formato estándar 10x15 hasta grandes impresiones A3 en papel premium. Además, descubre nuestra colección exclusiva de postales para cada ocasión especial a solo 1€.
+                    <p class="text-base sm:text-lg text-stone-600 font-normal">
+                        Desde formato estándar 10x15 hasta grandes impresiones A3 en papel premium. Además, descubre nuestra colección exclusiva de postales para cada ocasión especial desde 1€.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
                         <a href="#fotografia" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-600/30 text-center transition-all flex items-center justify-center space-x-2">
                             <span>Imprimir Fotos Ahora</span>
                             <i class="fa-solid fa-arrow-right"></i>
@@ -88,22 +88,22 @@
                             <i class="fa-solid fa-envelope-open-text text-brand-600"></i>
                         </a>
                     </div>
-                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-stone-200">
+                    <!--<div class="grid grid-cols-3 gap-4 pt-6 border-t border-stone-200">
                         <div>
-                            <p class="text-2xl font-extrabold text-stone-900">10x15 - A3</p>
+                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">10x15 - A3</p>
                             <p class="text-xs text-stone-500 font-medium">Formatos disponibles</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-extrabold text-stone-900">5,00 €</p>
+                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">5,00 €</p>
                             <p class="text-xs text-stone-500 font-medium">Fotos Carnet / DNI</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-extrabold text-stone-900">24/48h</p>
+                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">24/48h</p>
                             <p class="text-xs text-stone-500 font-medium">Envío rápido</p>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
-                <div class="relative">
+                <div class="relative hidden sm:block">
                     <div class="absolute -inset-4 bg-gradient-to-tr from-brand-600/20 to-brand-500/10 rounded-3xl blur-2xl -z-10"></div>
                     <div class="grid grid-cols-2 gap-4">
                         <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80" alt="Impresión fotográfica" class="rounded-2xl shadow-xl object-cover h-64 w-full">
@@ -114,185 +114,188 @@
         </div>
     </section>
 
-    <section id="fotografia" class="py-20 bg-white border-b border-stone-200">
+    <section id="fotografia" class="py-12 sm:py-20 bg-white border-b border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
                 <span class="text-brand-600 font-bold uppercase tracking-widest text-xs">Revelado y Papel Fine Art</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2">Impresión Fotográfica por Formato y Cantidad</h2>
-                <p class="text-stone-600 mt-4">Elige tu formato, selecciona la cantidad exacta de fotos que deseas imprimir y calcula tu total al instante antes de añadirlo a la cesta.</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-stone-900 mt-2">Impresión Fotográfica por Formato y Cantidad</h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-2 sm:mt-4">Elige tu formato, selecciona la cantidad exacta de fotos que deseas imprimir y calcula tu total al instante antes de añadirlo a la cesta.</p>
+                <br>
+                <p><span class="text-brand-600 font-bold uppercase tracking-widest text-xs">¡¡¡ fotos individuales tienen un precio diferente, consulte!!!</span></p>
             </div>
+            
 
-            <!-- Size Grid with Interactive Quantity & Pricing -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Compact Grid for mobile (5 format cards) -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6 mb-16">
                 
                 <!-- 10x15 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
                     <div>
-                        <div class="h-40 rounded-xl bg-stone-200 overflow-hidden mb-4 relative">
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
                             <img src="https://placehold.co/400x300/e06d4e/ffffff?text=10x15+cm" alt="10x15" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-stone-900 text-xs font-bold px-2.5 py-1 rounded-full">Estándar</span>
+                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Estándar</span>
                         </div>
-                        <h3 class="text-xl font-bold text-stone-900">Formato 10 x 15 cm</h3>
-                        <p class="text-stone-500 text-sm mt-1">Ideal para álbumes familiares y recuerdos diarios.</p>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 10 x 15 cm</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Ideal álbumes.</p>
                         
-                        <div class="mt-4 pt-3 border-t border-stone-200 space-y-3">
-                            <div class="flex justify-between items-center text-xs text-stone-600 font-semibold">
-                                <span>Precio unitario:</span>
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
                                 <span class="text-stone-900 font-bold">0,15 €</span>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">Cantidad de fotos:</label>
-                                <input type="number" id="qty-10x15" min="1" value="10" oninput="calculatePhotoTotal('10x15', 0.15)" class="w-full rounded-xl border border-stone-300 p-2.5 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                <label class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-10x15" min="1" value="10" oninput="calculatePhotoTotal('10x15', 0.15)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-stone-400 block font-medium">Total Calculado</span>
-                            <span id="total-10x15" class="text-2xl font-extrabold text-stone-900">1,50 €</span>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-10x15" class="text-sm sm:text-xl font-extrabold text-stone-900">1,50 €</span>
                         </div>
-                        <button onclick="addPhotoToCart('10x15', 0.15)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-colors shadow-sm">
-                            Añadir a Cesta
+                        <button onclick="addPhotoToCart('10x15', 0.15)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
                         </button>
                     </div>
                 </div>
 
                 <!-- 13x18 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
                     <div>
-                        <div class="h-40 rounded-xl bg-stone-200 overflow-hidden mb-4 relative">
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
                             <img src="https://placehold.co/400x300/e06d4e/ffffff?text=13x18+cm" alt="13x18" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-stone-900 text-xs font-bold px-2.5 py-1 rounded-full">Popular</span>
+                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Popular</span>
                         </div>
-                        <h3 class="text-xl font-bold text-stone-900">Formato 13 x 18 cm</h3>
-                        <p class="text-stone-500 text-sm mt-1">Mayor presencia, excelente detalle y nitidez.</p>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 13 x 18 cm</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Mayor detalle.</p>
                         
-                        <div class="mt-4 pt-3 border-t border-stone-200 space-y-3">
-                            <div class="flex justify-between items-center text-xs text-stone-600 font-semibold">
-                                <span>Precio unitario:</span>
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
                                 <span class="text-stone-900 font-bold">0,30 €</span>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">Cantidad de fotos:</label>
-                                <input type="number" id="qty-13x18" min="1" value="5" oninput="calculatePhotoTotal('13x18', 0.30)" class="w-full rounded-xl border border-stone-300 p-2.5 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                <label class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-13x18" min="1" value="5" oninput="calculatePhotoTotal('13x18', 0.30)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-stone-400 block font-medium">Total Calculado</span>
-                            <span id="total-13x18" class="text-2xl font-extrabold text-stone-900">1,50 €</span>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-13x18" class="text-sm sm:text-xl font-extrabold text-stone-900">1,50 €</span>
                         </div>
-                        <button onclick="addPhotoToCart('13x18', 0.30)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-colors shadow-sm">
-                            Añadir a Cesta
+                        <button onclick="addPhotoToCart('13x18', 0.30)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
                         </button>
                     </div>
                 </div>
 
-                <!-- 15x20 cm (Requested) -->
-                <div class="bg-stone-50 border border-2 border-brand-500/40 rounded-2xl p-6 flex flex-col justify-between hover:shadow-xl hover:border-brand-500 transition-all group shadow-md">
+                <!-- 15x20 cm -->
+                <div class="bg-stone-50 border border-2 border-brand-500/40 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500 transition-all group shadow-md">
                     <div>
-                        <div class="h-40 rounded-xl bg-stone-200 overflow-hidden mb-4 relative">
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
                             <img src="https://placehold.co/400x300/e06d4e/ffffff?text=15x20+cm" alt="15x20" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-3 right-3 bg-brand-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">Novedad / Destacado</span>
+                            <span class="absolute top-2 right-2 bg-brand-600 text-white text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Destacado</span>
                         </div>
-                        <h3 class="text-xl font-bold text-stone-900">Formato 15 x 20 cm</h3>
-                        <p class="text-stone-500 text-sm mt-1">Formato rectangular amplio, perfecto para marcos de mesa.</p>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 15 x 20 cm</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Para mesas.</p>
                         
-                        <div class="mt-4 pt-3 border-t border-stone-200 space-y-3">
-                            <div class="flex justify-between items-center text-xs text-stone-600 font-semibold">
-                                <span>Precio unitario:</span>
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
                                 <span class="text-stone-900 font-bold">0,80 €</span>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">Cantidad de fotos:</label>
-                                <input type="number" id="qty-15x20" min="1" value="5" oninput="calculatePhotoTotal('15x20', 0.80)" class="w-full rounded-xl border border-stone-300 p-2.5 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                <label class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-15x20" min="1" value="5" oninput="calculatePhotoTotal('15x20', 0.80)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-stone-400 block font-medium">Total Calculado</span>
-                            <span id="total-15x20" class="text-2xl font-extrabold text-stone-900">4,00 €</span>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-15x20" class="text-sm sm:text-xl font-extrabold text-stone-900">4,00 €</span>
                         </div>
-                        <button onclick="addPhotoToCart('15x20', 0.80)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-colors shadow-sm">
-                            Añadir a Cesta
+                        <button onclick="addPhotoToCart('15x20', 0.80)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
                         </button>
                     </div>
                 </div>
 
                 <!-- A4 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
                     <div>
-                        <div class="h-40 rounded-xl bg-stone-200 overflow-hidden mb-4 relative">
-                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A4+21x29.7+cm" alt="A4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-stone-900 text-xs font-bold px-2.5 py-1 rounded-full">Arte</span>
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
+                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A4+21x29.7" alt="A4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Arte</span>
                         </div>
-                        <h3 class="text-xl font-bold text-stone-900">Formato A4 (21x29.7)</h3>
-                        <p class="text-stone-500 text-sm mt-1">Perfecto para enmarcar y regalar en portafolios.</p>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato A4 (21x29.7)</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Para enmarcar.</p>
                         
-                        <div class="mt-4 pt-3 border-t border-stone-200 space-y-3">
-                            <div class="flex justify-between items-center text-xs text-stone-600 font-semibold">
-                                <span>Precio unitario:</span>
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
                                 <span class="text-stone-900 font-bold">1,50 €</span>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">Cantidad de fotos:</label>
-                                <input type="number" id="qty-A4" min="1" value="2" oninput="calculatePhotoTotal('A4', 1.50)" class="w-full rounded-xl border border-stone-300 p-2.5 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                <label class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-A4" min="1" value="2" oninput="calculatePhotoTotal('A4', 1.50)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-stone-400 block font-medium">Total Calculado</span>
-                            <span id="total-A4" class="text-2xl font-extrabold text-stone-900">3,00 €</span>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-A4" class="text-sm sm:text-xl font-extrabold text-stone-900">3,00 €</span>
                         </div>
-                        <button onclick="addPhotoToCart('A4', 1.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-colors shadow-sm">
-                            Añadir a Cesta
+                        <button onclick="addPhotoToCart('A4', 1.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
                         </button>
                     </div>
                 </div>
 
                 <!-- A3 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group col-span-2 sm:col-span-1 max-w-sm sm:max-w-none mx-auto w-full">
                     <div>
-                        <div class="h-40 rounded-xl bg-stone-200 overflow-hidden mb-4 relative">
-                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A3+29.7x42+cm" alt="A3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-3 right-3 bg-brand-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">Gran Formato</span>
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
+                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A3+29.7x42" alt="A3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-brand-600 text-white text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Gran Formato</span>
                         </div>
-                        <h3 class="text-xl font-bold text-stone-900">Formato A3 (29.7x42)</h3>
-                        <p class="text-stone-500 text-sm mt-1">Impresión de gran tamaño para arte y decoración.</p>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato A3 (29.7x42)</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Tamaño póster.</p>
                         
-                        <div class="mt-4 pt-3 border-t border-stone-200 space-y-3">
-                            <div class="flex justify-between items-center text-xs text-stone-600 font-semibold">
-                                <span>Precio unitario:</span>
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
                                 <span class="text-stone-900 font-bold">3,50 €</span>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">Cantidad de fotos:</label>
-                                <input type="number" id="qty-A3" min="1" value="1" oninput="calculatePhotoTotal('A3', 3.50)" class="w-full rounded-xl border border-stone-300 p-2.5 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                <label class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-A3" min="1" value="1" oninput="calculatePhotoTotal('A3', 3.50)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
                         <div>
-                            <span class="text-xs text-stone-400 block font-medium">Total Calculado</span>
-                            <span id="total-A3" class="text-2xl font-extrabold text-stone-900">3,50 €</span>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-A3" class="text-sm sm:text-xl font-extrabold text-stone-900">3,50 €</span>
                         </div>
-                        <button onclick="addPhotoToCart('A3', 3.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-colors shadow-sm">
-                            Añadir a Cesta
+                        <button onclick="addPhotoToCart('A3', 3.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
                         </button>
                     </div>
                 </div>
 
             </div>
 
-            <div id="carnet" class="bg-white border-2 border-stone-200 rounded-3xl p-8 sm:p-12 shadow-sm mb-16">
+            <div id="carnet" class="bg-white border-2 border-stone-200 rounded-3xl p-6 sm:p-12 shadow-sm mb-16">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                     <div>
                         <span class="bg-brand-100 text-brand-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Homologadas Oficiales</span>
-                        <h3 class="text-3xl font-extrabold text-stone-900 mt-3">Fotos de DNI, Pasaporte y Visado</h3>
-                        <p class="text-stone-600 mt-3">Obtén tus fotografías oficiales de carnet adaptadas exactamente a las normativas vigentes internacionales. Impresas en papel fotográfico de máxima calidad.</p>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-stone-900 mt-3">Fotos de DNI, Pasaporte y Visado</h3>
+                        <p class="text-stone-600 text-sm sm:text-base mt-3">Obtén tus fotografías oficiales de carnet adaptadas exactamente a las normativas vigentes internacionales. Impresas en papel fotográfico de máxima calidad.</p>
                         
                         <ul class="space-y-3 mt-6 text-stone-700 text-sm font-medium">
                             <li class="flex items-center space-x-3">
@@ -334,7 +337,7 @@
                                 <span class="text-2xl font-extrabold text-stone-900">5,00 €</span>
                             </div>
                             <button onclick="addIdPhotoToCart()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-brand-600/30">
-                                Añadir a Cesta (5,00 €)
+                                Añadir a la cesta
                             </button>
                         </div>
                     </div>
@@ -345,53 +348,53 @@
                 <div class="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="max-w-3xl">
                     <span class="bg-brand-500/30 text-brand-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Ahorro Inteligente</span>
-                    <h3 class="text-3xl font-extrabold mt-3">Packs de Impresión por Volumen</h3>
-                    <p class="text-stone-300 mt-2">¿Tienes muchas fotos guardadas en el móvil o disco duro? Llévate nuestros packs especiales con precios imbatibles.</p>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold mt-3">Packs de Impresión por Volumen</h3>
+                    <p class="text-stone-300 text-sm sm:text-base mt-2">¿Tienes muchas fotos guardadas en el móvil o disco duro? Llévate nuestros packs especiales con precios imbatibles.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    <!-- Pack 50 -->
+                    <!-- Pack 24 -->
                     <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-start">
                                 <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Pack Ahorro</span>
-                                <span class="text-xl font-extrabold text-brand-200">9,99 €</span>
+                                <span class="text-xl font-extrabold text-brand-200">10 €</span>
                             </div>
-                            <h4 class="text-2xl font-bold mt-4">Pack 50 Fotos</h4>
+                            <h4 class="text-2xl font-bold mt-4">Pack 24 Fotos</h4>
                             <p class="text-stone-300 text-sm mt-2">Formato 10x15 cm. Papel brillo o mate de alta calidad.</p>
                         </div>
-                        <button onclick="addPackToCart('Pack 50 Fotos (10x15)', 9.99)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
+                        <button onclick="addPackToCart('Pack 24 Fotos (10x15)', 10.00)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
                             Añadir Pack
                         </button>
                     </div>
 
-                    <!-- Pack 100 -->
+                    <!-- Pack 50 -->
                     <div class="bg-white/15 backdrop-blur-md border-2 border-brand-500 rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
                         <div class="absolute -top-3 right-6 bg-brand-500 text-white text-[10px] uppercase font-extrabold px-3 py-1 rounded-full shadow">Más Vendido</div>
                         <div>
                             <div class="flex justify-between items-start">
                                 <span class="bg-brand-600 text-white text-xs font-bold px-2.5 py-1 rounded-md">Super Pack</span>
-                                <span class="text-xl font-extrabold text-brand-200">16,99 €</span>
+                                <span class="text-xl font-extrabold text-brand-200">20 €</span>
                             </div>
-                            <h4 class="text-2xl font-bold mt-4">Pack 100 Fotos</h4>
-                            <p class="text-stone-300 text-sm mt-2">Formato 10x15 cm. ¡Sale a menos de 0.17€ la foto!</p>
+                            <h4 class="text-2xl font-bold mt-4">Pack 50 Fotos</h4>
+                            <p class="text-stone-300 text-sm mt-2">Formato 10x15 cm. ¡Sale a 0.40€ la foto!</p>
                         </div>
-                        <button onclick="addPackToCart('Pack 100 Fotos (10x15)', 16.99)" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 rounded-xl transition-colors shadow-lg">
+                        <button onclick="addPackToCart('Pack 50 Fotos (10x15)', 20.00)" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 rounded-xl transition-colors shadow-lg">
                             Añadir Pack
                         </button>
                     </div>
 
-                    <!-- Pack Mix A4 -->
+                    <!-- Pack Mix A3 -->
                     <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-start">
                                 <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Pack Arte</span>
-                                <span class="text-xl font-extrabold text-brand-200">12,50 €</span>
+                                <span class="text-xl font-extrabold text-brand-200">15 €</span>
                             </div>
-                            <h4 class="text-2xl font-bold mt-4">Pack 5 Láminas A4</h4>
-                            <p class="text-stone-300 text-sm mt-2">Impresiones A4 de alta gama para enmarcar tus mejores momentos.</p>
+                            <h4 class="text-2xl font-bold mt-4">Pack 2 Láminas A3</h4>
+                            <p class="text-stone-300 text-sm mt-2">Impresiones A3 de alta gama para enmarcar tus mejores momentos.</p>
                         </div>
-                        <button onclick="addPackToCart('Pack 5 Láminas A4', 12.50)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
+                        <button onclick="addPackToCart('Pack 2 Láminas A3', 15.00)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
                             Añadir Pack
                         </button>
                     </div>
@@ -404,8 +407,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-brand-600 font-bold uppercase tracking-widest text-xs">Colección Exclusiva Mabuya</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 mt-2">Galería de Postales Temáticas</h2>
-                <p class="text-stone-600 mt-4">Elige tu postal favorita numerada. Todas a <strong class="text-stone-900">1,00 €</strong> o <strong class="text-stone-900">2,00 €</strong> si prefieres personalizarla con tu propio texto y foto.</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-stone-900 mt-2">Galería de Postales Temáticas</h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-4">Elige tu postal favorita numerada. Todas a <strong class="text-stone-900">1,00 €</strong> o <strong class="text-stone-900">2,00 €</strong> si prefieres personalizarla con tu propio texto y foto.</p>
             </div>
 
             <!-- Tabs / Category selection -->
@@ -427,14 +430,13 @@
                 </button>
             </div>
 
-            <!-- Postcard Gallery Grid -->
-            <div id="postcard-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <!-- Javascript will inject 10 cards here -->
+            <!-- Postcard Gallery Grid (2 columns on mobile, up to 5 on desktop) -->
+            <div id="postcard-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
+                <!-- Javascript will inject cards here -->
             </div>
         </div>
     </section>
 
-    <!-- Modal Personalización Postal -->
     <div id="custom-modal" class="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
             <button onclick="closeCustomModal()" class="absolute top-6 right-6 text-stone-400 hover:text-stone-700 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center">
@@ -474,7 +476,6 @@
         </div>
     </div>
 
-    <!-- Cesta / Cart Slide-over -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div class="absolute inset-0 bg-stone-900/50 backdrop-blur-sm transition-opacity" onclick="closeCartModal()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
@@ -677,23 +678,23 @@
             grid.innerHTML = items.map(item => `
                 <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
                     <div>
-                        <div class="h-48 overflow-hidden relative bg-stone-100">
+                        <div class="h-32 sm:h-48 overflow-hidden relative bg-stone-100">
                             <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-xs font-extrabold px-2.5 py-1 rounded-md">
+                            <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[10px] sm:text-xs font-extrabold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md">
                                 ${item.id}
                             </span>
                         </div>
-                        <div class="p-4">
-                            <h4 class="font-bold text-stone-900 text-base">${item.title}</h4>
-                            <p class="text-stone-500 text-xs mt-1 line-clamp-2">${item.desc}</p>
+                        <div class="p-3 sm:p-4">
+                            <h4 class="font-bold text-stone-900 text-xs sm:text-base">${item.title}</h4>
+                            <p class="text-stone-500 text-[11px] sm:text-xs mt-1 line-clamp-2">${item.desc}</p>
                         </div>
                     </div>
-                    <div class="p-4 pt-0 flex flex-col gap-2">
-                        <button onclick="addPostcardToCart('${item.id}', '${item.title}', 1.00)" class="w-full bg-stone-100 hover:bg-brand-50 text-stone-800 hover:text-brand-600 font-bold py-2 px-3 rounded-xl text-xs transition-colors flex items-center justify-between border border-stone-200">
-                            <span>Comprar Estándar</span>
+                    <div class="p-3 sm:p-4 pt-0 flex flex-col gap-1.5 sm:gap-2">
+                        <button onclick="addPostcardToCart('${item.id}', '${item.title}', 1.00)" class="w-full bg-stone-100 hover:bg-brand-50 text-stone-800 hover:text-brand-600 font-bold py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs transition-colors flex items-center justify-between border border-stone-200">
+                            <span>Estándar</span>
                             <span class="font-extrabold text-brand-600">1,00 €</span>
                         </button>
-                        <button onclick="openCustomModal('${item.id}', '${item.title}')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2 px-3 rounded-xl text-xs transition-colors flex items-center justify-between shadow-sm">
+                        <button onclick="openCustomModal('${item.id}', '${item.title}')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs transition-colors flex items-center justify-between shadow-sm">
                             <span>Personalizar</span>
                             <span class="font-extrabold text-brand-100">2,00 €</span>
                         </button>
