@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mabuya Print | Impresión Fotográfica y Postales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fdf8f6',
+                            100: '#fbe8e3',
+                            500: '#e06d4e',
+                            600: '#cc5534',
+                            700: '#a84124',
+                            900: '#7a2f1a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-brand-100 selection:text-brand-900">
+
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-500 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-brand-500/20">
+                    M
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tight text-stone-900">Mabuya<span class="text-brand-600">Print</span></span>
+                    <p class="text-xs text-stone-500 font-medium">Estudio de Impresión & Arte</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-stone-600">
+                <a href="#inicio" class="hover:text-brand-600 transition-colors">Inicio</a>
+                <a href="#fotografia" class="hover:text-brand-600 transition-colors">Impresión de Fotos</a>
+                <a href="#carnet" class="hover:text-brand-600 transition-colors">Fotos DNI / Pasaporte</a>
+                <a href="#postales" class="hover:text-brand-600 transition-colors">Postales (1€)</a>
+                <a href="#packs" class="hover:text-brand-600 transition-colors">Packs</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="openCartModal()" class="relative bg-stone-100 hover:bg-brand-50 text-stone-800 hover:text-brand-600 px-4 py-2.5 rounded-full font-semibold transition-all flex items-center space-x-2 border border-stone-200">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="hidden sm:inline">Cesta</span>
+                    <span id="cart-counter" class="bg-brand-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 bg-gradient-to-b from-brand-50/50 to-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-brand-100/70 border border-brand-500/20 px-3.5 py-1.5 rounded-full text-brand-800 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>Calidad Fotográfica Profesional</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight">
+                        Tus recuerdos impresos con <span class="text-brand-600">pasión y precisión.</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-stone-600 font-normal">
+                        Desde formato estándar 10x15 hasta grandes impresiones A3 en papel premium. Además, descubre nuestra colección exclusiva de postales para cada ocasión especial desde 1€.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <a href="#fotografia" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-600/30 text-center transition-all flex items-center justify-center space-x-2">
+                            <span>Imprimir Fotos Ahora</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#postales" class="bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-bold px-8 py-4 rounded-xl text-center transition-all flex items-center justify-center space-x-2">
+                            <span>Ver Postales (1€)</span>
+                            <i class="fa-solid fa-envelope-open-text text-brand-600"></i>
+                        </a>
+                    </div>
+                    <!--<div class="grid grid-cols-3 gap-4 pt-6 border-t border-stone-200">
+                        <div>
+                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">10x15 - A3</p>
+                            <p class="text-xs text-stone-500 font-medium">Formatos disponibles</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">5,00 €</p>
+                            <p class="text-xs text-stone-500 font-medium">Fotos Carnet / DNI</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">24/48h</p>
+                            <p class="text-xs text-stone-500 font-medium">Envío rápido</p>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="relative hidden sm:block">
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-brand-600/20 to-brand-500/10 rounded-3xl blur-2xl -z-10"></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80" alt="Impresión fotográfica" class="rounded-2xl shadow-xl object-cover h-64 w-full">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Arte y postales" class="rounded-2xl shadow-xl object-cover h-64 w-full translate-y-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fotografia" class="py-12 sm:py-20 bg-white border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+                <span class="text-brand-600 font-bold uppercase tracking-widest text-xs">Revelado y Papel Fine Art</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-stone-900 mt-2">Impresión Fotográfica por Formato y Cantidad</h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-2 sm:mt-4">Elige tu formato, selecciona la cantidad exacta de fotos que deseas imprimir y calcula tu total al instante antes de añadirlo a la cesta.</p>
+                <br>
+                <p><span class="text-brand-600 font-bold uppercase tracking-widest text-xs">¡¡¡ fotos individuales tienen un precio diferente, consulte!!!</span></p>
+            </div>
+            
+
+            <!-- Compact Grid for mobile (5 format cards) -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6 mb-16">
+                
+                <!-- 10x15 -->
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
+                    <div>
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
+                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=10x15+cm" alt="10x15" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Estándar</span>
+                        </div>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 10 x 15 cm</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Ideal álbumes.</p>
+                        
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
+                                <span class="text-stone-900 font-bold">0,15 €</span>
+                            </div>
+                            <div>
+                                <label for="qty-10x15" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-10x15" min="1" value="10" oninput="calculatePhotoTotal('10x15', 0.15)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-10x15" class="text-sm sm:text-xl font-extrabold text-stone-900">1,50 €</span>
+                        </div>
+                        <button onclick="addPhotoToCart('10x15', 0.15)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 13x18 -->
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
+                    <div>
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
+                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=13x18+cm" alt="13x18" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Popular</span>
+                        </div>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 13 x 18 cm</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Mayor detalle.</p>
+                        
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
+                                <span class="text-stone-900 font-bold">0,30 €</span>
+                            </div>
+                            <div>
+                                <label for="qty-13x18" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-labelCantidad:</label>
+                                <input type="number" id="qty-13x18" min="1" value="5" oninput="calculatePhotoTotal('13x18', 0.30)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-13x18" class="text-sm sm:text-xl font-extrabold text-stone-900">1,50 €</span>
+                        </div>
+                        <button onclick="addPhotoToCart('13x18', 0.30)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 15x20 cm -->
+                <div class="bg-stone-50 border border-2 border-brand-500/40 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500 transition-all group shadow-md">
+                    <div>
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
+                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=15x20+cm" alt="15x20" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-brand-600 text-white text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Destacado</span>
+                        </div>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 15 x 20 cm</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Para mesas.</p>
+                        
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
+                                <span class="text-stone-900 font-bold">0,80 €</span>
+                            </div>
+                            <div>
+                                <label for="qty-15x20" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-15x20" min="1" value="5" oninput="calculatePhotoTotal('15x20', 0.80)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-15x20" class="text-sm sm:text-xl font-extrabold text-stone-900">4,00 €</span>
+                        </div>
+                        <button onclick="addPhotoToCart('15x20', 0.80)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- A4 -->
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
+                    <div>
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
+                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A4+21x29.7" alt="A4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Arte</span>
+                        </div>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato A4 (21x29.7)</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Para enmarcar.</p>
+                        
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
+                                <span class="text-stone-900 font-bold">1,50 €</span>
+                            </div>
+                            <div>
+                                <label for="qty-A4" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-A4" min="1" value="2" oninput="calculatePhotoTotal('A4', 1.50)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-A4" class="text-sm sm:text-xl font-extrabold text-stone-900">3,00 €</span>
+                        </div>
+                        <button onclick="addPhotoToCart('A4', 1.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- A3 -->
+                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group col-span-2 sm:col-span-1 max-w-sm sm:max-w-none mx-auto w-full">
+                    <div>
+                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
+                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A3+29.7x42" alt="A3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 right-2 bg-brand-600 text-white text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Gran Formato</span>
+                        </div>
+                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato A3 (29.7x42)</h3>
+                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Tamaño póster.</p>
+                        
+                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
+                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
+                                <span>Unitario:</span>
+                                <span class="text-stone-900 font-bold">3,50 €</span>
+                            </div>
+                            <div>
+                                <label for="qty-A3" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
+                                <input type="number" id="qty-A3" min="1" value="1" oninput="calculatePhotoTotal('A3', 3.50)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
+                            <span id="total-A3" class="text-sm sm:text-xl font-extrabold text-stone-900">3,50 €</span>
+                        </div>
+                        <button onclick="addPhotoToCart('A3', 3.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="carnet" class="bg-white border-2 border-stone-200 rounded-3xl p-6 sm:p-12 shadow-sm mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <span class="bg-brand-100 text-brand-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Homologadas Oficiales</span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-stone-900 mt-3">Fotos de DNI, Pasaporte y Visado</h3>
+                        <p class="text-stone-600 text-sm sm:text-base mt-3">Obtén tus fotografías oficiales de carnet adaptadas exactamente a las normativas vigentes internacionales. Impresas en papel fotográfico de máxima calidad.</p>
+                        
+                        <ul class="space-y-3 mt-6 text-stone-700 text-sm font-medium">
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-circle-check text-brand-600"></i>
+                                <span>Precio único de <strong class="text-stone-900">5,00 €</strong> por plancha fotográfica.</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-circle-check text-brand-600"></i>
+                                <span>Incluye desde <strong class="text-stone-900">6 hasta 8 fotos</strong> según el tamaño oficial requerido.</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fa-solid fa-circle-check text-brand-600"></i>
+                                <span>Verificación de medidas y fondo blanco estricto.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-stone-50 p-6 sm:p-8 rounded-2xl border border-stone-200 space-y-4">
+                        <h4 class="font-bold text-stone-900 text-lg">Configura tu documento</h4>
+                        
+                        <div>
+                            <label for="id-country-select" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1">Selecciona país o tipo de documento</label>
+                            <select id="id-country-select" onchange="updateIdPhotoDetails()" class="w-full rounded-xl border border-stone-300 p-3 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                                <option value="espana-dni" data-specs="DNI / Permiso de Conducir España (32x26 mm) - 8 fotos">España - DNI / Carnet de Conducir (8 fotos)</option>
+                                <option value="espana-pasaporte" data-specs="España / UE - Pasaporte (48x32 mm) - 6 fotos">España / UE - Pasaporte (6 fotos)</option>
+                                <option value="usa-visa" data-specs="Estados Unidos - Visado / Green Card (51x51 mm) - 6 fotos">Estados Unidos - Visado / Green Card (6 fotos)</option>
+                                <option value="uk-passport" data-specs="Reino Unido - Pasaporte / ID (45x35 mm) - 6 fotos">Reino Unido - Pasaporte / ID (6 fotos)</option>
+                                <option value="latam-generico" data-specs="Latinoamérica - Cédula / Pasaporte (3x4 cm) - 8 fotos">Latinoamérica - Cédula / Pasaporte (8 fotos)</option>
+                            </select>
+                        </div>
+
+                        <div id="id-specs-box" class="bg-brand-50/70 border border-brand-500/20 p-3.5 rounded-xl text-xs text-brand-900 font-medium">
+                            <i class="fa-solid fa-circle-info mr-1 text-brand-600"></i> <span id="id-specs-text">DNI / Permiso de Conducir España (32x26 mm) - 8 fotos</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+                            <div>
+                                <span class="text-xs text-stone-400 block font-medium">Precio Planilla</span>
+                                <span class="text-2xl font-extrabold text-stone-900">5,00 €</span>
+                            </div>
+                            <button onclick="addIdPhotoToCart()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-brand-600/30">
+                                Añadir a la cesta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="packs" class="bg-gradient-to-r from-brand-900 to-stone-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="max-w-3xl">
+                    <span class="bg-brand-500/30 text-brand-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Ahorro Inteligente</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold mt-3">Packs de Impresión por Volumen</h3>
+                    <p class="text-stone-300 text-sm sm:text-base mt-2">¿Tienes muchas fotos guardadas en el móvil o disco duro? Llévate nuestros packs especiales con precios imbatibles.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    <!-- Pack 24 -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Pack Ahorro</span>
+                                <span class="text-xl font-extrabold text-brand-200">10 €</span>
+                            </div>
+                            <h4 class="text-2xl font-bold mt-4">Pack 24 Fotos</h4>
+                            <p class="text-stone-300 text-sm mt-2">Formato 10x15 cm. Papel brillo o mate de alta calidad.</p>
+                        </div>
+                        <button onclick="addPackToCart('Pack 24 Fotos (10x15)', 10.00)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
+                            Añadir Pack
+                        </button>
+                    </div>
+
+                    <!-- Pack 50 -->
+                    <div class="bg-white/15 backdrop-blur-md border-2 border-brand-500 rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
+                        <div class="absolute -top-3 right-6 bg-brand-500 text-white text-[10px] uppercase font-extrabold px-3 py-1 rounded-full shadow">Más Vendido</div>
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="bg-brand-600 text-white text-xs font-bold px-2.5 py-1 rounded-md">Super Pack</span>
+                                <span class="text-xl font-extrabold text-brand-200">20 €</span>
+                            </div>
+                            <h4 class="text-2xl font-bold mt-4">Pack 50 Fotos</h4>
+                            <p class="text-stone-300 text-sm mt-2">Formato 10x15 cm. ¡Sale a 0.40€ la foto!</p>
+                        </div>
+                        <button onclick="addPackToCart('Pack 50 Fotos (10x15)', 20.00)" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 rounded-xl transition-colors shadow-lg">
+                            Añadir Pack
+                        </button>
+                    </div>
+
+                    <!-- Pack Mix A3 -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Pack Arte</span>
+                                <span class="text-xl font-extrabold text-brand-200">15 €</span>
+                            </div>
+                            <h4 class="text-2xl font-bold mt-4">Pack 2 Láminas A3</h4>
+                            <p class="text-stone-300 text-sm mt-2">Impresiones A3 de alta gama para enmarcar tus mejores momentos.</p>
+                        </div>
+                        <button onclick="addPackToCart('Pack 2 Láminas A3', 15.00)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
+                            Añadir Pack
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="postales" class="py-20 bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-600 font-bold uppercase tracking-widest text-xs">Colección Exclusiva Mabuya</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-stone-900 mt-2">Galería de Postales Temáticas</h2>
+                <p class="text-stone-600 text-sm sm:text-base mt-4">Elige tu postal favorita numerada. Todas a <strong class="text-stone-900">1,00 €</strong> o <strong class="text-stone-900">2,00 €</strong> si prefieres personalizarla con tu propio texto y foto.</p>
+            </div>
+
+            <!-- Tabs / Category selection -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12" id="postcard-tabs">
+                <button onclick="switchCategory('madres')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-brand-600 text-white shadow-md shadow-brand-600/20">
+                    <i class="fa-solid fa-heart mr-2"></i>Día de las Madres
+                </button>
+                <button onclick="switchCategory('padres')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
+                    <i class="fa-solid fa-user-tie mr-2"></i>Día de los Padres
+                </button>
+                <button onclick="switchCategory('amor')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
+                    <i class="fa-solid fa-face-kiss-wink-heart mr-2"></i>Día del Amor y Amistad
+                </button>
+                <button onclick="switchCategory('navidad')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
+                    <i class="fa-solid fa-tree mr-2"></i>Navidad y Año Nuevo
+                </button>
+                <button onclick="switchCategory('cumpleanos')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
+                    <i class="fa-solid fa-cake-candles mr-2"></i>Cumpleaños & Fiestas
+                </button>
+            </div>
+
+            <!-- Postcard Gallery Grid (2 columns on mobile, up to 5 on desktop) -->
+            <div id="postcard-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
+                <!-- Javascript will inject cards here -->
+            </div>
+        </div>
+    </section>
+
+    <div id="custom-modal" class="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeCustomModal()" aria-label="Cerrar carrito" class="absolute top-6 right-6 text-stone-400 hover:text-stone-700 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                    <h3 id="modal-title" class="text-xl font-bold text-stone-900">Personalizar Postal</h3>
+                    <p class="text-xs text-stone-500">Añade tu toque único por solo 2,00 €</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label for="custom-message" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1">Mensaje personalizado</label>
+                    <textarea id="custom-message" rows="3" placeholder="Ej: ¡Felicidades mamá, eres la mejor! Con todo mi amor..." class="w-full rounded-xl border border-stone-300 p-3 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                </div>
+                <div>
+                    <label for="custom-finish" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1">Tipo de acabado</label>
+                    <select id="custom-finish" class="w-full rounded-xl border border-stone-300 p-3 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                        <option value="brillo">Papel Fotográfico Brillo Premium</option>
+                        <option value="mate">Papel Fotográfico Mate Antihuellas</option>
+                        <option value="texturado">Papel Texturado Fine Art (+0.50€)</option>
+                    </select>
+                </div>
+                <div class="bg-stone-50 p-4 rounded-xl flex items-center justify-between border border-stone-200">
+                    <span class="font-bold text-stone-700">Precio Final Personalizada:</span>
+                    <span id="modal-price" class="text-2xl font-extrabold text-brand-600">2,00 €</span>
+                </div>
+                <button onclick="confirmCustomPostcard()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-brand-600/30">
+                    Añadir a la Cesta (2,00 €)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-stone-900/50 backdrop-blur-sm transition-opacity" onclick="closeCartModal()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="flex items-center justify-between px-6 py-6 border-b border-stone-200">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-cart-shopping text-brand-600"></i>
+                        <h3 class="text-lg font-bold text-stone-900">Tu Cesta Mabuya</h3>
+                    </div>
+                    <button onclick="closeCartModal()" aria-label="Cerrar carrito" class="text-stone-400 hover:text-stone-700 p-2 rounded-full hover:bg-stone-100">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-stone-100">
+                    <!-- Cart items injected dynamically -->
+                </div>
+
+                <div class="p-6 border-t border-stone-200 bg-stone-50">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-stone-600 font-medium">Subtotal</span>
+                        <span id="cart-subtotal" class="text-xl font-extrabold text-stone-900">0,00 €</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-stone-600 font-medium">Envío</span>
+                        <span class="text-emerald-600 font-bold">¡Gratis a partir de 15€!</span>
+                    </div>
+                    <button onclick="checkoutOrder()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-600/30 transition-all flex items-center justify-center space-x-2">
+                        <span>Tramitar Pedido Seguro</span>
+                        <i class="fa-solid fa-lock"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-stone-900 text-stone-300 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-stone-800">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-xl">
+                            M
+                        </div>
+                        <span class="text-2xl font-extrabold tracking-tight text-white">Mabuya<span class="text-brand-500">Print</span></span>
+                    </div>
+                    <p class="text-stone-400 text-sm">
+                        Tu estudio fotográfico y de impresión digital de confianza. Calidad insuperable en cada revelado y postal temática.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Servicios</h4>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li><a href="#fotografia" class="hover:text-white transition-colors">Impresión 10x15 a A3</a></li>
+                        <li><a href="#packs" class="hover:text-white transition-colors">Packs de Fotos</a></li>
+                        <li><a href="#postales" class="hover:text-white transition-colors">Postales Especiales 1€</a></li>
+                        <li><a href="#postales" class="hover:text-white transition-colors">Postales Personalizadas 2€</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Ocasiones Especiales</h4>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li><a href="#postales" onclick="switchCategory('madres')" class="hover:text-white transition-colors">Día de las Madres</a></li>
+                        <li><a href="#postales" onclick="switchCategory('padres')" class="hover:text-white transition-colors">Día de los Padres</a></li>
+                        <li><a href="#postales" onclick="switchCategory('amor')" class="hover:text-white transition-colors">San Valentín / Amor</a></li>
+                        <li><a href="#postales" onclick="switchCategory('navidad')" class="hover:text-white transition-colors">Navidad</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contacto & Ayuda</h4>
+                    <p class="text-sm text-stone-400 mb-2"><i class="fa-solid fa-envelope mr-2 text-brand-500"></i> hola@mabuyaprint.com</p>
+                    <p class="text-sm text-stone-400 mb-4"><i class="fa-solid fa-phone mr-2 text-brand-500"></i> +34 684 79 25 06</p>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-brand-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-brand-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Pinterest" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-brand-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500">
+                <p>&copy; 2026 Mabuya Print. Todos los derechos reservados.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-stone-400">Política de Privacidad</a>
+                    <a href="#" class="hover:text-stone-400">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data for postcard categories (10 items per category)
+        const postcardData = {
+            madres: [
+                { id: 'M01', title: 'Madre del Alma #01', desc: 'Flores en las esquinas con frase especial.', img: './tarjeta_madre/1.png' },               
+                { id: 'M02', title: 'Mamá Te Quiero #02', desc: 'Acuarela rosa con flores y corazón grande.', img:'./tarjeta_madre/2.png'},
+                { id: 'M03', title: 'Super Mamá #03', desc: 'Dedicatoria con girasoles.', img: './tarjeta_madre/3.png' },
+                { id: 'M04', title: 'Abrazo de Mamá #04', desc: 'Tarjeta emotiva colores malba y amarillo.', img: './tarjeta_madre/4.png' },
+                { id: 'M05', title: 'Gracias Mamá #05', desc: 'El rosa de mamá, ideal con una foto.', img: './tarjeta_madre/5.png' },
+                { id: 'M06', title: 'Corazón de Madre #06', desc: 'Diseño dorado sobre fondo rosa.', img: './tarjeta_madre/6.png' },
+                { id: 'M07', title: 'La Mejor Mamá #07', desc: 'Estilo sencillo y elegante, una rosa para mamá', img: './tarjeta_madre/7.png' },
+                { id: 'M08', title: 'Madre Única #08', desc: 'Ilustración artística delicada', img: './tarjeta_madre/8.png' },
+                { id: 'M09', title: 'Luz de mi Vida #09', desc: 'Flores diversas transmitiendo alegría y cariño.', img: './tarjeta_madre/9.png' },
+                { id: 'M10', title: 'Amor para mamá #10', desc: 'Tipografía grande celebrando Día de Madres.', img: './tarjeta_madre/10.png' }
+            ],
+            padres: [
+                { id: 'P01', title: 'Super Papá #01', desc: 'Diseño clásico corbata y tipografía fuerte', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P02', title: 'Mi Héroe #02', desc: 'Estilo vintage rústico masculino', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P03', title: 'Papá del Año #03', desc: 'Diseño moderno azul marino', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P04', title: 'Gracias Padre #04', desc: 'Ilustración de herramientas y café', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P05', title: 'El Mejor Guía #05', desc: 'Paisaje montañoso aventurero', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P06', title: 'Padre e Hijo #06', desc: 'Silueta emotiva al atardecer', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P07', title: 'Orgullo de Padre #07', desc: 'Tipografía bold elegante', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P08', title: 'Sabiduría #08', desc: 'Estilo clásico con detalles en cuero', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P09', title: 'Siempre Contigo #09', desc: 'Diseño náutico minimalista', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80' },
+                { id: 'P10', title: 'Rey de la Casa #10', desc: 'Postal premium con relieve', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80' }
+            ],
+            amor: [
+                { id: 'A01', title: 'Te Amo #01', desc: 'Corazones entrelazados rojos', img: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A02', title: 'San Valentín #02', desc: 'Rosas rojas y detalles románticos', img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A03', title: 'Juntos por Siempre #03', desc: 'Acuarela romántica con frase', img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A04', title: 'Mi Media Naranja #04', desc: 'Ilustración divertida y tierna', img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A05', title: 'Amor Puro #05', desc: 'Tonos pasteles y bokeh brillante', img: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A06', title: 'Contigo Todo #06', desc: 'Diseño minimalista tipográfico', img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A07', title: 'San Valentín Mágico #07', desc: 'Corazón geométrico moderno', img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A08', title: 'Te Adoro #08', desc: 'Flores silvestres y mensaje de amor', img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A09', title: 'Nuestra Historia #09', desc: 'Estilo álbum de recuerdos romántico', img: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80' },
+                { id: 'A10', title: 'Amor Infinito #10', desc: 'Símbolo de infinito con brillo', img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80' }
+            ],
+            navidad: [
+                { id: 'N01', title: 'Feliz Navidad #01', desc: 'Árbol navideño nevado con luces', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N02', title: 'Próspero Año #02', desc: 'Bolas doradas y ambiente festivo', img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N03', title: 'Magia Navideña #03', desc: 'Papá Noel y renos ilustrados', img: 'https://images.unsplash.com/photo-1576912556515-32d757d47bfd?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N04', title: 'Noche Buena #04', desc: 'Velas encendidas y ramas de pino', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N05', title: 'Estrella de Belén #05', desc: 'Cielo estrellado invernal', img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N06', title: 'Felices Fiestas #06', desc: 'Diseño escandinavo rojo y blanco', img: 'https://images.unsplash.com/photo-1576912556515-32d757d47bfd?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N07', title: 'Regalos y Paz #07', desc: 'Cajas de regalo con lazos elegantes', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N08', title: 'Muñeco de Nieve #08', desc: 'Divertido muñeco con bufanda', img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N09', title: 'Cuento de Navidad #09', desc: 'Estilo rústico con madera y piñas', img: 'https://images.unsplash.com/photo-1576912556515-32d757d47bfd?auto=format&fit=crop&w=400&q=80' },
+                { id: 'N10', title: 'Año Nuevo 2026 #10', desc: 'Fuegos artificiales dorados y celebración', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' }
+            ],
+            cumpleanos: [
+                { id: 'C01', title: 'Feliz Cumpleaños #01', desc: 'Tarta colorida con velas festivas', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C02', title: 'Felicidades #02', desc: 'Globos de fiesta y confeti alegre', img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C03', title: 'Gran Día #03', desc: 'Estilo moderno vibrante y alegre', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C04', title: 'Celebración #04', desc: 'Champaña y copas festivas', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C05', title: 'Party Time #05', desc: 'Guirnaldas y luces de colores', img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C06', title: 'Deseos #06', desc: 'Velas encendidas en primer plano', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C07', title: 'Sorpresa #07', desc: 'Caja de regalo envuelta con lazo', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C08', title: 'Años Felices #08', desc: 'Tipografía de fiesta dorada', img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C09', title: 'Día Especial #09', desc: 'Diseño elegante de celebración', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=400&q=80' },
+                { id: 'C10', title: '¡A Celebrar! #10', desc: 'Confeti brillante sobre fondo claro', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' }
+            ]
+        };
+
+        // Cart State & Selected Postcard State
+        let cart = [];
+        let currentSelectedPostcard = null;
+
+        // Calculate photo total dynamically as quantity changes
+        function calculatePhotoTotal(size, unitPrice) {
+            const qtyInput = document.getElementById(`qty-${size}`);
+            const totalEl = document.getElementById(`total-${size}`);
+            let qty = parseInt(qtyInput.value);
+            if(isNaN(qty) || qty < 1) {
+                qty = 1;
+            }
+            const total = qty * unitPrice;
+            totalEl.innerText = total.toFixed(2) + ' €';
+        }
+
+        // Add photo size order with chosen quantity to cart
+        function addPhotoToCart(size, unitPrice) {
+            const qtyInput = document.getElementById(`qty-${size}`);
+            let qty = parseInt(qtyInput.value);
+            if(isNaN(qty) || qty < 1) {
+                qty = 1;
+            }
+            const totalPrice = qty * unitPrice;
+
+            cart.push({
+                name: `Impresión Foto [Formato ${size}]`,
+                details: `${qty} unidades (${unitPrice.toFixed(2)}€/u)`,
+                price: totalPrice
+            });
+
+            updateCartUI();
+            openCartModal();
+        }
+
+        // Render Postcards Gallery
+        function switchCategory(category) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300";
+            });
+            event.currentTarget.className = "tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-brand-600 text-white shadow-md shadow-brand-600/20";
+
+            const grid = document.getElementById('postcard-grid');
+            const items = postcardData[category];
+            
+            grid.innerHTML = items.map(item => `
+                <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="h-32 sm:h-48 overflow-hidden relative bg-stone-100">
+                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[10px] sm:text-xs font-extrabold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md">
+                                ${item.id}
+                            </span>
+                        </div>
+                        <div class="p-3 sm:p-4">
+                            <h4 class="font-bold text-stone-900 text-xs sm:text-base">${item.title}</h4>
+                            <p class="text-stone-500 text-[11px] sm:text-xs mt-1 line-clamp-2">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="p-3 sm:p-4 pt-0 flex flex-col gap-1.5 sm:gap-2">
+                        <button onclick="addPostcardToCart('${item.id}', '${item.title}', 1.00)" class="w-full bg-stone-100 hover:bg-brand-50 text-stone-800 hover:text-brand-600 font-bold py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs transition-colors flex items-center justify-between border border-stone-200">
+                            <span>Estándar</span>
+                            <span class="font-extrabold text-brand-600">1,00 €</span>
+                        </button>
+                        <button onclick="openCustomModal('${item.id}', '${item.title}')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs transition-colors flex items-center justify-between shadow-sm">
+                            <span>Personalizar</span>
+                            <span class="font-extrabold text-brand-100">2,00 €</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize with Madres category on load
+        window.onload = function() {
+            const firstTab = document.querySelector('.tab-btn');
+            if(firstTab) {
+                switchCategory('madres');
+            }
+            updateIdPhotoDetails();
+        };
+
+        // Update ID Photo specs description based on selector
+        function updateIdPhotoDetails() {
+            const select = document.getElementById('id-country-select');
+            const selectedOption = select.options[select.selectedIndex];
+            const specs = selectedOption.getAttribute('data-specs');
+            document.getElementById('id-specs-text').innerText = specs;
+        }
+
+        // Add ID / Passport photo to cart
+        function addIdPhotoToCart() {
+            const select = document.getElementById('id-country-select');
+            const selectedText = select.options[select.selectedIndex].text;
+            const specs = select.options[select.selectedIndex].getAttribute('data-specs');
+
+            cart.push({
+                name: `Foto Oficial Carnet / Pasaporte`,
+                details: `${selectedText} (${specs})`,
+                price: 5.00
+            });
+
+            updateCartUI();
+            openCartModal();
+        }
+
+        // Add Pack to Cart
+        function addPackToCart(packName, price) {
+            cart.push({
+                name: packName,
+                details: 'Pack promocional',
+                price: price
+            });
+            updateCartUI();
+            openCartModal();
+        }
+
+        // Add Standard Postcard to Cart
+        function addPostcardToCart(id, title, price) {
+            cart.push({
+                name: `Postal [Ref. ${id}] ${title}`,
+                details: 'Versión estándar',
+                price: price
+            });
+            updateCartUI();
+            openCartModal();
+        }
+
+        // Open Custom Modal for Postcard
+        function openCustomModal(id, title) {
+            currentSelectedPostcard = { id, title };
+            document.getElementById('modal-title').innerText = `Personalizar: ${title} (Ref. ${id})`;
+            document.getElementById('custom-message').value = '';
+            document.getElementById('custom-modal').classList.remove('hidden');
+            document.getElementById('custom-modal').classList.add('flex');
+        }
+
+        function closeCustomModal() {
+            document.getElementById('custom-modal').classList.remove('flex');
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+
+        function confirmCustomPostcard() {
+            const msg = document.getElementById('custom-message').value;
+            const finish = document.getElementById('custom-finish').value;
+            const price = finish === 'texturado' ? 2.50 : 2.00;
+            const finishText = finish === 'texturado' ? 'Texturado Fine Art (+0.50€)' : finish;
+
+            cart.push({
+                name: `Postal Personalizada [Ref. ${currentSelectedPostcard.id}]`,
+                details: `Mensaje: "${msg.substring(0, 30) || 'Sin mensaje'}..." | Acabado: ${finishText}`,
+                price: price
+            });
+
+            closeCustomModal();
+            updateCartUI();
+            openCartModal();
+        }
+
+        // Cart UI management
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const counter = document.getElementById('cart-counter');
+            const subtotalEl = document.getElementById('cart-subtotal');
+
+            counter.innerText = cart.length;
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-stone-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-stone-300"></i>
+                        <p class="font-medium">Tu cesta está vacía</p>
+                        <p class="text-xs mt-1">Añade impresiones o postales para comenzar</p>
+                    </div>
+                `;
+                subtotalEl.innerText = '0,00 €';
+                return;
+            }
+
+            let subtotal = 0;
+            container.innerHTML = cart.map((item, index) => {
+                subtotal += item.price;
+                return `
+                    <div class="py-4 flex justify-between items-start">
+                        <div>
+                            <h5 class="font-bold text-stone-900 text-sm">${item.name}</h5>
+                            <p class="text-xs text-stone-500 mt-0.5">${item.details}</p>
+                            <span class="text-xs font-extrabold text-brand-600 mt-1 inline-block">${item.price.toFixed(2)} €</span>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-stone-400 hover:text-red-500 p-1">
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.innerText = subtotal.toFixed(2) + ' €';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function openCartModal() {
+            document.getElementById('cart-drawer').classList.remove('hidden');
+        }
+
+        function closeCartModal() {
+            document.getElementById('cart-drawer').classList.add('hidden');
+        }
+
+        // Checkout and send complete cart info to WhatsApp (+34 684 79 25 06)
+        function checkoutOrder() {
+            if(cart.length === 0) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-5 right-5 z-50 bg-stone-900 text-white px-6 py-3 rounded-xl shadow-xl text-sm font-semibold animate-in fade-in slide-in-from-bottom duration-300';
+                notification.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2 text-brand-500"></i> Tu cesta está vacía. Añade productos antes de tramitar el pedido.';
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 3000);
+                return;
+            }
+
+            let message = "¡Hola Mabuya Print! Me gustaría realizar el siguiente pedido:\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                message += `${index + 1}. *${item.name}*\n`;
+                if(item.details) {
+                    message += `   - Detalle: ${item.details}\n`;
+                }
+                message += `   - Precio: ${item.price.toFixed(2)} €\n\n`;
+            });
+
+            message += `*Total del Pedido:* ${total.toFixed(2)} €\n\nQuedo a la espera de las instrucciones para el pago y envío. ¡Gracias!`;
+
+            const phoneNumber = "34684792506";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+
+            cart = [];
+            updateCartUI();
+            closeCartModal();
+        }
+    </script>
+</body>
+</html>

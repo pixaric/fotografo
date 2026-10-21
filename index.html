@@ -1,882 +1,222 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mabuya Print | Impresión Fotográfica y Postales</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#fdf8f6',
-                            100: '#fbe8e3',
-                            500: '#e06d4e',
-                            600: '#cc5534',
-                            700: '#a84124',
-                            900: '#7a2f1a',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Reinier Fotos: fotografía de retrato, parejas, eventos, familias y deporte. Imágenes con personalidad, emoción y una estética en blanco y negro. Reserva por WhatsApp.">
+  <meta name="keywords" content="Reinier Fotos, fotógrafo, fotografía en blanco y negro, retratos, fotografía de eventos, fotografía deportiva, sesiones fotográficas">
+  <meta property="og:title" content="Reinier Fotos — Historias en imágenes">
+  <meta property="og:description" content="Fotografía con carácter. Capturamos lo que merece quedarse para siempre.">
+  <meta property="og:type" content="website">
+  <title>Reinier Fotos | Fotografía con carácter</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#080808;--panel:#111;--panel2:#171717;--white:#f5f3ef;--muted:#aaa7a1;--line:#303030;--accent:#d8d4cd;--green:#25d366;--max:1200px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--white);font-family:"DM Sans",sans-serif;line-height:1.6}body.menu-open{overflow:hidden}a{color:inherit;text-decoration:none}button{font:inherit}.container{width:min(var(--max),calc(100% - 44px));margin-inline:auto}.eyebrow{text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;color:var(--muted);font-weight:600}.section{padding:100px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px}.section-heading h2{font:500 clamp(2rem,4vw,3.4rem)/1.1 "Playfair Display",serif;margin:10px 0 0;letter-spacing:-.035em}.section-heading p{max-width:360px;color:var(--muted);margin:0}.serif{font-family:"Playfair Display",serif}.topbar{position:fixed;z-index:50;top:0;left:0;right:0;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}.topbar.scrolled{background:rgba(8,8,8,.88);backdrop-filter:blur(18px);border-color:#222}.nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}.brand-mark{width:38px;height:38px;border:1px solid #777;border-radius:50%;display:grid;place-items:center}.brand-mark svg{width:23px}.brand-name{font:italic 1.65rem/1 "Playfair Display",serif;letter-spacing:-.04em}.brand-name small{display:block;font:500 .55rem/1.8 "DM Sans",sans-serif;letter-spacing:.42em;text-transform:uppercase;text-align:center;color:#bcb8b1}.nav-links{display:flex;align-items:center;gap:25px}.nav-links a{font-size:.76rem;color:#dedbd5;transition:color .2s}.nav-links a:hover{color:#fff}.nav-actions{display:flex;align-items:center;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid #777;border-radius:999px;padding:12px 20px;color:#fff;font-size:.82rem;font-weight:600;transition:transform .25s,background .25s,border-color .25s;cursor:pointer}.btn:hover{transform:translateY(-3px);background:#fff;color:#080808;border-color:#fff}.btn-light{background:#f4f1eb;color:#111;border-color:#f4f1eb}.btn-light:hover{background:#d9d5ce}.btn svg{width:17px;height:17px}.menu-toggle{display:none;background:none;border:1px solid #555;color:white;border-radius:50%;width:42px;height:42px;font-size:1.2rem}.hero{min-height:780px;height:min(900px,100svh);position:relative;display:flex;align-items:center;overflow:hidden;background:#111}.hero-bg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.75) 34%,rgba(0,0,0,.12) 75%),linear-gradient(0deg,#080808 0%,transparent 32%),url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2200&q=90") center/cover;filter:grayscale(1);transform:scale(1.04);animation:heroReveal 1.3s ease both}.hero-content{position:relative;z-index:1;padding-top:75px;max-width:690px}.hero .eyebrow{display:flex;align-items:center;gap:12px}.hero .eyebrow:before{content:"";height:1px;width:34px;background:#bbb}.hero h1{font:500 clamp(3.6rem,8vw,7.6rem)/.94 "Playfair Display",serif;letter-spacing:-.06em;margin:24px 0}.hero h1 em{font-weight:500;color:#c9c6c0;display:block}.hero-copy{max-width:450px;color:#d0cec9;font-size:1.03rem;margin:28px 0 34px}.hero-buttons{display:flex;flex-wrap:wrap;gap:12px}.hero-note{position:absolute;z-index:2;right:4.5%;bottom:16%;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.24em;text-transform:uppercase;color:#ddd;font-size:.62rem}.scroll-cue{position:absolute;z-index:2;bottom:35px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;color:#aaa;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase}.scroll-cue span{display:block;width:1px;height:34px;background:#aaa;animation:pulse 1.8s infinite}.intro{border-top:1px solid #202020;border-bottom:1px solid #202020;background:linear-gradient(120deg,#111,#080808 70%)}.intro-grid{display:grid;grid-template-columns:.9fr 1fr;gap:9%;align-items:center}.intro-image{position:relative;min-height:470px}.intro-image img{width:80%;height:450px;object-fit:cover;filter:grayscale(1);display:block}.intro-image:after{content:"";position:absolute;left:9%;top:8%;width:80%;height:88%;border:1px solid #777;pointer-events:none}.image-caption{position:absolute;right:0;bottom:35px;background:#111;border:1px solid #333;padding:17px 20px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}.intro-copy h2{font:500 clamp(2.2rem,4vw,3.5rem)/1.1 "Playfair Display",serif;letter-spacing:-.04em;margin:15px 0 22px}.intro-copy p{color:#bdbab4;max-width:550px}.signature{font:italic 2rem "Playfair Display",serif;margin-top:28px}.signature small{display:block;font:500 .65rem "DM Sans",sans-serif;text-transform:uppercase;letter-spacing:.22em;color:#8c8983;margin-top:3px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px;padding-top:25px;border-top:1px solid #333}.stat strong{font:500 1.45rem "Playfair Display",serif;display:block}.stat span{font-size:.7rem;color:#aaa}.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.service-card{position:relative;min-height:340px;overflow:hidden;border:1px solid #2c2c2c;background:#111;isolation:isolate}.service-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:transform .7s,filter .7s;z-index:-2}.service-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.94),rgba(0,0,0,.08) 75%);z-index:-1}.service-card:hover img{transform:scale(1.08);filter:grayscale(.65)}.service-info{position:absolute;bottom:0;padding:24px}.service-number{font-size:.68rem;letter-spacing:.16em;color:#ccc}.service-info h3{font:500 1.55rem "Playfair Display",serif;margin:8px 0}.service-info p{font-size:.82rem;color:#d0cec9;margin:0 0 16px}.circle-arrow{width:38px;height:38px;border:1px solid #aaa;border-radius:50%;display:grid;place-items:center;transition:background .25s,color .25s}.service-card:hover .circle-arrow{background:white;color:#111}.gallery{background:#101010}.gallery-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:250px 250px;gap:12px}.gallery-item{position:relative;overflow:hidden;background:#222}.gallery-item:first-child{grid-row:span 2}.gallery-item:nth-child(4){grid-column:span 2}.gallery-item img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:transform .65s,filter .65s}.gallery-item:hover img{transform:scale(1.05);filter:grayscale(.55)}.gallery-item:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent 45%);pointer-events:none}.gallery-label{position:absolute;z-index:1;bottom:17px;left:18px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}.offers{background:#080808}.offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.offer-card{border:1px solid #333;background:linear-gradient(145deg,#171717,#0b0b0b);padding:27px;position:relative;transition:transform .3s,border-color .3s}.offer-card:hover{transform:translateY(-6px);border-color:#999}.offer-card.featured{border-color:#b8b3a9}.offer-tag{display:inline-block;font-size:.62rem;text-transform:uppercase;letter-spacing:.16em;border:1px solid #666;border-radius:30px;padding:6px 10px;color:#d8d4cd}.offer-card h3{font:500 1.65rem "Playfair Display",serif;margin:22px 0 8px}.offer-card p{color:#aaa;font-size:.85rem;min-height:48px}.price-line{display:flex;align-items:baseline;gap:10px;margin:24px 0}.price{font:500 2.6rem/1 "Playfair Display",serif}.old-price{color:#777;text-decoration:line-through;font-size:.9rem}.offer-card ul{padding:0;list-style:none;margin:0 0 25px}.offer-card li{color:#d0cec9;font-size:.82rem;padding:9px 0;border-bottom:1px solid #292929}.offer-card li:before{content:"✓";color:#d8d4cd;margin-right:10px}.offer-card .btn{width:100%}.offer-note{font-size:.75rem!important;color:#777!important;margin-top:18px}.custom-offer{margin-top:18px;border:1px solid #333;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}.custom-offer h3{font:500 1.45rem "Playfair Display",serif;margin:0 0 4px}.custom-offer p{margin:0;color:#aaa;font-size:.84rem}.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.process-step{border-top:1px solid #555;padding-top:22px}.process-step .num{font:italic 1.5rem "Playfair Display",serif;color:#8f8b84}.process-step h3{font:500 1.4rem "Playfair Display",serif;margin:15px 0 8px}.process-step p{font-size:.85rem;color:#aaa;margin:0}.contact{padding:0 0 80px}.contact-panel{position:relative;overflow:hidden;text-align:center;padding:90px 24px;background:linear-gradient(rgba(0,0,0,.76),rgba(0,0,0,.88)),url("https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1800&q=85") center/cover;filter:none;border:1px solid #333}.contact-panel .eyebrow{color:#d2cec7}.contact-panel h2{font:500 clamp(2.5rem,6vw,5rem)/1.04 "Playfair Display",serif;margin:18px 0}.contact-panel p{max-width:540px;color:#d0cec9;margin:0 auto 28px}.contact-panel .btn{margin:0 auto}.footer{border-top:1px solid #242424;padding:30px 0 24px}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:24px}.footer-copy{font-size:.72rem;color:#777}.footer-links{display:flex;gap:20px;color:#aaa;font-size:.75rem}.floating-wa{position:fixed;z-index:40;right:22px;bottom:22px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#06190d;box-shadow:0 8px 30px #0009;transition:transform .2s}.floating-wa:hover{transform:translateY(-4px) scale(1.04)}.floating-wa svg{width:27px;height:27px}.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}@keyframes heroReveal{from{opacity:.4;transform:scale(1.1)}to{opacity:1;transform:scale(1.04)}}@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
+    @media(max-width:1000px){.nav-links{gap:15px}.nav-links a{font-size:.7rem}.nav-actions .btn{padding:10px 14px}.services-grid{grid-template-columns:repeat(2,1fr)}.service-card{min-height:370px}.intro-grid{gap:5%}.offers-grid{grid-template-columns:repeat(2,1fr)}.offer-card:last-child{grid-column:1/-1}}
+    @media(max-width:760px){.container{width:min(100% - 32px,var(--max))}.section{padding:72px 0}.nav{height:70px}.nav-actions .nav-contact{display:none}.menu-toggle{display:grid;place-items:center}.nav-links{position:fixed;inset:70px 0 auto;background:rgba(8,8,8,.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:stretch;gap:0;padding:12px 24px 25px;border-bottom:1px solid #333;transform:translateY(-130%);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s}.nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}.nav-links a{font-size:1rem;padding:14px 0;border-bottom:1px solid #222}.hero{height:auto;min-height:760px;max-height:900px}.hero-bg{background-position:58% center;background-image:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.42)),linear-gradient(0deg,#080808 0%,transparent 30%),url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1400&q=85")}.hero-content{padding-top:90px;padding-bottom:100px}.hero h1{font-size:clamp(3.5rem,15vw,6rem)}.hero-copy{font-size:.94rem}.hero-note{display:none}.scroll-cue{bottom:20px}.section-heading{display:block}.section-heading p{margin-top:16px}.intro-grid{grid-template-columns:1fr;gap:35px}.intro-image{min-height:350px;max-width:520px;width:100%}.intro-image img{height:350px;width:84%}.intro-image:after{height:88%;width:84%}.image-caption{bottom:20px}.intro-copy h2{font-size:2.7rem}.stats{gap:8px}.stat strong{font-size:1.2rem}.stat span{font-size:.65rem}.services-grid{gap:10px}.service-card{min-height:300px}.service-info{padding:17px}.service-info h3{font-size:1.3rem}.service-info p{font-size:.75rem}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 180px 180px}.gallery-item:first-child{grid-row:span 2}.gallery-item:nth-child(4){grid-column:span 2}.offers-grid{grid-template-columns:1fr}.offer-card:last-child{grid-column:auto}.offer-card{padding:25px}.offer-card p{min-height:0}.custom-offer{align-items:flex-start;flex-direction:column}.process-grid{grid-template-columns:1fr;gap:26px}.contact-panel{padding:70px 20px}.footer-row{flex-direction:column;text-align:center}.footer-links{flex-wrap:wrap;justify-content:center}.floating-wa{width:52px;height:52px;right:15px;bottom:15px}}
+    @media(max-width:420px){.brand-name{font-size:1.45rem}.brand-mark{width:34px;height:34px}.hero-buttons .btn{width:100%}.services-grid{grid-template-columns:1fr}.service-card{min-height:340px}.gallery-grid{grid-template-rows:210px 150px 150px}.stats{grid-template-columns:1fr;gap:14px}.stat{display:flex;align-items:baseline;gap:10px}.offer-card h3{font-size:1.5rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  </style>
 </head>
-<body class="bg-stone-50 text-stone-800 font-sans antialiased selection:bg-brand-100 selection:text-brand-900">
-
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-500 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-brand-500/20">
-                    M
-                </div>
-                <div>
-                    <span class="text-2xl font-extrabold tracking-tight text-stone-900">Mabuya<span class="text-brand-600">Print</span></span>
-                    <p class="text-xs text-stone-500 font-medium">Estudio de Impresión & Arte</p>
-                </div>
-            </div>
-
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-stone-600">
-                <a href="#inicio" class="hover:text-brand-600 transition-colors">Inicio</a>
-                <a href="#fotografia" class="hover:text-brand-600 transition-colors">Impresión de Fotos</a>
-                <a href="#carnet" class="hover:text-brand-600 transition-colors">Fotos DNI / Pasaporte</a>
-                <a href="#postales" class="hover:text-brand-600 transition-colors">Postales (1€)</a>
-                <a href="#packs" class="hover:text-brand-600 transition-colors">Packs</a>
-            </nav>
-
-            <div class="flex items-center space-x-4">
-                <button onclick="openCartModal()" class="relative bg-stone-100 hover:bg-brand-50 text-stone-800 hover:text-brand-600 px-4 py-2.5 rounded-full font-semibold transition-all flex items-center space-x-2 border border-stone-200">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="hidden sm:inline">Cesta</span>
-                    <span id="cart-counter" class="bg-brand-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <section id="inicio" class="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 bg-gradient-to-b from-brand-50/50 to-stone-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div class="inline-flex items-center space-x-2 bg-brand-100/70 border border-brand-500/20 px-3.5 py-1.5 rounded-full text-brand-800 text-xs font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-sparkles"></i>
-                        <span>Calidad Fotográfica Profesional</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-6xl font-extrabold text-stone-900 tracking-tight leading-tight">
-                        Tus recuerdos impresos con <span class="text-brand-600">pasión y precisión.</span>
-                    </h1>
-                    <p class="text-base sm:text-lg text-stone-600 font-normal">
-                        Desde formato estándar 10x15 hasta grandes impresiones A3 en papel premium. Además, descubre nuestra colección exclusiva de postales para cada ocasión especial desde 1€.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                        <a href="#fotografia" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-600/30 text-center transition-all flex items-center justify-center space-x-2">
-                            <span>Imprimir Fotos Ahora</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                        <a href="#postales" class="bg-white hover:bg-stone-100 text-stone-800 border border-stone-300 font-bold px-8 py-4 rounded-xl text-center transition-all flex items-center justify-center space-x-2">
-                            <span>Ver Postales (1€)</span>
-                            <i class="fa-solid fa-envelope-open-text text-brand-600"></i>
-                        </a>
-                    </div>
-                    <!--<div class="grid grid-cols-3 gap-4 pt-6 border-t border-stone-200">
-                        <div>
-                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">10x15 - A3</p>
-                            <p class="text-xs text-stone-500 font-medium">Formatos disponibles</p>
-                        </div>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">5,00 €</p>
-                            <p class="text-xs text-stone-500 font-medium">Fotos Carnet / DNI</p>
-                        </div>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-extrabold text-stone-900">24/48h</p>
-                            <p class="text-xs text-stone-500 font-medium">Envío rápido</p>
-                        </div>
-                    </div>-->
-                </div>
-                <div class="relative hidden sm:block">
-                    <div class="absolute -inset-4 bg-gradient-to-tr from-brand-600/20 to-brand-500/10 rounded-3xl blur-2xl -z-10"></div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80" alt="Impresión fotográfica" class="rounded-2xl shadow-xl object-cover h-64 w-full">
-                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Arte y postales" class="rounded-2xl shadow-xl object-cover h-64 w-full translate-y-6">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="fotografia" class="py-12 sm:py-20 bg-white border-b border-stone-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-                <span class="text-brand-600 font-bold uppercase tracking-widest text-xs">Revelado y Papel Fine Art</span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-stone-900 mt-2">Impresión Fotográfica por Formato y Cantidad</h2>
-                <p class="text-stone-600 text-sm sm:text-base mt-2 sm:mt-4">Elige tu formato, selecciona la cantidad exacta de fotos que deseas imprimir y calcula tu total al instante antes de añadirlo a la cesta.</p>
-                <br>
-                <p><span class="text-brand-600 font-bold uppercase tracking-widest text-xs">¡¡¡ fotos individuales tienen un precio diferente, consulte!!!</span></p>
-            </div>
-            
-
-            <!-- Compact Grid for mobile (5 format cards) -->
-            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-6 mb-16">
-                
-                <!-- 10x15 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
-                    <div>
-                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
-                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=10x15+cm" alt="10x15" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Estándar</span>
-                        </div>
-                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 10 x 15 cm</h3>
-                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Ideal álbumes.</p>
-                        
-                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
-                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
-                                <span>Unitario:</span>
-                                <span class="text-stone-900 font-bold">0,15 €</span>
-                            </div>
-                            <div>
-                                <label for="qty-10x15" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
-                                <input type="number" id="qty-10x15" min="1" value="10" oninput="calculatePhotoTotal('10x15', 0.15)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
-                            <span id="total-10x15" class="text-sm sm:text-xl font-extrabold text-stone-900">1,50 €</span>
-                        </div>
-                        <button onclick="addPhotoToCart('10x15', 0.15)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
-                            Añadir
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 13x18 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
-                    <div>
-                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
-                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=13x18+cm" alt="13x18" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Popular</span>
-                        </div>
-                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 13 x 18 cm</h3>
-                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Mayor detalle.</p>
-                        
-                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
-                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
-                                <span>Unitario:</span>
-                                <span class="text-stone-900 font-bold">0,30 €</span>
-                            </div>
-                            <div>
-                                <label for="qty-13x18" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-labelCantidad:</label>
-                                <input type="number" id="qty-13x18" min="1" value="5" oninput="calculatePhotoTotal('13x18', 0.30)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
-                            <span id="total-13x18" class="text-sm sm:text-xl font-extrabold text-stone-900">1,50 €</span>
-                        </div>
-                        <button onclick="addPhotoToCart('13x18', 0.30)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
-                            Añadir
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 15x20 cm -->
-                <div class="bg-stone-50 border border-2 border-brand-500/40 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500 transition-all group shadow-md">
-                    <div>
-                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
-                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=15x20+cm" alt="15x20" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-2 right-2 bg-brand-600 text-white text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Destacado</span>
-                        </div>
-                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato 15 x 20 cm</h3>
-                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Para mesas.</p>
-                        
-                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
-                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
-                                <span>Unitario:</span>
-                                <span class="text-stone-900 font-bold">0,80 €</span>
-                            </div>
-                            <div>
-                                <label for="qty-15x20" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
-                                <input type="number" id="qty-15x20" min="1" value="5" oninput="calculatePhotoTotal('15x20', 0.80)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
-                            <span id="total-15x20" class="text-sm sm:text-xl font-extrabold text-stone-900">4,00 €</span>
-                        </div>
-                        <button onclick="addPhotoToCart('15x20', 0.80)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
-                            Añadir
-                        </button>
-                    </div>
-                </div>
-
-                <!-- A4 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group">
-                    <div>
-                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
-                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A4+21x29.7" alt="A4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm text-stone-900 text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Arte</span>
-                        </div>
-                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato A4 (21x29.7)</h3>
-                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Para enmarcar.</p>
-                        
-                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
-                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
-                                <span>Unitario:</span>
-                                <span class="text-stone-900 font-bold">1,50 €</span>
-                            </div>
-                            <div>
-                                <label for="qty-A4" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
-                                <input type="number" id="qty-A4" min="1" value="2" oninput="calculatePhotoTotal('A4', 1.50)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
-                            <span id="total-A4" class="text-sm sm:text-xl font-extrabold text-stone-900">3,00 €</span>
-                        </div>
-                        <button onclick="addPhotoToCart('A4', 1.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
-                            Añadir
-                        </button>
-                    </div>
-                </div>
-
-                <!-- A3 -->
-                <div class="bg-stone-50 border border-stone-200 rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between hover:shadow-xl hover:border-brand-500/50 transition-all group col-span-2 sm:col-span-1 max-w-sm sm:max-w-none mx-auto w-full">
-                    <div>
-                        <div class="h-20 sm:h-36 rounded-lg sm:rounded-xl bg-stone-200 overflow-hidden mb-2 sm:mb-3 relative">
-                            <img src="https://placehold.co/400x300/e06d4e/ffffff?text=A3+29.7x42" alt="A3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-2 right-2 bg-brand-600 text-white text-[9px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded-full">Gran Formato</span>
-                        </div>
-                        <h3 class="text-sm sm:text-lg font-bold text-stone-900">Formato A3 (29.7x42)</h3>
-                        <p class="text-stone-500 text-[11px] sm:text-xs mt-0.5">Tamaño póster.</p>
-                        
-                        <div class="mt-2 sm:mt-3 pt-2 border-t border-stone-200 space-y-1.5 sm:space-y-2">
-                            <div class="flex justify-between items-center text-[11px] sm:text-xs text-stone-600 font-semibold">
-                                <span>Unitario:</span>
-                                <span class="text-stone-900 font-bold">3,50 €</span>
-                            </div>
-                            <div>
-                                <label for="qty-A3" class="block text-[10px] sm:text-[11px] font-bold text-stone-700 mb-0.5">Cantidad:</label>
-                                <input type="number" id="qty-A3" min="1" value="1" oninput="calculatePhotoTotal('A3', 3.50)" class="w-full rounded-lg border border-stone-300 p-1.5 sm:p-2 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-stone-200 flex items-center justify-between">
-                        <div>
-                            <span class="text-[9px] sm:text-[10px] text-stone-400 block font-medium">Total</span>
-                            <span id="total-A3" class="text-sm sm:text-xl font-extrabold text-stone-900">3,50 €</span>
-                        </div>
-                        <button onclick="addPhotoToCart('A3', 3.50)" class="bg-stone-900 hover:bg-brand-600 text-white font-bold px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs transition-colors shadow-sm">
-                            Añadir
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div id="carnet" class="bg-white border-2 border-stone-200 rounded-3xl p-6 sm:p-12 shadow-sm mb-16">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                    <div>
-                        <span class="bg-brand-100 text-brand-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Homologadas Oficiales</span>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-stone-900 mt-3">Fotos de DNI, Pasaporte y Visado</h3>
-                        <p class="text-stone-600 text-sm sm:text-base mt-3">Obtén tus fotografías oficiales de carnet adaptadas exactamente a las normativas vigentes internacionales. Impresas en papel fotográfico de máxima calidad.</p>
-                        
-                        <ul class="space-y-3 mt-6 text-stone-700 text-sm font-medium">
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-600"></i>
-                                <span>Precio único de <strong class="text-stone-900">5,00 €</strong> por plancha fotográfica.</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-600"></i>
-                                <span>Incluye desde <strong class="text-stone-900">6 hasta 8 fotos</strong> según el tamaño oficial requerido.</span>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <i class="fa-solid fa-circle-check text-brand-600"></i>
-                                <span>Verificación de medidas y fondo blanco estricto.</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-stone-50 p-6 sm:p-8 rounded-2xl border border-stone-200 space-y-4">
-                        <h4 class="font-bold text-stone-900 text-lg">Configura tu documento</h4>
-                        
-                        <div>
-                            <label for="id-country-select" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1">Selecciona país o tipo de documento</label>
-                            <select id="id-country-select" onchange="updateIdPhotoDetails()" class="w-full rounded-xl border border-stone-300 p-3 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
-                                <option value="espana-dni" data-specs="DNI / Permiso de Conducir España (32x26 mm) - 8 fotos">España - DNI / Carnet de Conducir (8 fotos)</option>
-                                <option value="espana-pasaporte" data-specs="España / UE - Pasaporte (48x32 mm) - 6 fotos">España / UE - Pasaporte (6 fotos)</option>
-                                <option value="usa-visa" data-specs="Estados Unidos - Visado / Green Card (51x51 mm) - 6 fotos">Estados Unidos - Visado / Green Card (6 fotos)</option>
-                                <option value="uk-passport" data-specs="Reino Unido - Pasaporte / ID (45x35 mm) - 6 fotos">Reino Unido - Pasaporte / ID (6 fotos)</option>
-                                <option value="latam-generico" data-specs="Latinoamérica - Cédula / Pasaporte (3x4 cm) - 8 fotos">Latinoamérica - Cédula / Pasaporte (8 fotos)</option>
-                            </select>
-                        </div>
-
-                        <div id="id-specs-box" class="bg-brand-50/70 border border-brand-500/20 p-3.5 rounded-xl text-xs text-brand-900 font-medium">
-                            <i class="fa-solid fa-circle-info mr-1 text-brand-600"></i> <span id="id-specs-text">DNI / Permiso de Conducir España (32x26 mm) - 8 fotos</span>
-                        </div>
-
-                        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
-                            <div>
-                                <span class="text-xs text-stone-400 block font-medium">Precio Planilla</span>
-                                <span class="text-2xl font-extrabold text-stone-900">5,00 €</span>
-                            </div>
-                            <button onclick="addIdPhotoToCart()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-brand-600/30">
-                                Añadir a la cesta
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="packs" class="bg-gradient-to-r from-brand-900 to-stone-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
-                <div class="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="max-w-3xl">
-                    <span class="bg-brand-500/30 text-brand-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Ahorro Inteligente</span>
-                    <h3 class="text-2xl sm:text-3xl font-extrabold mt-3">Packs de Impresión por Volumen</h3>
-                    <p class="text-stone-300 text-sm sm:text-base mt-2">¿Tienes muchas fotos guardadas en el móvil o disco duro? Llévate nuestros packs especiales con precios imbatibles.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    <!-- Pack 24 -->
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start">
-                                <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Pack Ahorro</span>
-                                <span class="text-xl font-extrabold text-brand-200">10 €</span>
-                            </div>
-                            <h4 class="text-2xl font-bold mt-4">Pack 24 Fotos</h4>
-                            <p class="text-stone-300 text-sm mt-2">Formato 10x15 cm. Papel brillo o mate de alta calidad.</p>
-                        </div>
-                        <button onclick="addPackToCart('Pack 24 Fotos (10x15)', 10.00)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
-                            Añadir Pack
-                        </button>
-                    </div>
-
-                    <!-- Pack 50 -->
-                    <div class="bg-white/15 backdrop-blur-md border-2 border-brand-500 rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
-                        <div class="absolute -top-3 right-6 bg-brand-500 text-white text-[10px] uppercase font-extrabold px-3 py-1 rounded-full shadow">Más Vendido</div>
-                        <div>
-                            <div class="flex justify-between items-start">
-                                <span class="bg-brand-600 text-white text-xs font-bold px-2.5 py-1 rounded-md">Super Pack</span>
-                                <span class="text-xl font-extrabold text-brand-200">20 €</span>
-                            </div>
-                            <h4 class="text-2xl font-bold mt-4">Pack 50 Fotos</h4>
-                            <p class="text-stone-300 text-sm mt-2">Formato 10x15 cm. ¡Sale a 0.40€ la foto!</p>
-                        </div>
-                        <button onclick="addPackToCart('Pack 50 Fotos (10x15)', 20.00)" class="mt-6 w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 rounded-xl transition-colors shadow-lg">
-                            Añadir Pack
-                        </button>
-                    </div>
-
-                    <!-- Pack Mix A3 -->
-                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start">
-                                <span class="bg-brand-500 text-white text-xs font-bold px-2.5 py-1 rounded-md">Pack Arte</span>
-                                <span class="text-xl font-extrabold text-brand-200">15 €</span>
-                            </div>
-                            <h4 class="text-2xl font-bold mt-4">Pack 2 Láminas A3</h4>
-                            <p class="text-stone-300 text-sm mt-2">Impresiones A3 de alta gama para enmarcar tus mejores momentos.</p>
-                        </div>
-                        <button onclick="addPackToCart('Pack 2 Láminas A3', 15.00)" class="mt-6 w-full bg-white hover:bg-brand-100 text-stone-900 font-bold py-3 rounded-xl transition-colors">
-                            Añadir Pack
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="postales" class="py-20 bg-stone-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-brand-600 font-bold uppercase tracking-widest text-xs">Colección Exclusiva Mabuya</span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-stone-900 mt-2">Galería de Postales Temáticas</h2>
-                <p class="text-stone-600 text-sm sm:text-base mt-4">Elige tu postal favorita numerada. Todas a <strong class="text-stone-900">1,00 €</strong> o <strong class="text-stone-900">2,00 €</strong> si prefieres personalizarla con tu propio texto y foto.</p>
-            </div>
-
-            <!-- Tabs / Category selection -->
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12" id="postcard-tabs">
-                <button onclick="switchCategory('madres')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-brand-600 text-white shadow-md shadow-brand-600/20">
-                    <i class="fa-solid fa-heart mr-2"></i>Día de las Madres
-                </button>
-                <button onclick="switchCategory('padres')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
-                    <i class="fa-solid fa-user-tie mr-2"></i>Día de los Padres
-                </button>
-                <button onclick="switchCategory('amor')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
-                    <i class="fa-solid fa-face-kiss-wink-heart mr-2"></i>Día del Amor y Amistad
-                </button>
-                <button onclick="switchCategory('navidad')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
-                    <i class="fa-solid fa-tree mr-2"></i>Navidad y Año Nuevo
-                </button>
-                <button onclick="switchCategory('cumpleanos')" class="tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300">
-                    <i class="fa-solid fa-cake-candles mr-2"></i>Cumpleaños & Fiestas
-                </button>
-            </div>
-
-            <!-- Postcard Gallery Grid (2 columns on mobile, up to 5 on desktop) -->
-            <div id="postcard-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
-                <!-- Javascript will inject cards here -->
-            </div>
-        </div>
-    </section>
-
-    <div id="custom-modal" class="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
-            <button onclick="closeCustomModal()" aria-label="Cerrar carrito" class="absolute top-6 right-6 text-stone-400 hover:text-stone-700 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="flex items-center space-x-3 mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-                <div>
-                    <h3 id="modal-title" class="text-xl font-bold text-stone-900">Personalizar Postal</h3>
-                    <p class="text-xs text-stone-500">Añade tu toque único por solo 2,00 €</p>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <div>
-                    <label for="custom-message" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1">Mensaje personalizado</label>
-                    <textarea id="custom-message" rows="3" placeholder="Ej: ¡Felicidades mamá, eres la mejor! Con todo mi amor..." class="w-full rounded-xl border border-stone-300 p-3 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
-                </div>
-                <div>
-                    <label for="custom-finish" class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1">Tipo de acabado</label>
-                    <select id="custom-finish" class="w-full rounded-xl border border-stone-300 p-3 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
-                        <option value="brillo">Papel Fotográfico Brillo Premium</option>
-                        <option value="mate">Papel Fotográfico Mate Antihuellas</option>
-                        <option value="texturado">Papel Texturado Fine Art (+0.50€)</option>
-                    </select>
-                </div>
-                <div class="bg-stone-50 p-4 rounded-xl flex items-center justify-between border border-stone-200">
-                    <span class="font-bold text-stone-700">Precio Final Personalizada:</span>
-                    <span id="modal-price" class="text-2xl font-extrabold text-brand-600">2,00 €</span>
-                </div>
-                <button onclick="confirmCustomPostcard()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-brand-600/30">
-                    Añadir a la Cesta (2,00 €)
-                </button>
-            </div>
-        </div>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Reinier Fotos, inicio">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5h4l1.7-2.3h6.6L17 8.5h4v10H3z"/><circle cx="12" cy="13.5" r="4"/></svg></span>
+        <span class="brand-name">Reinier<small>F O T O S</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a><a href="#sobre-mi">Sobre mí</a><a href="#servicios">Servicios</a><a href="#galeria">Galería</a><a href="#ofertas">Ofertas</a><a href="#contacto">Contacto</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn nav-contact" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20informaci%C3%B3n%20sobre%20una%20sesi%C3%B3n%20fotogr%C3%A1fica." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.8a8.2 8.2 0 1 1 16-3.4Z"/><path d="M8.8 8.1c.3-.6.6-.6.9-.6h.4c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.4-1.1.6-1.9.4-1-.2-2.3-.8-3.6-2-1.1-1.1-1.8-2.5-2-3.4-.2-.8.1-1.4.7-1.8Z"/></svg>
+          WhatsApp
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      </div>
     </div>
+  </header>
 
-    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-        <div class="absolute inset-0 bg-stone-900/50 backdrop-blur-sm transition-opacity" onclick="closeCartModal()"></div>
-        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
-            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
-                <div class="flex items-center justify-between px-6 py-6 border-b border-stone-200">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-cart-shopping text-brand-600"></i>
-                        <h3 class="text-lg font-bold text-stone-900">Tu Cesta Mabuya</h3>
-                    </div>
-                    <button onclick="closeCartModal()" aria-label="Cerrar carrito" class="text-stone-400 hover:text-stone-700 p-2 rounded-full hover:bg-stone-100">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-
-                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-stone-100">
-                    <!-- Cart items injected dynamically -->
-                </div>
-
-                <div class="p-6 border-t border-stone-200 bg-stone-50">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-stone-600 font-medium">Subtotal</span>
-                        <span id="cart-subtotal" class="text-xl font-extrabold text-stone-900">0,00 €</span>
-                    </div>
-                    <div class="flex justify-between items-center mb-6">
-                        <span class="text-stone-600 font-medium">Envío</span>
-                        <span class="text-emerald-600 font-bold">¡Gratis a partir de 15€!</span>
-                    </div>
-                    <button onclick="checkoutOrder()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-600/30 transition-all flex items-center justify-center space-x-2">
-                        <span>Tramitar Pedido Seguro</span>
-                        <i class="fa-solid fa-lock"></i>
-                    </button>
-                </div>
-            </div>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <div class="eyebrow">Fotografía con alma</div>
+        <h1>Hay instantes<br>que merecen<br><em>ser eternos.</em></h1>
+        <p class="hero-copy">Fotografía con carácter, emoción y una mirada propia. Historias reales contadas en imágenes que nunca pasan de moda.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-light" href="#ofertas">Descubre las ofertas <span aria-hidden="true">↗</span></a>
+          <a class="btn" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20me%20gustar%C3%ADa%20reservar%20una%20sesi%C3%B3n%20fotogr%C3%A1fica." target="_blank" rel="noopener">Hablemos por WhatsApp <span aria-hidden="true">↗</span></a>
         </div>
+      </div>
+      <div class="hero-note">Luz · Emoción · Memoria</div>
+      <a class="scroll-cue" href="#sobre-mi"><span></span>Desliza para descubrir</a>
+    </section>
+
+    <section class="section intro" id="sobre-mi">
+      <div class="container intro-grid">
+        <div class="intro-image reveal">
+          <img src="https://images.unsplash.com/photo-1502982942620-2f4b7e3e0e0c?auto=format&fit=crop&w=900&q=85" alt="Fotógrafo trabajando con su cámara" loading="lazy">
+          <div class="image-caption">Detrás de cada imagen, una historia</div>
+        </div>
+        <div class="intro-copy reveal delay-1">
+          <div class="eyebrow">Conóceme</div>
+          <h2>No hago solo fotografías.<br><em>Guardo emociones.</em></h2>
+          <p>Soy Reinier, fotógrafo y observador de esos pequeños instantes que cuentan grandes historias. Me inspira la fuerza del blanco y negro, la luz natural y la belleza de lo auténtico.</p>
+          <p>Mi objetivo es que, cuando vuelvas a mirar tus fotos, puedas sentir de nuevo lo que viviste en ese momento.</p>
+          <div class="signature">Reinier<small>Tu historia, en imágenes</small></div>
+          <div class="stats">
+            <div class="stat"><strong>Natural</strong><span>Momentos auténticos</span></div>
+            <div class="stat"><strong>Personal</strong><span>Tu historia importa</span></div>
+            <div class="stat"><strong>Atemporal</strong><span>Imágenes que perduran</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><div class="eyebrow">Lo que hago</div><h2>Fotografía para recordar.</h2></div>
+          <p>Cada sesión se adapta a tu estilo, tu historia y lo que quieres conservar.</p>
+        </div>
+        <div class="services-grid">
+          <a class="service-card reveal" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20informaci%C3%B3n%20sobre%20retratos." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85" alt="Retrato artístico en blanco y negro" loading="lazy"><div class="service-info"><span class="service-number">01 / RETRATOS</span><h3>Retratos</h3><p>Tu esencia, tu mirada, tu mejor versión.</p><span class="circle-arrow">↗</span></div>
+          </a>
+          <a class="service-card reveal delay-1" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20informaci%C3%B3n%20sobre%20fotograf%C3%ADa%20de%20pareja%20o%20eventos." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=85" alt="Pareja en una celebración" loading="lazy"><div class="service-info"><span class="service-number">02 / MOMENTOS</span><h3>Parejas y eventos</h3><p>Emociones reales, sin poses forzadas.</p><span class="circle-arrow">↗</span></div>
+          </a>
+          <a class="service-card reveal delay-2" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20informaci%C3%B3n%20sobre%20fotograf%C3%ADa%20de%20familia." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=700&q=85" alt="Familia compartiendo un momento" loading="lazy"><div class="service-info"><span class="service-number">03 / FAMILIA</span><h3>Familias</h3><p>Recuerdos para hoy y para siempre.</p><span class="circle-arrow">↗</span></div>
+          </a>
+          <a class="service-card reveal delay-3" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20informaci%C3%B3n%20sobre%20fotograf%C3%ADa%20deportiva." target="_blank" rel="noopener">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=700&q=85" alt="Motocicleta en movimiento" loading="lazy"><div class="service-info"><span class="service-number">04 / ACCIÓN</span><h3>Deporte y acción</h3><p>La energía de cada instante decisivo.</p><span class="circle-arrow">↗</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery" id="galeria">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><div class="eyebrow">Una mirada personal</div><h2>Historias en blanco y negro.</h2></div>
+          <p>Una selección visual de estilos y momentos. Sustituye estas imágenes por tus mejores fotografías.</p>
+        </div>
+        <div class="gallery-grid">
+          <a class="gallery-item reveal" href="#contacto" aria-label="Consultar una sesión de retrato"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85" alt="Retrato masculino" loading="lazy"><span class="gallery-label">Retratos</span></a>
+          <a class="gallery-item reveal delay-1" href="#contacto" aria-label="Consultar fotografía de pareja"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=85" alt="Pareja en una celebración" loading="lazy"><span class="gallery-label">Celebraciones</span></a>
+          <a class="gallery-item reveal delay-2" href="#contacto" aria-label="Consultar fotografía de naturaleza"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=85" alt="Paisaje montañoso" loading="lazy"><span class="gallery-label">Paisajes</span></a>
+          <a class="gallery-item reveal delay-1" href="#contacto" aria-label="Consultar fotografía de acción"><img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1400&q=85" alt="Motocicleta en carretera" loading="lazy"><span class="gallery-label">Movimiento y acción</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section offers" id="ofertas">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><div class="eyebrow">Ofertas especiales</div><h2>Tu próximo recuerdo empieza aquí.</h2></div>
+          <p>Precios orientativos de lanzamiento. Puedes ajustarlos según el tiempo de sesión, desplazamiento y edición.</p>
+        </div>
+        <div class="offers-grid">
+          <article class="offer-card reveal">
+            <span class="offer-tag">Para ti</span><h3>Sesión de retrato</h3><p>Una sesión personal para mostrar tu mejor versión.</p>
+            <div class="price-line"><span class="price">60 €</span><span class="old-price">80 €</span></div>
+            <ul><li>Hasta 45 minutos de sesión</li><li>10 fotografías editadas</li><li>Entrega digital en alta calidad</li><li>Estilo natural o blanco y negro</li></ul>
+            <a class="btn" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20reservar%20la%20oferta%20de%20Sesi%C3%B3n%20de%20Retrato%20por%2060%E2%82%AC." target="_blank" rel="noopener">Reservar por WhatsApp ↗</a>
+          </article>
+          <article class="offer-card featured reveal delay-1">
+            <span class="offer-tag">Favorito</span><h3>Pack pareja o familia</h3><p>Una experiencia para capturar la conexión entre vosotros.</p>
+            <div class="price-line"><span class="price">90 €</span><span class="old-price">120 €</span></div>
+            <ul><li>Hasta 60 minutos de sesión</li><li>20 fotografías editadas</li><li>Galería digital privada</li><li>Poses naturales y momentos espontáneos</li></ul>
+            <a class="btn btn-light" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20reservar%20el%20Pack%20Pareja%20o%20Familia%20por%2090%E2%82%AC." target="_blank" rel="noopener">Reservar por WhatsApp ↗</a>
+          </article>
+          <article class="offer-card reveal delay-2">
+            <span class="offer-tag">A tu medida</span><h3>Evento o deporte</h3><p>Los momentos clave, la emoción y toda la energía.</p>
+            <div class="price-line"><span class="price">Desde 120 €</span></div>
+            <ul><li>Cobertura desde 1 hora</li><li>Selección de fotos editadas</li><li>Entrega digital</li><li>Presupuesto según duración y lugar</li></ul>
+            <a class="btn" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20un%20presupuesto%20para%20fotograf%C3%ADa%20de%20evento%20o%20deporte." target="_blank" rel="noopener">Pedir presupuesto ↗</a>
+          </article>
+        </div>
+        <div class="custom-offer reveal">
+          <div><h3>¿Tienes una idea diferente?</h3><p>Cuéntame qué necesitas y preparamos una sesión personalizada.</p></div>
+          <a class="btn" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20tengo%20una%20idea%20para%20una%20sesi%C3%B3n%20fotogr%C3%A1fica%20personalizada." target="_blank" rel="noopener">Crear mi sesión ↗</a>
+        </div>
+        <p class="offer-note">*Ofertas de ejemplo para personalizar antes de publicar. Confirma el precio final, disponibilidad, desplazamientos y condiciones con el fotógrafo.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading reveal"><div><div class="eyebrow">Así de fácil</div><h2>Del primer mensaje a tu recuerdo.</h2></div></div>
+        <div class="process-grid">
+          <div class="process-step reveal"><span class="num">01</span><h3>Me cuentas tu idea</h3><p>Escríbeme por WhatsApp y dime qué tipo de fotos tienes en mente.</p></div>
+          <div class="process-step reveal delay-1"><span class="num">02</span><h3>Diseñamos la sesión</h3><p>Elegimos estilo, lugar, fecha y el pack que mejor encaja contigo.</p></div>
+          <div class="process-step reveal delay-2"><span class="num">03</span><h3>Vuelve a sentirlo</h3><p>Recibe tus imágenes editadas y conserva ese momento para siempre.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div class="eyebrow">¿Listo para crear algo especial?</div>
+          <h2>Tu historia merece<br><em>ser fotografiada.</em></h2>
+          <p>Cuéntame qué quieres recordar. Hablamos directamente, sin formularios ni complicaciones.</p>
+          <a class="btn btn-light" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20he%20visitado%20tu%20web%20y%20quiero%20informaci%C3%B3n%20sobre%20una%20sesi%C3%B3n%20fotogr%C3%A1fica." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.8a8.2 8.2 0 1 1 16-3.4Z"/><path d="M8.8 8.1c.3-.6.6-.6.9-.6h.4c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.4-1.1.6-1.9.4-1-.2-2.3-.8-3.6-2-1.1-1.1-1.8-2.5-2-3.4-.2-.8.1-1.4.7-1.8Z"/></svg>
+            Escribir a Reinier
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <a class="brand" href="#inicio"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5h4l1.7-2.3h6.6L17 8.5h4v10H3z"/><circle cx="12" cy="13.5" r="4"/></svg></span><span class="brand-name">Reinier<small>F O T O S</small></span></a>
+      <div class="footer-copy">© <span id="year"></span> Reinier Fotos. Todos los derechos reservados.</div>
+      <div class="footer-links"><a href="#contacto">Contacto</a><a href="#ofertas">Ofertas</a><a href="https://wa.me/34685464783" target="_blank" rel="noopener">WhatsApp</a></div>
     </div>
+  </footer>
 
-    <footer class="bg-stone-900 text-stone-300 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-stone-800">
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold text-xl">
-                            M
-                        </div>
-                        <span class="text-2xl font-extrabold tracking-tight text-white">Mabuya<span class="text-brand-500">Print</span></span>
-                    </div>
-                    <p class="text-stone-400 text-sm">
-                        Tu estudio fotográfico y de impresión digital de confianza. Calidad insuperable en cada revelado y postal temática.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Servicios</h4>
-                    <ul class="space-y-2 text-sm text-stone-400">
-                        <li><a href="#fotografia" class="hover:text-white transition-colors">Impresión 10x15 a A3</a></li>
-                        <li><a href="#packs" class="hover:text-white transition-colors">Packs de Fotos</a></li>
-                        <li><a href="#postales" class="hover:text-white transition-colors">Postales Especiales 1€</a></li>
-                        <li><a href="#postales" class="hover:text-white transition-colors">Postales Personalizadas 2€</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Ocasiones Especiales</h4>
-                    <ul class="space-y-2 text-sm text-stone-400">
-                        <li><a href="#postales" onclick="switchCategory('madres')" class="hover:text-white transition-colors">Día de las Madres</a></li>
-                        <li><a href="#postales" onclick="switchCategory('padres')" class="hover:text-white transition-colors">Día de los Padres</a></li>
-                        <li><a href="#postales" onclick="switchCategory('amor')" class="hover:text-white transition-colors">San Valentín / Amor</a></li>
-                        <li><a href="#postales" onclick="switchCategory('navidad')" class="hover:text-white transition-colors">Navidad</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Contacto & Ayuda</h4>
-                    <p class="text-sm text-stone-400 mb-2"><i class="fa-solid fa-envelope mr-2 text-brand-500"></i> hola@mabuyaprint.com</p>
-                    <p class="text-sm text-stone-400 mb-4"><i class="fa-solid fa-phone mr-2 text-brand-500"></i> +34 684 79 25 06</p>
-                    <div class="flex space-x-4">
-                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-brand-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-brand-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Pinterest" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-brand-600 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-pinterest-p"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500">
-                <p>&copy; 2026 Mabuya Print. Todos los derechos reservados.</p>
-                <div class="flex space-x-6 mt-4 sm:mt-0">
-                    <a href="#" class="hover:text-stone-400">Política de Privacidad</a>
-                    <a href="#" class="hover:text-stone-400">Términos y Condiciones</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Data for postcard categories (10 items per category)
-        const postcardData = {
-            madres: [
-                { id: 'M01', title: 'Madre del Alma #01', desc: 'Flores en las esquinas con frase especial.', img: './tarjeta_madre/1.png' },               
-                { id: 'M02', title: 'Mamá Te Quiero #02', desc: 'Acuarela rosa con flores y corazón grande.', img:'./tarjeta_madre/2.png'},
-                { id: 'M03', title: 'Super Mamá #03', desc: 'Dedicatoria con girasoles.', img: './tarjeta_madre/3.png' },
-                { id: 'M04', title: 'Abrazo de Mamá #04', desc: 'Tarjeta emotiva colores malba y amarillo.', img: './tarjeta_madre/4.png' },
-                { id: 'M05', title: 'Gracias Mamá #05', desc: 'El rosa de mamá, ideal con una foto.', img: './tarjeta_madre/5.png' },
-                { id: 'M06', title: 'Corazón de Madre #06', desc: 'Diseño dorado sobre fondo rosa.', img: './tarjeta_madre/6.png' },
-                { id: 'M07', title: 'La Mejor Mamá #07', desc: 'Estilo sencillo y elegante, una rosa para mamá', img: './tarjeta_madre/7.png' },
-                { id: 'M08', title: 'Madre Única #08', desc: 'Ilustración artística delicada', img: './tarjeta_madre/8.png' },
-                { id: 'M09', title: 'Luz de mi Vida #09', desc: 'Flores diversas transmitiendo alegría y cariño.', img: './tarjeta_madre/9.png' },
-                { id: 'M10', title: 'Amor para mamá #10', desc: 'Tipografía grande celebrando Día de Madres.', img: './tarjeta_madre/10.png' }
-            ],
-            padres: [
-                { id: 'P01', title: 'Super Papá #01', desc: 'Diseño clásico corbata y tipografía fuerte', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P02', title: 'Mi Héroe #02', desc: 'Estilo vintage rústico masculino', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P03', title: 'Papá del Año #03', desc: 'Diseño moderno azul marino', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P04', title: 'Gracias Padre #04', desc: 'Ilustración de herramientas y café', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P05', title: 'El Mejor Guía #05', desc: 'Paisaje montañoso aventurero', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P06', title: 'Padre e Hijo #06', desc: 'Silueta emotiva al atardecer', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P07', title: 'Orgullo de Padre #07', desc: 'Tipografía bold elegante', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P08', title: 'Sabiduría #08', desc: 'Estilo clásico con detalles en cuero', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P09', title: 'Siempre Contigo #09', desc: 'Diseño náutico minimalista', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80' },
-                { id: 'P10', title: 'Rey de la Casa #10', desc: 'Postal premium con relieve', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80' }
-            ],
-            amor: [
-                { id: 'A01', title: 'Te Amo #01', desc: 'Corazones entrelazados rojos', img: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A02', title: 'San Valentín #02', desc: 'Rosas rojas y detalles románticos', img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A03', title: 'Juntos por Siempre #03', desc: 'Acuarela romántica con frase', img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A04', title: 'Mi Media Naranja #04', desc: 'Ilustración divertida y tierna', img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A05', title: 'Amor Puro #05', desc: 'Tonos pasteles y bokeh brillante', img: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A06', title: 'Contigo Todo #06', desc: 'Diseño minimalista tipográfico', img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A07', title: 'San Valentín Mágico #07', desc: 'Corazón geométrico moderno', img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A08', title: 'Te Adoro #08', desc: 'Flores silvestres y mensaje de amor', img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A09', title: 'Nuestra Historia #09', desc: 'Estilo álbum de recuerdos romántico', img: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80' },
-                { id: 'A10', title: 'Amor Infinito #10', desc: 'Símbolo de infinito con brillo', img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80' }
-            ],
-            navidad: [
-                { id: 'N01', title: 'Feliz Navidad #01', desc: 'Árbol navideño nevado con luces', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N02', title: 'Próspero Año #02', desc: 'Bolas doradas y ambiente festivo', img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N03', title: 'Magia Navideña #03', desc: 'Papá Noel y renos ilustrados', img: 'https://images.unsplash.com/photo-1576912556515-32d757d47bfd?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N04', title: 'Noche Buena #04', desc: 'Velas encendidas y ramas de pino', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N05', title: 'Estrella de Belén #05', desc: 'Cielo estrellado invernal', img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N06', title: 'Felices Fiestas #06', desc: 'Diseño escandinavo rojo y blanco', img: 'https://images.unsplash.com/photo-1576912556515-32d757d47bfd?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N07', title: 'Regalos y Paz #07', desc: 'Cajas de regalo con lazos elegantes', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N08', title: 'Muñeco de Nieve #08', desc: 'Divertido muñeco con bufanda', img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N09', title: 'Cuento de Navidad #09', desc: 'Estilo rústico con madera y piñas', img: 'https://images.unsplash.com/photo-1576912556515-32d757d47bfd?auto=format&fit=crop&w=400&q=80' },
-                { id: 'N10', title: 'Año Nuevo 2026 #10', desc: 'Fuegos artificiales dorados y celebración', img: 'https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=400&q=80' }
-            ],
-            cumpleanos: [
-                { id: 'C01', title: 'Feliz Cumpleaños #01', desc: 'Tarta colorida con velas festivas', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C02', title: 'Felicidades #02', desc: 'Globos de fiesta y confeti alegre', img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C03', title: 'Gran Día #03', desc: 'Estilo moderno vibrante y alegre', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C04', title: 'Celebración #04', desc: 'Champaña y copas festivas', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C05', title: 'Party Time #05', desc: 'Guirnaldas y luces de colores', img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C06', title: 'Deseos #06', desc: 'Velas encendidas en primer plano', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C07', title: 'Sorpresa #07', desc: 'Caja de regalo envuelta con lazo', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C08', title: 'Años Felices #08', desc: 'Tipografía de fiesta dorada', img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C09', title: 'Día Especial #09', desc: 'Diseño elegante de celebración', img: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=400&q=80' },
-                { id: 'C10', title: '¡A Celebrar! #10', desc: 'Confeti brillante sobre fondo claro', img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80' }
-            ]
-        };
-
-        // Cart State & Selected Postcard State
-        let cart = [];
-        let currentSelectedPostcard = null;
-
-        // Calculate photo total dynamically as quantity changes
-        function calculatePhotoTotal(size, unitPrice) {
-            const qtyInput = document.getElementById(`qty-${size}`);
-            const totalEl = document.getElementById(`total-${size}`);
-            let qty = parseInt(qtyInput.value);
-            if(isNaN(qty) || qty < 1) {
-                qty = 1;
-            }
-            const total = qty * unitPrice;
-            totalEl.innerText = total.toFixed(2) + ' €';
+  <a class="floating-wa" href="https://wa.me/34685464783?text=Hola%20Reinier%2C%20quiero%20informaci%C3%B3n%20sobre%20tus%20servicios%20fotogr%C3%A1ficos." target="_blank" rel="noopener" aria-label="Escribir a Reinier Fotos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.8a8.2 8.2 0 1 1 16-3.4Z"/><path d="M8.8 8.1c.3-.6.6-.6.9-.6h.4c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.4-1.1.6-1.9.4-1-.2-2.3-.8-3.6-2-1.1-1.1-1.8-2.5-2-3.4-.2-.8.1-1.4.7-1.8Z"/></svg>
+  </a>
+  <script>
+    const topbar = document.getElementById('topbar');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    window.addEventListener('scroll', () => topbar.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      document.body.classList.toggle('menu-open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      menuToggle.textContent = open ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded','false');
+      menuToggle.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
-
-        // Add photo size order with chosen quantity to cart
-        function addPhotoToCart(size, unitPrice) {
-            const qtyInput = document.getElementById(`qty-${size}`);
-            let qty = parseInt(qtyInput.value);
-            if(isNaN(qty) || qty < 1) {
-                qty = 1;
-            }
-            const totalPrice = qty * unitPrice;
-
-            cart.push({
-                name: `Impresión Foto [Formato ${size}]`,
-                details: `${qty} unidades (${unitPrice.toFixed(2)}€/u)`,
-                price: totalPrice
-            });
-
-            updateCartUI();
-            openCartModal();
-        }
-
-        // Render Postcards Gallery
-        function switchCategory(category) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-white text-stone-700 hover:bg-stone-200 border border-stone-300";
-            });
-            event.currentTarget.className = "tab-btn px-5 py-2.5 rounded-full font-bold text-sm transition-all bg-brand-600 text-white shadow-md shadow-brand-600/20";
-
-            const grid = document.getElementById('postcard-grid');
-            const items = postcardData[category];
-            
-            grid.innerHTML = items.map(item => `
-                <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="h-32 sm:h-48 overflow-hidden relative bg-stone-100">
-                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[10px] sm:text-xs font-extrabold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md">
-                                ${item.id}
-                            </span>
-                        </div>
-                        <div class="p-3 sm:p-4">
-                            <h4 class="font-bold text-stone-900 text-xs sm:text-base">${item.title}</h4>
-                            <p class="text-stone-500 text-[11px] sm:text-xs mt-1 line-clamp-2">${item.desc}</p>
-                        </div>
-                    </div>
-                    <div class="p-3 sm:p-4 pt-0 flex flex-col gap-1.5 sm:gap-2">
-                        <button onclick="addPostcardToCart('${item.id}', '${item.title}', 1.00)" class="w-full bg-stone-100 hover:bg-brand-50 text-stone-800 hover:text-brand-600 font-bold py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs transition-colors flex items-center justify-between border border-stone-200">
-                            <span>Estándar</span>
-                            <span class="font-extrabold text-brand-600">1,00 €</span>
-                        </button>
-                        <button onclick="openCustomModal('${item.id}', '${item.title}')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl text-[11px] sm:text-xs transition-colors flex items-center justify-between shadow-sm">
-                            <span>Personalizar</span>
-                            <span class="font-extrabold text-brand-100">2,00 €</span>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Initialize with Madres category on load
-        window.onload = function() {
-            const firstTab = document.querySelector('.tab-btn');
-            if(firstTab) {
-                switchCategory('madres');
-            }
-            updateIdPhotoDetails();
-        };
-
-        // Update ID Photo specs description based on selector
-        function updateIdPhotoDetails() {
-            const select = document.getElementById('id-country-select');
-            const selectedOption = select.options[select.selectedIndex];
-            const specs = selectedOption.getAttribute('data-specs');
-            document.getElementById('id-specs-text').innerText = specs;
-        }
-
-        // Add ID / Passport photo to cart
-        function addIdPhotoToCart() {
-            const select = document.getElementById('id-country-select');
-            const selectedText = select.options[select.selectedIndex].text;
-            const specs = select.options[select.selectedIndex].getAttribute('data-specs');
-
-            cart.push({
-                name: `Foto Oficial Carnet / Pasaporte`,
-                details: `${selectedText} (${specs})`,
-                price: 5.00
-            });
-
-            updateCartUI();
-            openCartModal();
-        }
-
-        // Add Pack to Cart
-        function addPackToCart(packName, price) {
-            cart.push({
-                name: packName,
-                details: 'Pack promocional',
-                price: price
-            });
-            updateCartUI();
-            openCartModal();
-        }
-
-        // Add Standard Postcard to Cart
-        function addPostcardToCart(id, title, price) {
-            cart.push({
-                name: `Postal [Ref. ${id}] ${title}`,
-                details: 'Versión estándar',
-                price: price
-            });
-            updateCartUI();
-            openCartModal();
-        }
-
-        // Open Custom Modal for Postcard
-        function openCustomModal(id, title) {
-            currentSelectedPostcard = { id, title };
-            document.getElementById('modal-title').innerText = `Personalizar: ${title} (Ref. ${id})`;
-            document.getElementById('custom-message').value = '';
-            document.getElementById('custom-modal').classList.remove('hidden');
-            document.getElementById('custom-modal').classList.add('flex');
-        }
-
-        function closeCustomModal() {
-            document.getElementById('custom-modal').classList.remove('flex');
-            document.getElementById('custom-modal').classList.add('hidden');
-        }
-
-        function confirmCustomPostcard() {
-            const msg = document.getElementById('custom-message').value;
-            const finish = document.getElementById('custom-finish').value;
-            const price = finish === 'texturado' ? 2.50 : 2.00;
-            const finishText = finish === 'texturado' ? 'Texturado Fine Art (+0.50€)' : finish;
-
-            cart.push({
-                name: `Postal Personalizada [Ref. ${currentSelectedPostcard.id}]`,
-                details: `Mensaje: "${msg.substring(0, 30) || 'Sin mensaje'}..." | Acabado: ${finishText}`,
-                price: price
-            });
-
-            closeCustomModal();
-            updateCartUI();
-            openCartModal();
-        }
-
-        // Cart UI management
-        function updateCartUI() {
-            const container = document.getElementById('cart-items-container');
-            const counter = document.getElementById('cart-counter');
-            const subtotalEl = document.getElementById('cart-subtotal');
-
-            counter.innerText = cart.length;
-
-            if(cart.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 text-stone-400">
-                        <i class="fa-solid fa-basket-shopping text-4xl mb-3 text-stone-300"></i>
-                        <p class="font-medium">Tu cesta está vacía</p>
-                        <p class="text-xs mt-1">Añade impresiones o postales para comenzar</p>
-                    </div>
-                `;
-                subtotalEl.innerText = '0,00 €';
-                return;
-            }
-
-            let subtotal = 0;
-            container.innerHTML = cart.map((item, index) => {
-                subtotal += item.price;
-                return `
-                    <div class="py-4 flex justify-between items-start">
-                        <div>
-                            <h5 class="font-bold text-stone-900 text-sm">${item.name}</h5>
-                            <p class="text-xs text-stone-500 mt-0.5">${item.details}</p>
-                            <span class="text-xs font-extrabold text-brand-600 mt-1 inline-block">${item.price.toFixed(2)} €</span>
-                        </div>
-                        <button onclick="removeFromCart(${index})" class="text-stone-400 hover:text-red-500 p-1">
-                            <i class="fa-solid fa-trash-can text-sm"></i>
-                        </button>
-                    </div>
-                `;
-            }).join('');
-
-            subtotalEl.innerText = subtotal.toFixed(2) + ' €';
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function openCartModal() {
-            document.getElementById('cart-drawer').classList.remove('hidden');
-        }
-
-        function closeCartModal() {
-            document.getElementById('cart-drawer').classList.add('hidden');
-        }
-
-        // Checkout and send complete cart info to WhatsApp (+34 684 79 25 06)
-        function checkoutOrder() {
-            if(cart.length === 0) {
-                const notification = document.createElement('div');
-                notification.className = 'fixed bottom-5 right-5 z-50 bg-stone-900 text-white px-6 py-3 rounded-xl shadow-xl text-sm font-semibold animate-in fade-in slide-in-from-bottom duration-300';
-                notification.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2 text-brand-500"></i> Tu cesta está vacía. Añade productos antes de tramitar el pedido.';
-                document.body.appendChild(notification);
-                setTimeout(() => notification.remove(), 3000);
-                return;
-            }
-
-            let message = "¡Hola Mabuya Print! Me gustaría realizar el siguiente pedido:\n\n";
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                total += item.price;
-                message += `${index + 1}. *${item.name}*\n`;
-                if(item.details) {
-                    message += `   - Detalle: ${item.details}\n`;
-                }
-                message += `   - Precio: ${item.price.toFixed(2)} €\n\n`;
-            });
-
-            message += `*Total del Pedido:* ${total.toFixed(2)} €\n\nQuedo a la espera de las instrucciones para el pago y envío. ¡Gracias!`;
-
-            const phoneNumber = "34684792506";
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-            window.open(whatsappURL, '_blank');
-
-            cart = [];
-            updateCartUI();
-            closeCartModal();
-        }
-    </script>
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
